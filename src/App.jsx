@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./Pages/Home";
 import RootLayout from "./Layout/RootLayout/RootLayout";
 import About from "./Pages/About";
+import GetInTouch from "./Pages/getInTouch";
 
 function App() {
   const router = createBrowserRouter(
@@ -16,6 +17,7 @@ function App() {
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/get_in_touch" element={<GetInTouch/>}/>
         </Route>
       </Route>
     )

@@ -4,7 +4,8 @@ import bannerImg from "../../../assets/banner/nayeam.png";
 import Aos from "aos";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router";
-
+import MorphingView from "./animation";
+import cv from "../../../assets/cv/nayeam_resume.pdf"
 const Banner = () => {
   useEffect(() => {
     Aos.init({
@@ -13,6 +14,8 @@ const Banner = () => {
     });
   }, []);
   const dotLottieRef = React.useRef(null);
+
+  
   return (
     <Container>
       <div className="text-green-500">
@@ -54,19 +57,18 @@ const Banner = () => {
         data-aos-delay="200"
       >
         <div className="w-[770px] h-[127px] text-center">
-          <h1 className="font-poppins font-extrabold text-6xl">
-            I do code and <br /> make content <span> </span>
+          <h1 className="font-poppins font-semibold text-6xl">
+            I'm Nayeam Seikh a <br />
             <span className="bg-gradient-to-l from-fuchsia-400 via-fuchsia-600 to-yellow-500 bg-clip-text text-transparent">
-              about it!
+              <MorphingView />
             </span>
+            
           </h1>
         </div>
       </div>
       <div
         className=" text-white text-center mt-8 flex justify-center text-l"
-        data-aos="fade-up"
-        data-aos-duration="1200"
-        data-aos-delay="200"
+       
       >
         I am a seasoned full-stack software engineer with over <br /> 8 years of
         professional experience, specializing in backend development. <br /> My
@@ -75,7 +77,8 @@ const Banner = () => {
       </div>
       <div className="text-white text-center mt-14 flex justify-center gap-8">
         <button>Get In Touch</button>
-        <button className="button02">Download CV</button>
+        <button className="button02"> <a href={cv} target="_blank">Download CV</a></button>
+       
       </div>
     </Container>
   );

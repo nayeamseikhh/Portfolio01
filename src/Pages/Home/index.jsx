@@ -14,7 +14,7 @@ const Home = () => {
       <Experience />
       <Project />
       <WebSolution />
-      <Footer />
+     
     </div>
   );
 };

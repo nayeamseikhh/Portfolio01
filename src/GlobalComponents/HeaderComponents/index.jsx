@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import logo from "../../assets/logo/logo.png";
 import Container from "../Container";
+import DarkMode from "./DarkMode";
 
 const Header = () => {
   return (
@@ -40,7 +41,7 @@ const Header = () => {
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                     </h4>
                   </Link>
-                  <Link className="relative group">
+                  <Link to="/get_in_touch" className="relative group">
                     <h4 className="relative">
                       Contact
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
@@ -48,6 +49,7 @@ const Header = () => {
                   </Link>
 
                   <button>Hire Me</button>
+                  <DarkMode/>
                 </div>
               </div>
             </div>
