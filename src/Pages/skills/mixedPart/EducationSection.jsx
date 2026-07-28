@@ -85,7 +85,7 @@ const EducationSection = () => {
           <img
             src={myImages}
             alt="myImages"
-            className="w-full h-[650px] object-cover rounded-[40px]"
+            className="w-full h-[850px] p-5 object-cover rounded-[40px]"
           />
         </div>
       </div>
