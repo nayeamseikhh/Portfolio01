@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
-import project01 from "../../../assets/Project/color_changer.png";
+
+// images...
 import dowith from "../../../assets/Project/do_with.png";
 import eshopblog from "../../../assets/Project/e_shop_blog.png";
 import eshop from "../../../assets/Project/e_shop.png";
@@ -15,150 +16,182 @@ import studentresultmanagement from "../../../assets/Project/student_result_mana
 import nayeamportfolio from "../../../assets/Project/nayeam_portfolio.png";
 import nayeamportfoliofooter from "../../../assets/Project/nayeam_portfolio_footer.png";
 
+// ---------------- DATA ----------------
+
+const firstRowProjects = [
+  {
+    id: 1,
+    image: dowith,
+    title: "Do With",
+    live: "https://dowhith-flex-project.vercel.app/",
+  },
+  {
+    id: 2,
+    image: eshop,
+    title: "E-Shop",
+    live: "https://e-commerce3-nine.vercel.app/",
+  },
+  {
+    id: 3,
+    image: eshopblog,
+    title: "E-Shop Blog",
+    live: "https://e-commerce3-nine.vercel.app/",
+  },
+  {
+    id: 4,
+    image: joinroom,
+    title: "Join Room",
+    live: "https://vartuee-meet.vercel.app/",
+  },
+  {
+    id: 5,
+    image: jscalculator,
+    title: "JS Calculator",
+    live: "https://js-calculator-seven-lemon.vercel.app/",
+  },
+  {
+    id: 6,
+    image: mernianbody,
+    title: "Mernian Body",
+    live: "https://mernian-umber.vercel.app/",
+  },
+  {
+    id: 7,
+    image: mernianfriends,
+    title: "Mernian Friends",
+    live: "https://mernian-umber.vercel.app/",
+  },
+  {
+    id: 8,
+    image: mernian,
+    title: "Mernian",
+    live: "https://mernian-umber.vercel.app/",
+  },
+];
+
+const secondRowProjects = [
+  {
+    id: 9,
+    image: numbergussinggame,
+    title: "Number Guessing Game",
+    live: "https://number-guessing-game-tau-snowy.vercel.app/",
+  },
+  {
+    id: 10,
+    image: namta,
+    title: "Namta",
+    live: "https://namta-nine.vercel.app/",
+  },
+  {
+    id: 11,
+    image: studentdashboard,
+    title: "Student Dashboard",
+    live: "https://student-portal2-alpha.vercel.app/",
+  },
+  {
+    id: 12,
+    image: studentresultmanagement,
+    title: "Student Result Management",
+    live: "https://student-result-management-beta.vercel.app/",
+  },
+  {
+    id: 13,
+    image: nayeamportfolio,
+    title: "Portfolio",
+    live: "https://portfolio01-five-peach.vercel.app/",
+  },
+  {
+    id: 14,
+    image: nayeamportfoliofooter,
+    title: "Portfolio Footer",
+    live: "https://portfolio01-five-peach.vercel.app/",
+  },
+];
+
+// ---------------- COMPONENTS ----------------
+
+const ProjectCard = ({ project }) => (
+  <a
+    href={project.live}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={project.title}
+    className="
+      group
+      block
+      flex-shrink-0
+      overflow-hidden
+      rounded-2xl
+      shadow-xl
+
+      w-[240px]
+      h-[145px]
+
+      sm:w-[280px]
+      sm:h-[170px]
+
+      md:w-[320px]
+      md:h-[190px]
+
+      lg:w-[360px]
+      lg:h-[210px]
+    "
+  >
+    <img
+      src={project.image}
+      alt={project.title}
+      className="
+        h-full
+        w-full
+        object-cover
+        transition-all
+        duration-500
+        group-hover:scale-105
+      "
+    />
+  </a>
+);
+
+const ProjectRow = ({ projects }) => (
+  <div className="flex items-center gap-4 sm:gap-6 md:gap-8 px-2 sm:px-4">
+    {projects.map((project) => (
+      <ProjectCard key={project.id} project={project} />
+    ))}
+  </div>
+);
+
+// ---------------- PAGE ----------------
+
 const Project = () => {
   return (
-    <>
-      <div className="text-white01 mt-25 font-poppins font-semibold flex justify-center text-3xl text-center">
-        <h4 className="relative">
+    <section className="py-16 md:py-20 lg:py-24">
+      {/* Heading */}
+
+      <div className="mb-10 md:mb-14 lg:mb-16 flex justify-center">
+        <h2 className="relative font-poppins font-semibold text-white01 text-3xl sm:text-4xl lg:text-5xl">
           Projects
-          <span className="absolute left-0 -bottom-2 h-0.5 bg-white02 transition-all duration-300 w-full"></span>
-        </h4>
+          <span className="absolute left-0 -bottom-2 h-[2px] w-full bg-white02" />
+        </h2>
       </div>
-      <Marquee className="text-white" pauseOnHover="true" direction="right">
-        <div className="flex mt-20 mb-5 gap-x-5">
-          <div className=" h-50 w-50">
-            <img
-              src={project01}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={dowith}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={eshop}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={eshopblog}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={joinroom}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={jscalculator}
-              alt="project01"
-              className="h-full w-full object-fill rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={mernianbody}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={mernianfriends}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className=" h-50 w-50">
-            <img
-              src={mernian}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-        </div>
+
+      {/* First Marquee */}
+
+      <Marquee
+        direction="right"
+        speed={45}
+        pauseOnHover
+        gradient={false}
+        className="mb-6 md:mb-8"
+      >
+        <ProjectRow projects={firstRowProjects} />
       </Marquee>
-      <Marquee className="text-white" pauseOnHover="true" direction="left">
-        <div className="flex mb-20 gap-x-5">
-          <div className="h-50 w-50">
-            <img
-              src={numbergussinggame}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={namta}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={studentdashboard}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={studentresultmanagement}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={nayeamportfolio}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={nayeamportfoliofooter}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={project01}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={project01}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-          <div className="h-50 w-50">
-            <img
-              src={project01}
-              alt="project01"
-              className="h-full w-full object-contain rounded-xl"
-            />
-          </div>
-        </div>
+
+      {/* Second Marquee */}
+
+      <Marquee direction="left" speed={45} pauseOnHover gradient={false}>
+        <ProjectRow projects={secondRowProjects} />
       </Marquee>
-    </>
+    </section>
   );
 };
 

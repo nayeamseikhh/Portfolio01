@@ -5,7 +5,8 @@ import Aos from "aos";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router";
 import MorphingView from "./animation";
-import cv from "../../../assets/cv/nayeam_resume.pdf"
+import cv from "../../../assets/cv/nayeam_resume.pdf";
+
 const Banner = () => {
   useEffect(() => {
     Aos.init({
@@ -15,72 +16,72 @@ const Banner = () => {
   }, []);
   const dotLottieRef = React.useRef(null);
 
-  
   return (
-    <Container>
-      <div className="text-green-500">
-        <Link>
-          <div className="h-8 w-fit p-2  bg-black02 ml-210 -mb-28 mt-20 rounded-4xl flex  items-center ">
-            <div>
-              <DotLottieReact
-                src="https://lottie.host/9a5963cb-c54a-484b-a670-7220128bbd51/tU9JPnXYiA.lottie"
-                loop
-                autoplay
-                style={{
-                  width: 100,
-                  height: 50,
-                  marginRight: -25,
-                  marginLeft: -40,
-                }}
-              />
+    <section>
+      <Container>
+        <div className="text-green-500">
+          <Link>
+            <div className="h-8 w-fit p-2  bg-black02 ml-210 -mb-28 mt-20 rounded-4xl flex  items-center ">
+              <div>
+                <DotLottieReact
+                  src="https://lottie.host/9a5963cb-c54a-484b-a670-7220128bbd51/tU9JPnXYiA.lottie"
+                  loop
+                  autoplay
+                  style={{
+                    width: 100,
+                    height: 50,
+                    marginRight: -25,
+                    marginLeft: -40,
+                  }}
+                />
+              </div>
+              <h6 className="mr-3 -ml-2 text-sm font-light">
+                Available for work
+              </h6>
             </div>
-            <h6 className="mr-3 -ml-2 text-sm font-light">
-              Available for work
-            </h6>
-          </div>
-        </Link>
-      </div>
-      <div className="text-white mt-20 flex justify-center">
-        <div className="h-60 w-60">
-          <img
-            className="h-full w-full rounded-full object-cover "
-            src={bannerImg}
-            alt="bannerImg
+          </Link>
+        </div>
+        <div className="text-white mt-20 flex justify-center">
+          <div className="h-60 w-60">
+            <img
+              className="h-full w-full rounded-full object-cover "
+              src={bannerImg}
+              alt="bannerImg
           "
-          />
+            />
+          </div>
         </div>
-      </div>
-      <div
-        className="text-white mt-20 flex justify-center"
-        data-aos="fade-up"
-        data-aos-duration="1200"
-        data-aos-delay="200"
-      >
-        <div className="w-[770px] h-[127px] text-center">
-          <h1 className="font-poppins font-semibold text-6xl">
-            I'm Nayeam Seikh a <br />
-            <span className="bg-gradient-to-l from-fuchsia-400 via-fuchsia-600 to-yellow-500 bg-clip-text text-transparent">
-              <MorphingView />
-            </span>
-            
-          </h1>
+        <div
+          className="text-white mt-20 flex justify-center"
+          data-aos="fade-up"
+          data-aos-duration="1200"
+          data-aos-delay="200"
+        >
+          <div className="w-[770px] h-[127px] text-center">
+            <h1 className="font-poppins font-semibold text-6xl">
+              I'm Nayeam Seikh a <br />
+              <span className="bg-gradient-to-l from-fuchsia-400 via-fuchsia-600 to-yellow-500 bg-clip-text text-transparent">
+                <MorphingView />
+              </span>
+            </h1>
+          </div>
         </div>
-      </div>
-      <div
-        className=" text-white text-center mt-8 flex justify-center text-l"
-       
-      >
-        I am a seasoned full-stack software engineer with over <br /> 8 years of
-        professional experience, specializing in backend development. <br /> My
-        expertise lies in crafting robust and scalable SaaS-based <br />
-        architectures on the Amazon AWS platform.
-      </div>
-      <div className="text-white text-center mt-14 flex justify-center gap-8">
-        <button>Get In Touch</button>
-        <button className="button02"> <a href={cv} target="_blank">Download CV</a></button>
-       
-      </div>
-    </Container>
+        <div className=" text-white text-center mt-10 flex justify-center text-xl leading-9 tracking-wider">
+          Building modern, responsive, and scalable web applications since 2024.
+          <br /> I specialize in React, Node.js, Express.js, MongoDB, and
+          Tailwind CSS, <br /> creating fast, user-friendly, and
+          high-performance digital experiences.
+        </div>
+        <div className="text-white text-center mt-14 flex justify-center gap-8">
+          <button>Get In Touch</button>
+          <button className="button02">
+            <a href={cv} target="_blank">
+              Download CV
+            </a>
+          </button>
+        </div>
+      </Container>
+    </section>
   );
 };
 

@@ -1,22 +1,34 @@
 import React, { useRef } from "react";
 import Container from "../../GlobalComponents/Container";
-import nayeamImg from "../../../src/assets/myImages/na.jpg";
+import nayeamImg from "../../../src/assets/myImages/nayeam.png";
 import { GoLocation, GoMail } from "react-icons/go";
-import { MdLocationPin, MdOutlineAlternateEmail } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
+import {
+  MdLocationPin,
+  MdOutlineAlternateEmail,
+  MdOutlineMail,
+} from "react-icons/md";
+import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import { RiTelegram2Fill } from "react-icons/ri";
+import SocialIcon from "./socialIcon";
+import GetInTouchText from "./getInTouchText";
+import RelationalPart from "./relationalPart";
 
 const GetInTouch = () => {
   return (
     <>
       <Container>
-        <div className="dark:text-white my-20 mb-200">
-          <div className="grid grid-cols-2 justify-between">
-            <div>
-              <img src={nayeamImg} alt="" />
+        <div className="dark:text-white my-20  ">
+          {/* left part */}
+          <div className="grid grid-cols-2 justify-between  text-white02">
+            <div className="border hover:border-orange bg-transparent rounded-2xl  items-center text-center p-6 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
+              <img src={nayeamImg} alt="nayeam Images" />
             </div>
+
+            {/* right Part  */}
             <div className="flex flex-col items-center ">
               <div className="h-30 w-[80%]">
-                <div className="flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl transition-all items-center text-center p-6">
+                {/* address  */}
+                <div className="flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl  items-center text-center p-6 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
                   <div>
                     <MdLocationPin
                       size={40}
@@ -32,8 +44,8 @@ const GetInTouch = () => {
                     </p>
                   </div>
                 </div>
-
-                <div className=" flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl transition-all items-center text-center p-6 my-20">
+                {/* Phone  */}
+                <div className=" flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl items-center text-center p-6 my-20 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
                   <div>
                     <FaPhoneAlt
                       size={40}
@@ -49,10 +61,10 @@ const GetInTouch = () => {
                     </p>
                   </div>
                 </div>
-
-                <div className=" flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl transition-all items-center text-center p-6 my-20">
+                {/* Email  */}
+                <div className=" flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl  items-center text-center p-6 my-20 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
                   <div>
-                    <MdOutlineAlternateEmail
+                    <MdOutlineMail
                       size={40}
                       className="h-full p-4 w-full bg-black02 rounded-full"
                     />
@@ -66,29 +78,48 @@ const GetInTouch = () => {
                     </p>
                   </div>
                 </div>
+                {/* Whats App  */}
+                <div className=" flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl  items-center text-center p-6 my-20 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
+                  <div>
+                    <FaWhatsapp
+                      size={40}
+                      className="h-full p-4 w-full bg-black02 rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <h6 className="text-4xl font-bold text-orange font-poppins text-start">
+                      Whats App
+                    </h6>
+                    <p className="text-lg font-semibold font-poppins text-start">
+                      +8801750497007
+                    </p>
+                  </div>
+                </div>
+                {/* Telegram  */}
+                <div className=" flex gap-x-10 border border-gray-800  hover:border-orange bg-transparent rounded-2xl  items-center text-center p-6 my-20 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
+                  <div>
+                    <RiTelegram2Fill
+                      size={40}
+                      className="h-full p-4 w-full bg-black02 rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <h6 className="text-4xl font-bold text-orange font-poppins text-start">
+                      Telegram
+                    </h6>
+                    <p className="text-lg font-semibold font-poppins text-start">
+                      +8801750497007
+                    </p>
+                  </div>
+                </div>
+                <SocialIcon />
               </div>
             </div>
           </div>
 
-          <div>
-            <div className="my-20">
-              <h6 className="text-4xl">
-                🚀 Hi, I'm Nayeam Seikh – Full MERN Stack Developer. <br />
-              </h6>
-              <p className="text-base">
-                Looking for a high-performance, modern, and scalable web
-                solution? You’re in the right place! I am a Full MERN Stack
-                Developer with front-end and back-end development expertise. ✅
-                What I Offer: ✔ Custom Web Development Using MERN Stack
-                (MongoDB, Express.js, React.js, Node.js) ✔ Full-Stack Web
-                Applications – From frontend to backend, I build it all ✔ API
-                Development & Integration ✔ Real-time Web Applications ✔
-                Database Design & Management (MongoDB) ✔ User Authentication &
-                Authorization ✔ Secure & Scalable Backend Solutions and More..
-              </p>
-            </div>
-          </div>
+          <GetInTouchText />
         </div>
+        <RelationalPart />
       </Container>
     </>
   );

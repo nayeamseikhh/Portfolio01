@@ -18,38 +18,38 @@ const Header = () => {
                 </div>
                 <div className=" flex items-center justify-end gap-x-15 mr-5 text-lg font-semibold ">
                   <Link className="relative group">
-                    <h4 className="relative">
+                    <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02 ">
                       Home
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                     </h4>
                   </Link>
-                  <Link className="relative group">
-                    <h4 className="relative">
+                  <Link to="/skills" className="relative group">
+                    <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02">
                       My Work
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                     </h4>
                   </Link>
                   <Link className="relative group">
-                    <h4 className="relative">
+                    <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02">
                       Project Plane
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                     </h4>
                   </Link>
                   <Link className="relative group">
-                    <h4 className="relative">
+                    <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02">
                       About
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                     </h4>
                   </Link>
                   <Link to="/get_in_touch" className="relative group">
-                    <h4 className="relative">
+                    <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02 ">
                       Contact
                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
                     </h4>
                   </Link>
 
                   <button>Hire Me</button>
-                  <DarkMode/>
+                  <DarkMode />
                 </div>
               </div>
             </div>
