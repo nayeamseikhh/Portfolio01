@@ -3,6 +3,7 @@
 @import "aos/dist/aos.css";
 
 @theme {
+  --animate-spin-slow: spin 3s linear infinite;
   --font-poppins: "Poppins", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
   --color-orange: #e0822d;
@@ -45,7 +46,8 @@ button:hover {
   color: #e0822d;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 button:active {

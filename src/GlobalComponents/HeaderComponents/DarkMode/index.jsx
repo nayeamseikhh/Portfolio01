@@ -32,31 +32,25 @@ import { CiDark, CiLight } from "react-icons/ci";
 
 // export default DarkMode;
 
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const DarkMode = () => {
-  const [darkMode, setDarkMode] = useState(false)
-  const handleClick = ()=>{
+  const [darkMode, setDarkMode] = useState(false);
+  const handleClick = () => {
     setDarkMode(!darkMode);
     document.body.style.backgroundColor = !darkMode ? "#000" : "#fff";
     document.body.style.color = !darkMode ? "#fff" : "#000";
   };
 
-   
-
   return (
     <>
-    <div>
-     <div
-      className="text-4xl font-bold dark-mode"
-        onClick={handleClick}
-      >
-       
-         <h1>{darkMode ?  <CiLight/> :  <CiDark />  }</h1>
-       </div>
-    </div>
+      <div className="text-white">
+        <div className="text-4xl font-bold dark-mode" onClick={handleClick}>
+          <h1>{darkMode ? <CiLight /> : <CiDark />}</h1>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default DarkMode
+export default DarkMode;
