@@ -18,10 +18,10 @@ const Banner = () => {
   const dotLottieRef = React.useRef(null);
 
   return (
-    <section>
+    <section className="pt-10">
       <Container>
         {/* <BossNayeam /> */}
-        <div className="text-green-500">
+        <div className="text-green-500 ">
           <Link>
             <div className="h-8 w-fit p-2  bg-black02 ml-210 -mb-28 mt-20 rounded-4xl flex  items-center ">
               <div>

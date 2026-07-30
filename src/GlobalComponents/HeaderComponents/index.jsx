@@ -78,7 +78,7 @@ import AiButton from "./AiButton";
 const navLinks = [
   { title: "Home", path: "/" },
   { title: "My Work", path: "/skills" },
-  { title: "Project Plan", path: "/project-plan" },
+  { title: "Project Plan", path: "/" },
   { title: "About", path: "/about" },
   { title: "Contact", path: "/get_in_touch" },
 ];
@@ -87,9 +87,9 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="py-5">
+    <header className="py-1 fixed top-0 left-0 right-0 z-50 ">
       <Container>
-        <nav className="rounded-2xl bg-black02 px-6 shadow-xl">
+        <nav className=" rounded-2xl bg-black02 px-6 shadow-xl">
           <div className="flex h-18 items-center justify-between">
             {/* Logo */}
             <Link to="/" className="shrink-0">
@@ -97,7 +97,7 @@ const Header = () => {
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center gap-10">
+            <div className="hidden lg:flex items-center gap-14 text-lg">
               {navLinks.map((item) => (
                 <Link
                   key={item.title}

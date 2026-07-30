@@ -17,10 +17,10 @@ const GetInTouch = () => {
   return (
     <>
       <Container>
-        <div className="dark:text-white my-20  ">
+        <div className="dark:text-white my-20 pt-10 ">
           {/* left part */}
           <div className="grid grid-cols-2 justify-between  text-white02">
-            <div className="border hover:border-orange bg-transparent rounded-2xl  items-center text-center p-6 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105">
+            <div className=" border hover:border-orange bg-transparent rounded-2xl  items-center text-center  transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-105 ">
               <img src={nayeamImg} alt="nayeam Images" />
             </div>
 
