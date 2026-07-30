@@ -6,6 +6,7 @@ import Experience from "./experience";
 import Project from "./Project";
 import WebSolution from "./Web Solutions";
 import Footer from "../../GlobalComponents/Footer";
+import Review from "./Banner/review";
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
       <Experience />
       <Project />
       <WebSolution />
-     
+      <Review />
     </div>
   );
 };

@@ -74,10 +74,11 @@ import logo from "../../assets/logo/logo.png";
 import Container from "../Container";
 import DarkMode from "./DarkMode";
 import AiButton from "./AiButton";
+import Login from "../auth/login";
 
 const navLinks = [
   { title: "Home", path: "/" },
-  { title: "My Work", path: "/skills" },
+  { title: "My Skills", path: "/skills" },
   { title: "Project Plan", path: "/" },
   { title: "About", path: "/about" },
   { title: "Contact", path: "/get_in_touch" },
@@ -118,6 +119,8 @@ const Header = () => {
               <button className="rounded-lg bg-amber-400 px-6 py-2 font-semibold text-black transition hover:bg-amber-300">
                 Hire Me
               </button>
+
+              <Login onClick={() => setOpen(true)} />
 
               <DarkMode />
             </div>

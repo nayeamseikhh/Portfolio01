@@ -17,7 +17,7 @@ export default function AiButton() {
         <div className="absolute -inset-[250%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(#32aee3_0deg,#6fde59_120deg,#32aee3_240deg,#060c21_300deg,#32aee3_360deg)] blur-2xl opacity-70"></div>
 
         {/* Content */}
-        <div className="relative rounded-xl bg-black02 px-8 py-3 text-white">
+        <div className="relative rounded-xl bg-black02 px-8 py-2 text-white">
           <Link
             onClick={() => setOpen(true)}
             className="flex items-center gap-x-2  text-2xl font-semibold"

@@ -68,11 +68,19 @@ const Banner = () => {
             </h1>
           </div>
         </div>
-        <div className=" text-white text-center mt-10 flex justify-center text-xl leading-9 tracking-wider">
-          Building modern, responsive, and scalable web applications since 2024.
-          <br /> I specialize in React, Node.js, Express.js, MongoDB, and
-          Tailwind CSS, <br /> creating fast, user-friendly, and
-          high-performance digital experiences.
+        <div className="text-white text-center mt-10 flex justify-center text-xl leading-9 tracking-wider">
+          <p>
+            Building modern, responsive, and scalable web applications since
+            2024.
+            <br />
+            I specialize in React, Node.js, Express.js, MongoDB, and Tailwind
+            CSS,
+            <br />
+            <span className="text-orange-500 font-semibold">AI </span>
+            integration in website and web application both creating fast,
+            <br />
+            user-friendly, and high-performance digital experiences.
+          </p>
         </div>
         <div className="text-white text-center mt-14 flex justify-center gap-8">
           <button>Get In Touch</button>
