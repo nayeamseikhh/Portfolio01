@@ -21,9 +21,9 @@ const Banner = () => {
     <section className="pt-10">
       <Container>
         {/* <BossNayeam /> */}
-        <div className="text-green-500 ">
+        <div className="text-green-500 hidden lg:block ">
           <Link>
-            <div className="h-8 w-fit p-2  bg-black02 ml-210 -mb-28 mt-20 rounded-4xl flex  items-center ">
+            <div className="h-8 w-fit p-2  bg-black02  ml-210 -mb-28 mt-20 rounded-4xl flex  items-center ">
               <div>
                 <DotLottieReact
                   src="https://lottie.host/9a5963cb-c54a-484b-a670-7220128bbd51/tU9JPnXYiA.lottie"
@@ -44,7 +44,7 @@ const Banner = () => {
           </Link>
         </div>
         <div className="text-white mt-20 flex justify-center">
-          <div className="h-60 w-60">
+          <div className="h-40 lg:h-60 w-40 lg:w-60 shadow-gray-500 shadow-2xl rounded-full overflow-hidden">
             <img
               className="h-full w-full rounded-full object-cover "
               src={bannerImg}
@@ -60,7 +60,7 @@ const Banner = () => {
           data-aos-delay="200"
         >
           <div className="w-[770px] h-[127px] text-center">
-            <h1 className="font-poppins font-semibold text-6xl">
+            <h1 className="font-poppins font-semibold text-4xl  lg:text-6xl">
               I'm Nayeam Seikh a <br />
               <span className="bg-gradient-to-l from-fuchsia-400 via-fuchsia-600 to-yellow-500 bg-clip-text text-transparent">
                 <MorphingView />

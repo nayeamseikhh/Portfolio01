@@ -121,12 +121,10 @@ const Header = () => {
               </button>
 
               <Login onClick={() => setOpen(true)} />
-
               <DarkMode />
             </div>
 
             {/* Mobile Menu Button */}
-
             <button
               onClick={() => setOpen(!open)}
               className="text-3xl text-white lg:hidden"
@@ -136,7 +134,6 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu */}
-
           <div
             className={`overflow-hidden transition-all duration-300 lg:hidden ${
               open ? "max-h-[500px] py-5" : "max-h-0"
