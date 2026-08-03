@@ -44,7 +44,7 @@ const Banner = () => {
           </Link>
         </div>
         <div className="text-white mt-20 flex justify-center">
-          <div className="h-40 lg:h-60 w-40 lg:w-60 shadow-gray-500 shadow-2xl rounded-full overflow-hidden">
+          <div className="h-40 lg:h-60 w-40 lg:w-60 shadow-gray-700 shadow-2xl rounded-full overflow-hidden">
             <img
               className="h-full w-full rounded-full object-cover "
               src={bannerImg}

@@ -5,7 +5,7 @@ const Review = () => {
     <>
       <div className="flex justify-center   bg-black02">
         <h2 className="relative text-lg sm:text-xl md:text-4xl font-semibold font-poppins text-white uppercase tracking-wider">
-          Review
+          Testimonial
           <span className="absolute left-0 -bottom-2 h-[2px] w-full bg-white02"></span>
         </h2>
       </div>
