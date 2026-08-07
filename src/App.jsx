@@ -11,6 +11,7 @@ import About from "./Pages/About";
 import GetInTouch from "./Pages/getInTouch";
 import Skills from "./Pages/skills";
 import Registration from "./GlobalComponents/auth/registration";
+import PrivacyPolicy from "./Pages/privacyPolicy";
 
 function App() {
   const router = createBrowserRouter(
@@ -22,6 +23,7 @@ function App() {
           <Route path="/get_in_touch" element={<GetInTouch />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Route>
       </Route>,
     ),

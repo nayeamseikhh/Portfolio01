@@ -1,0 +1,22 @@
+import GetInTouchText from "../getInTouchText";
+import RelationalPart from "../relationalPart";
+import LeftLayout from "./leftlayout";
+import RightLayout from "./rightLayout";
+
+const GetintouchBanner = () => {
+  return (
+    <>
+      <div className="dark:text-white my-20 pt-10 ">
+        {/* left part */}
+        <div className="grid grid-cols-2 justify-between  text-white02">
+          <LeftLayout />
+
+          {/* right Part  */}
+          <RightLayout />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default GetintouchBanner;

@@ -17,7 +17,7 @@ const WebSolution = () => {
 
           {/* Heading */}
           <h2 className="mt-8 text-3xl sm:text-4xl lg:text-5xl font-semibold font-poppins leading-tight text-white01">
-            Professional Web Solutions for
+            Professional Web Solutions for{" "}
             <span className="bg-gradient-to-l from-fuchsia-400 via-fuchsia-600 to-yellow-500 bg-clip-text text-transparent">
               Your Business Growth
             </span>

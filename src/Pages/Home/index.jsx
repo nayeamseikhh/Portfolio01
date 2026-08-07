@@ -7,6 +7,7 @@ import Project from "./Project";
 import WebSolution from "./Web Solutions";
 import Footer from "../../GlobalComponents/Footer";
 import Review from "./Banner/review";
+// import BackendTest from "../backendtest";
 
 const Home = () => {
   return (
