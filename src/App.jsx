@@ -12,6 +12,7 @@ import GetInTouch from "./Pages/getInTouch";
 import Skills from "./Pages/skills";
 import Registration from "./GlobalComponents/auth/registration";
 import PrivacyPolicy from "./Pages/privacyPolicy";
+import ProjectPlan from "./Pages/projectPlan";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +25,7 @@ function App() {
           <Route path="/skills" element={<Skills />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/project_plan" element={<ProjectPlan />} />
         </Route>
       </Route>,
     ),

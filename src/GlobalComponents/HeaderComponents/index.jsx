@@ -1,74 +1,6 @@
-// import { Link } from "react-router";
-// import logo from "../../assets/logo/logo.png";
-// import Container from "../Container";
-// import DarkMode from "./DarkMode";
-// import AiButton from "./AiButton";
-
-// const Header = () => {
-//   return (
-//     <>
-//       <div>
-//         <Container>
-//           <div className="">
-//             <div className="h-18 w-full bg-black02 text-white01 mt-5 rounded-2xl shadow-xl/15 ">
-//               <div className="grid grid-cols-[1fr_2fr]">
-//                 <div className="flex items-center ml-5  bg-cover bg-center rounded-xl">
-//                   <Link to="/">
-//                     <img className="w-35" src={logo} alt="logo" />
-//                   </Link>
-//                   <div className="mt-1.5 ml-30">
-//                     <AiButton />
-//                   </div>
-//                 </div>
-//                 <div className=" flex items-center justify-end gap-x-15 mr-5 text-lg font-semibold ">
-//                   <Link className="relative group">
-//                     <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02 ">
-//                       Home
-//                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-//                     </h4>
-//                   </Link>
-//                   <Link to="/skills" className="relative group">
-//                     <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02">
-//                       My Work
-//                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-//                     </h4>
-//                   </Link>
-//                   <Link className="relative group">
-//                     <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02">
-//                       Project Plane
-//                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-//                     </h4>
-//                   </Link>
-//                   <Link className="relative group">
-//                     <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02">
-//                       About
-//                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-//                     </h4>
-//                   </Link>
-//                   <Link to="/get_in_touch" className="relative group">
-//                     <h4 className="relative transition-all duration-300 ease-in-out hover:text-white02 ">
-//                       Contact
-//                       <span className="absolute left-0 -bottom-2 h-0.5 w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-//                     </h4>
-//                   </Link>
-
-//                   <button>Hire Me</button>
-//                   <DarkMode />
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </Container>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Header;
-
 import { useState } from "react";
-import { Link } from "react-router";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
+import { Link, NavLink } from "react-router";
 
 import logo from "../../assets/logo/logo.png";
 import Container from "../Container";
@@ -77,91 +9,365 @@ import AiButton from "./AiButton";
 import Login from "../auth/login";
 
 const navLinks = [
-  { title: "Home", path: "/" },
-  { title: "My Skills", path: "/skills" },
-  { title: "Project Plan", path: "/" },
-  { title: "About", path: "/about" },
-  { title: "Contact", path: "/get_in_touch" },
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "My Skills",
+    path: "/skills",
+  },
+  {
+    title: "Project Plan",
+    path: "/project_plan",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+  {
+    title: "Contact",
+    path: "/get_in_touch",
+  },
 ];
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+  };
 
   return (
-    <header className="py-1 fixed top-0 left-0 right-0 z-50 ">
+    <header
+      className="
+        fixed
+        top-0
+        z-50
+        w-full
+        border-b
+        border-white/[0.04]
+        bg-transparent
+        backdrop-blur-xl
+      "
+    >
       <Container>
-        <nav className=" rounded-2xl bg-black02 px-6 shadow-xl">
-          <div className="flex h-18 items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="shrink-0">
-              <img src={logo} alt="Logo" className="w-32 md:w-36" />
+        <nav
+          aria-label="Main navigation"
+          className="
+            relative
+            flex
+            min-h-[76px]
+            items-center
+            justify-between
+
+            rounded-2xl
+            bg-white/[0.03]
+
+            px-2
+            sm:px-3
+            lg:px-4
+            xl:px-5
+          "
+        >
+          {/* =========================
+              Logo
+          ========================== */}
+          <Link
+            to="/"
+            onClick={closeMobileMenu}
+            aria-label="Nayeam Seikh - Home"
+            className="
+              shrink-0
+              -ml-1
+              transition-transform
+              duration-300
+              hover:scale-105
+            "
+          >
+            <img
+              src={logo}
+              alt="Nayeam Seikh"
+              className="
+                block
+                h-auto
+                w-[105px]
+                object-contain
+                sm:w-[115px]
+                lg:w-[120px]
+              "
+            />
+          </Link>
+
+          {/* =========================
+              Desktop Navigation
+          ========================== */}
+          <ul
+            className="
+              hidden
+              items-center
+              gap-7
+              lg:flex
+              xl:gap-9
+            "
+          >
+            {navLinks.map((item) => (
+              <li key={item.title}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `
+                    group
+                    relative
+                    block
+                    py-2
+                    font-poppins
+                    text-sm
+                    font-semibold
+                    transition-colors
+                    duration-300
+                    xl:text-base
+
+                    ${
+                      isActive
+                        ? "text-orange"
+                        : "text-white01 hover:text-orange"
+                    }
+                    `
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      {item.title}
+
+                      <span
+                        className={`
+                          absolute
+                          -bottom-0.5
+                          left-0
+                          h-[2px]
+                          rounded-full
+                          bg-orange
+                          transition-all
+                          duration-300
+
+                          ${isActive ? "w-full" : "w-0 group-hover:w-full"}
+                        `}
+                      />
+                    </>
+                  )}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+
+          {/* =========================
+              Desktop Actions
+          ========================== */}
+          <div
+            className="
+              hidden
+              items-center
+              gap-2
+              lg:flex
+              xl:gap-3
+            "
+          >
+            {/* AI */}
+            <AiButton onClick={() => setLoginOpen(true)} />
+
+            {/* Hire Me */}
+            <Link to="/get_in_touch">
+              <button>Hire Me</button>
             </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center gap-14 text-lg">
-              {navLinks.map((item) => (
-                <Link
-                  key={item.title}
-                  to={item.path}
-                  className="group relative font-medium text-white01"
-                >
-                  {item.title}
-
-                  <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              ))}
-            </div>
-
-            {/* Right Side */}
-            <div className="hidden lg:flex items-center gap-5">
-              <AiButton onClick={() => setOpen(true)} />
-
-              <button className="rounded-lg bg-amber-400 px-6 py-2 font-semibold text-black transition hover:bg-amber-300">
-                Hire Me
-              </button>
-
-              <Login onClick={() => setOpen(true)} />
-              <DarkMode />
-            </div>
-
-            {/* Mobile Menu Button */}
+            {/* Login */}
             <button
-              onClick={() => setOpen(!open)}
-              className="text-3xl text-white lg:hidden"
+              type="button"
+              onClick={() => setLoginOpen(true)}
+              className="button02"
             >
-              {open ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
+              Log In
             </button>
+
+            {/* Dark Mode */}
+            <DarkMode />
           </div>
 
-          {/* Mobile Menu */}
-          <div
-            className={`overflow-hidden transition-all duration-300 lg:hidden ${
-              open ? "max-h-[500px] py-5" : "max-h-0"
-            }`}
+          {/* =========================
+              Mobile Menu Button
+          ========================== */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+            aria-label={
+              mobileOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            className="
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+
+              rounded-xl
+              border
+              border-gray-800
+
+              text-2xl
+              text-white
+
+              transition-all
+              duration-300
+
+              hover:border-orange
+              hover:text-orange
+
+              lg:hidden
+            "
           >
-            <div className="flex flex-col gap-5">
+            {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
+          </button>
+        </nav>
+
+        {/* =========================
+            Mobile Navigation
+        ========================== */}
+        <div
+          id="mobile-navigation"
+          className={`
+            overflow-hidden
+            transition-all
+            duration-300
+            lg:hidden
+
+            ${mobileOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}
+          `}
+        >
+          <nav
+            aria-label="Mobile navigation"
+            className="
+              mt-2
+              rounded-2xl
+              border
+              border-gray-800
+              bg-[#151515]/95
+              p-3
+              backdrop-blur-xl
+            "
+          >
+            <ul className="flex flex-col gap-1">
               {navLinks.map((item) => (
-                <Link
-                  key={item.title}
-                  to={item.path}
-                  onClick={() => setOpen(false)}
-                  className="text-white01 transition hover:text-amber-400"
-                >
-                  {item.title}
-                </Link>
+                <li key={item.title}>
+                  <NavLink
+                    to={item.path}
+                    onClick={closeMobileMenu}
+                    className={({ isActive }) =>
+                      `
+                      block
+                      rounded-xl
+                      px-4
+                      py-3
+
+                      font-poppins
+                      text-sm
+                      font-medium
+
+                      transition-all
+                      duration-300
+
+                      ${
+                        isActive
+                          ? "bg-orange/10 text-orange"
+                          : "text-white01 hover:bg-white/[0.04] hover:text-orange"
+                      }
+                      `
+                    }
+                  >
+                    {item.title}
+                  </NavLink>
+                </li>
               ))}
+            </ul>
 
-              <AiButton />
+            {/* Mobile Actions */}
+            <div
+              className="
+                mt-4
+                grid
+                gap-3
+                border-t
+                border-gray-800
+                pt-4
+              "
+            >
+              <AiButton onClick={() => setLoginOpen(true)} />
 
-              <button className="rounded-lg bg-amber-400 py-3 font-semibold text-black">
+              <Link
+                to="/get_in_touch"
+                onClick={closeMobileMenu}
+                className="
+                  rounded-xl
+                  bg-orange
+                  px-5
+                  py-3
+                  text-center
+
+                  font-poppins
+                  text-sm
+                  font-semibold
+                  text-white
+
+                  transition-all
+                  duration-300
+
+                  hover:bg-orange/90
+                "
+              >
                 Hire Me
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => {
+                  closeMobileMenu();
+                  setLoginOpen(true);
+                }}
+                className="
+                  rounded-xl
+                  border
+                  border-orange
+                  px-5
+                  py-3
+
+                  font-poppins
+                  text-sm
+                  font-semibold
+                  text-orange
+
+                  transition-all
+                  duration-300
+
+                  hover:bg-orange
+                  hover:text-white
+                "
+              >
+                Log In
               </button>
 
-              <DarkMode />
+              <div className="flex justify-center pt-1">
+                <DarkMode />
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </Container>
+
+      {/* Login Modal */}
+      {loginOpen && <Login onClick={() => setLoginOpen(false)} />}
     </header>
   );
 };

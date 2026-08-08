@@ -1,4 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
 
 const FooterTopCard = () => {
   return (
@@ -176,9 +177,11 @@ const FooterTopCard = () => {
               "
           >
             {/* Get In Touch */}
-            <button
-              className="
+            <a href="/get_in_touch">
+              <button
+                className="
                   group
+                  button01
 
                   flex
                   w-full
@@ -209,18 +212,18 @@ const FooterTopCard = () => {
                   sm:px-6
                   sm:py-3.5
                 "
-            >
-              Get In Touch
-              <FaArrowRight
-                className="
+              >
+                Get In Touch
+                <FaArrowRight
+                  className="
                     transition-transform
                     duration-300
 
                     group-hover:translate-x-1
                   "
-              />
-            </button>
-
+                />
+              </button>
+            </a>
             {/* Download CV */}
             <button
               className="
@@ -231,8 +234,7 @@ const FooterTopCard = () => {
                   border
                   border-orange
 
-                  px-5
-                  py-3
+                 button02
 
                   font-poppins
                   text-sm

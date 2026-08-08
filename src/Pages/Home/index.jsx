@@ -7,12 +7,14 @@ import Project from "./Project";
 import WebSolution from "./Web Solutions";
 import Footer from "../../GlobalComponents/Footer";
 import Review from "./Banner/review";
+import Banner02 from "./Banner02";
 // import BackendTest from "../backendtest";
 
 const Home = () => {
   return (
     <div>
       <Banner />
+      <Banner02 />
       <Experience />
       <Project />
       <WebSolution />

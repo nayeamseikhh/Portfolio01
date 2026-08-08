@@ -1,95 +1,105 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-const MorphingText = ({
-  words = [
-    "Web Developer",
-    "Web Designer",
-    "MERN Stack Developer",
-    "Freelancer",
-  ],
-  duration = 3000,
-  className = "",
-}) => {
+const words = [
+  "Web Developer",
+  "Web Designer",
+  "MERN Stack Developer",
+  "Freelancer",
+];
+
+const MorphingText = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % words.length);
-    }, duration);
+    }, 3200);
 
     return () => clearInterval(interval);
-  }, [duration, words.length]);
+  }, []);
 
   return (
     <div
-      className={`flex justify-center items-center w-full px-4 ${className}`}
-      style={{ perspective: "1000px" }}
+      className="
+        relative
+        mt-5
+        h-[52px]
+        w-full
+        overflow-hidden
+
+        sm:h-[60px]
+        md:h-[68px]
+        lg:h-[74px]
+      "
     >
-      <AnimatePresence mode="wait">
-        <motion.h2
-          key={currentIndex}
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={words[currentIndex]}
           initial={{
             opacity: 0,
-            filter: "blur(10px)",
-            scale: 0.8,
-            rotateX: -90,
+            y: 20,
+            scale: 0.96,
           }}
           animate={{
             opacity: 1,
-            filter: "blur(0px)",
+            y: 0,
             scale: 1,
-            rotateX: 0,
           }}
           exit={{
             opacity: 0,
-            filter: "blur(10px)",
-            scale: 1.2,
-            rotateX: 90,
+            y: -20,
+            scale: 1.02,
           }}
           transition={{
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            opacity: {
+              duration: 0.6,
+              ease: "easeInOut",
+            },
+            y: {
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            },
+            scale: {
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            },
           }}
           className="
-            min-h-[60px]
-            sm:min-h-[70px]
-            md:min-h-[80px]
-            lg:min-h-[90px]
+            absolute
+            left-0
+            top-0
 
-            text-center
-            font-bold
-            leading-tight
-
+            font-poppins
             text-2xl
+            font-semibold
+            leading-tight
+            tracking-tight
+            text-orange
+
             sm:text-3xl
-            md:text-5xl
-            lg:text-6xl
-
-            whitespace-nowrap
-
-            bg-gradient-to-r
-            from-purple-600
-            via-pink-600
-            to-blue-600
-            bg-clip-text
-            text-transparent
+            md:text-4xl
+            lg:text-5xl
+            xl:text-6xl
           "
-          style={{
-            transformStyle: "preserve-3d",
-          }}
         >
           {words[currentIndex]}
-        </motion.h2>
+        </motion.div>
       </AnimatePresence>
     </div>
   );
 };
 
-export default function MorphingView() {
+const MorphingView = () => {
   return (
-    <section className="w-full py-4 sm:py-6">
+    <div
+      className="w-full max-w-2xl"
+      aria-live="polite"
+      aria-label={`Professional role: ${words[0]}`}
+    >
       <MorphingText />
-    </section>
+    </div>
   );
-}
+};
+
+export default MorphingView;
