@@ -22,6 +22,10 @@ const navLinks = [
     path: "/project_plan",
   },
   {
+    title: "Pricing",
+    path: "/pricing",
+  },
+  {
     title: "About",
     path: "/about",
   },
@@ -183,16 +187,15 @@ const Header = () => {
             </Link>
 
             {/* Login */}
-            <button
-              type="button"
-              onClick={() => setLoginOpen(true)}
-              className="button02"
-            >
-              Log In
-            </button>
+
+            <Login />
+
+            {/* <div className="flex items-center gap-4">
+              <Login />
+            </div> */}
 
             {/* Dark Mode */}
-            <DarkMode />
+            {/* <DarkMode /> */}
           </div>
 
           {/* =========================
@@ -358,9 +361,9 @@ const Header = () => {
                 Log In
               </button>
 
-              <div className="flex justify-center pt-1">
+              {/* <div className="flex justify-center pt-1">
                 <DarkMode />
-              </div>
+              </div> */}
             </div>
           </nav>
         </div>

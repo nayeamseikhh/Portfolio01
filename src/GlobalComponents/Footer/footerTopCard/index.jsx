@@ -225,35 +225,9 @@ const FooterTopCard = () => {
               </button>
             </a>
             {/* Download CV */}
-            <button
-              className="
-                  w-full
-
-                  rounded-xl
-
-                  border
-                  border-orange
-
-                 button02
-
-                  font-poppins
-                  text-sm
-                  font-semibold
-                  text-orange
-
-                  transition-all
-                  duration-300
-
-                  hover:bg-orange
-                  hover:text-white
-
-                  sm:w-auto
-                  sm:px-6
-                  sm:py-3.5
-                "
-            >
-              Download CV
-            </button>
+            <a href="/src/assets/cv/nayeam_resume.pdf" download>
+              <button>Download CV</button>
+            </a>
           </div>
         </div>
       </div>

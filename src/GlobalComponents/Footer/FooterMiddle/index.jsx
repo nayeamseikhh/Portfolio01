@@ -86,7 +86,7 @@ const FooterMiddle = () => {
             <ul className="space-y-3 font-poppins text-sm text-white/50 sm:space-y-4">
               <li>
                 <a
-                  href="#home"
+                  href="/"
                   className="transition-colors duration-300 hover:text-orange"
                 >
                   Home
@@ -95,7 +95,7 @@ const FooterMiddle = () => {
 
               <li>
                 <a
-                  href="#skills"
+                  href="/skills"
                   className="transition-colors duration-300 hover:text-orange"
                 >
                   My Skills
@@ -104,7 +104,7 @@ const FooterMiddle = () => {
 
               <li>
                 <a
-                  href="#projects"
+                  href="/project_plan"
                   className="transition-colors duration-300 hover:text-orange"
                 >
                   Project Plan

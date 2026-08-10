@@ -5,144 +5,555 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, githubProvider, googleProvider } from "../../../firebase.config";
 
 const LoginForm = ({ open, setOpen }) => {
+  // =========================
+  // Google Login
+  // =========================
+
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
 
-      console.log("User:", result.user);
+      console.log("Google User:", result.user);
 
-      alert(`Welcome ${result.user.displayName}`);
+      alert(`Welcome ${result.user.displayName || result.user.email}`);
 
       setOpen(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       alert(error.message);
     }
   };
+
+  // =========================
+  // GitHub Login
+  // =========================
+
   const handleGithubLogin = async () => {
     try {
       const result = await signInWithPopup(auth, githubProvider);
-      console.log(result.user);
+
+      console.log("GitHub User:", result.user);
+
+      alert(`Welcome ${result.user.displayName || result.user.email}`);
+
+      setOpen(false);
     } catch (error) {
       console.error(error);
+      alert(error.message);
     }
   };
+
   return (
     <>
+      {/* =====================================================
+          BACKDROP
+      ===================================================== */}
+
       <div
+        className={`
+          fixed
+          inset-0
+          z-[9990]
+
+          bg-black/70
+
+          transition-all
+          duration-300
+
+          ${
+            open
+              ? "visible opacity-100"
+              : "invisible pointer-events-none opacity-0"
+          }
+        `}
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-all duration-300
-        ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
-      ></div>
-      <div
-        className={`fixed right-0 top-0 z-50 h-screen w-[420px] bg-black02  shadow-2xl transition-all duration-500
-        ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        <section className="min-h-screen bg-[#171312] flex items-center justify-center px-4">
-          <div className="w-full max-w-md bg-[#1F1F1F] rounded-3xl p-10 border border-gray-800 shadow-2xl">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-white">
-                Welcome <span className="text-[#F28C28]">Back</span>
-              </h1>
+        {/* Blur the website behind the overlay */}
 
-              <p className="text-gray-400 mt-3">
-                Sign in to continue to your dashboard.
-              </p>
-            </div>
+        <div
+          className="
+            absolute
+            inset-0
 
-            <form className="space-y-5">
-              {/* Email */}
+            backdrop-blur-xl
+          "
+        />
+      </div>
 
-              <div>
-                <label className="text-gray-300 mb-2 block">
-                  Email Address
-                </label>
+      {/* =====================================================
+          DRAWER
+      ===================================================== */}
 
-                <input
-                  type="email"
-                  placeholder="example@gmail.com"
-                  className="w-full px-4 py-3 rounded-xl bg-[#2A2A2A] border border-gray-700 text-white outline-none focus:border-[#F28C28] duration-300"
-                />
-              </div>
+      <div
+        className={`
+          fixed
+          right-0
+          top-0
+          z-[9999]
 
-              {/* Password */}
+          h-[100dvh]
+          w-full
+          max-w-[430px]
 
-              <div>
-                <label className="text-gray-300 mb-2 block">Password</label>
+          bg-[#181818]
 
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 rounded-xl bg-[#2A2A2A] border border-gray-700 text-white outline-none focus:border-[#F28C28] duration-300"
-                />
-              </div>
+          border-l
+          border-white/[0.08]
 
-              {/* Remember */}
+          shadow-[-20px_0_80px_rgba(0,0,0,0.7)]
 
-              <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center gap-2 text-gray-400">
-                  <input type="checkbox" className="accent-[#F28C28]" />
-                  Remember me
-                </label>
+          transition-transform
+          duration-500
+          ease-in-out
 
-                <Link
-                  to="/forgot-password"
-                  className="text-[#F28C28] hover:underline"
-                >
-                  Forgot Password?
-                </Link>
-              </div>
+          ${open ? "translate-x-0" : "translate-x-full"}
+        `}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* =================================================
+            SCROLLABLE CONTENT
+        ================================================= */}
 
-              {/* Login Button */}
+        <div
+          className="
+            relative
+            h-full
 
-              <button className="w-full py-3 rounded-xl bg-[#F28C28] hover:bg-orange-500 duration-300 text-white font-semibold text-lg cursor-pointer">
-                Log In
-              </button>
-            </form>
+            overflow-y-auto
 
-            {/* Divider */}
+            px-5
+            py-6
 
-            <div className="flex items-center gap-4 my-8">
-              <div className="h-px bg-gray-700 flex-1"></div>
+            sm:px-7
+            sm:py-8
+          "
+        >
+          {/* =================================================
+              CLOSE BUTTON
+          ================================================= */}
 
-              <span className="text-gray-500 text-sm">OR</span>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close login"
+            className="
+              absolute
+              right-5
+              top-5
+              z-20
 
-              <div className="h-px bg-gray-700 flex-1"></div>
-            </div>
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
 
-            {/* Social Login */}
+              rounded-full
 
-            <div className="space-y-4">
-              <button
-                onClick={handleGoogleLogin}
-                className="w-full border border-gray-700 hover:border-[#F28C28] rounded-xl py-3 text-white flex items-center justify-center gap-3 duration-300"
-              >
-                <FaGoogle className="text-red-500 text-xl" />
-                Continue with Google
-              </button>
+              border
+              border-gray-700
 
-              <button
-                onClick={handleGithubLogin}
-                className="w-full border border-gray-700 hover:border-[#F28C28] rounded-xl py-3 text-white flex items-center justify-center gap-3 duration-300"
-              >
-                <FaGithub className="text-xl" />
-                Continue with GitHub
-              </button>
-            </div>
+              bg-[#222222]
 
-            {/* Register */}
+              text-lg
+              text-gray-400
 
-            <p className="text-center text-gray-400 mt-8">
-              Don't have an account?
-              <Link
-                to="/registration"
-                className="text-[#F28C28] font-semibold hover:underline"
-              >
-                Create Account
-              </Link>
+              transition-all
+              duration-300
+
+              hover:border-[#F28C28]
+              hover:bg-[#F28C28]
+              hover:text-white
+            "
+          >
+            ✕
+          </button>
+
+          {/* =================================================
+              HEADER
+          ================================================= */}
+
+          <div className="pt-12">
+            <p
+              className="
+                font-poppins
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[3px]
+                text-[#F28C28]
+              "
+            >
+              Welcome
+            </p>
+
+            <h2
+              className="
+                mt-3
+                font-poppins
+                text-3xl
+                font-bold
+                text-white
+              "
+            >
+              Welcome Back
+            </h2>
+
+            <p
+              className="
+                mt-3
+                max-w-sm
+                font-poppins
+                text-sm
+                leading-6
+                text-gray-400
+              "
+            >
+              Sign in to continue to your dashboard.
             </p>
           </div>
-        </section>
+
+          {/* =================================================
+              LOGIN FORM
+          ================================================= */}
+
+          <form className="mt-8 space-y-5">
+            {/* EMAIL */}
+
+            <div>
+              <label
+                className="
+                  mb-2
+                  block
+                  font-poppins
+                  text-sm
+                  text-gray-300
+                "
+              >
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                placeholder="example@gmail.com"
+                className="
+                  w-full
+                  rounded-xl
+
+                  border
+                  border-gray-700
+
+                  bg-[#252525]
+
+                  px-4
+                  py-3
+
+                  font-poppins
+                  text-sm
+                  text-white
+
+                  outline-none
+
+                  transition-all
+                  duration-300
+
+                  placeholder:text-gray-600
+
+                  focus:border-[#F28C28]
+                  focus:ring-1
+                  focus:ring-[#F28C28]/20
+                "
+              />
+            </div>
+
+            {/* PASSWORD */}
+
+            <div>
+              <label
+                className="
+                  mb-2
+                  block
+                  font-poppins
+                  text-sm
+                  text-gray-300
+                "
+              >
+                Password
+              </label>
+
+              <input
+                type="password"
+                placeholder="••••••••"
+                className="
+                  w-full
+                  rounded-xl
+
+                  border
+                  border-gray-700
+
+                  bg-[#252525]
+
+                  px-4
+                  py-3
+
+                  font-poppins
+                  text-sm
+                  text-white
+
+                  outline-none
+
+                  transition-all
+                  duration-300
+
+                  placeholder:text-gray-600
+
+                  focus:border-[#F28C28]
+                  focus:ring-1
+                  focus:ring-[#F28C28]/20
+                "
+              />
+            </div>
+
+            {/* REMEMBER / FORGOT */}
+
+            <div
+              className="
+                flex
+                items-center
+                justify-between
+                gap-3
+              "
+            >
+              <label
+                className="
+                  flex
+                  items-center
+                  gap-2
+
+                  font-poppins
+                  text-xs
+                  text-gray-400
+
+                  sm:text-sm
+                "
+              >
+                <input type="checkbox" className="accent-[#F28C28]" />
+                Remember me
+              </label>
+
+              <Link
+                to="/forgot-password"
+                className="
+                  font-poppins
+                  text-xs
+                  text-[#F28C28]
+
+                  hover:underline
+
+                  sm:text-sm
+                "
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
+            {/* LOGIN BUTTON */}
+
+            <button
+              type="submit"
+              className="
+                w-full
+
+                cursor-pointer
+
+                rounded-xl
+
+                bg-[#F28C28]
+
+                py-3.5
+
+                font-poppins
+                text-base
+                font-semibold
+                text-white
+
+                transition-all
+                duration-300
+
+                hover:bg-orange-500
+
+                hover:shadow-[0_0_30px_rgba(242,140,40,0.25)]
+              "
+            >
+              Log In
+            </button>
+
+            {/* =================================================
+                SKIP BUTTON
+            ================================================= */}
+
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="
+                block
+                w-full
+
+                cursor-pointer
+
+                py-2
+
+                text-center
+
+                font-poppins
+                text-sm
+                font-medium
+
+                text-gray-500
+
+                transition-all
+                duration-300
+
+                hover:text-[#F28C28]
+                hover:underline
+              "
+            >
+              Skip for now
+            </button>
+          </form>
+
+          {/* =================================================
+              DIVIDER
+          ================================================= */}
+
+          <div className="my-7 flex items-center gap-4">
+            <div className="h-px flex-1 bg-gray-700" />
+
+            <span
+              className="
+                font-poppins
+                text-xs
+                text-gray-500
+              "
+            >
+              OR
+            </span>
+
+            <div className="h-px flex-1 bg-gray-700" />
+          </div>
+
+          {/* =================================================
+              SOCIAL LOGIN
+          ================================================= */}
+
+          <div className="space-y-3">
+            {/* GOOGLE */}
+
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="
+                flex
+                w-full
+                items-center
+                justify-center
+                gap-3
+
+                rounded-xl
+
+                border
+                border-gray-700
+
+                bg-transparent
+
+                py-3
+
+                font-poppins
+                text-sm
+                font-medium
+                text-white
+
+                transition-all
+                duration-300
+
+                hover:border-[#F28C28]
+                hover:bg-white/[0.03]
+              "
+            >
+              <FaGoogle className="text-lg text-red-500" />
+              Continue with Google
+            </button>
+
+            {/* GITHUB */}
+
+            <button
+              type="button"
+              onClick={handleGithubLogin}
+              className="
+                flex
+                w-full
+                items-center
+                justify-center
+                gap-3
+
+                rounded-xl
+
+                border
+                border-gray-700
+
+                bg-transparent
+
+                py-3
+
+                font-poppins
+                text-sm
+                font-medium
+                text-white
+
+                transition-all
+                duration-300
+
+                hover:border-[#F28C28]
+                hover:bg-white/[0.03]
+              "
+            >
+              <FaGithub className="text-lg" />
+              Continue with GitHub
+            </button>
+          </div>
+
+          {/* =================================================
+              REGISTER
+          ================================================= */}
+
+          <p
+            className="
+              mt-7
+              pb-5
+
+              text-center
+
+              font-poppins
+              text-sm
+              text-gray-400
+            "
+          >
+            Don't have an account?{" "}
+            <Link
+              to="/registration"
+              className="
+                font-semibold
+                text-[#F28C28]
+
+                transition
+
+                hover:underline
+              "
+            >
+              Create Account
+            </Link>
+          </p>
+        </div>
       </div>
     </>
   );

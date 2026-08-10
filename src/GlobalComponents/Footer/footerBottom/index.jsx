@@ -31,7 +31,7 @@ const FooterBottom = () => {
         {/* Social Icons */}
         <div className="order-1 flex items-center justify-center gap-2.5 sm:gap-3 md:order-2">
           <a
-            href="https://github.com/"
+            href="https://github.com/nayeamseikhh"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
@@ -55,7 +55,7 @@ const FooterBottom = () => {
           </a>
 
           <a
-            href="https://linkedin.com/"
+            href="https://www.linkedin.com/in/nayeam-seikh/"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -79,7 +79,7 @@ const FooterBottom = () => {
           </a>
 
           <a
-            href="https://facebook.com/"
+            href="https://facebook.com/nayeamseikh1"
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
