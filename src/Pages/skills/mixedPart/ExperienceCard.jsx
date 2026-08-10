@@ -53,7 +53,7 @@ const ExperienceCard = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <p className="text-gray-400 text-sm mb-8">7 Years of Experience</p>
+          <p className="text-gray-400 text-sm mb-8">3+ Years of Experience</p>
 
           <div className="space-y-8">
             {experiences.map((item, index) => (
