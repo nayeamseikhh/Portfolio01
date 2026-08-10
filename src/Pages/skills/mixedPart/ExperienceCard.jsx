@@ -3,24 +3,31 @@ import React from "react";
 const ExperienceCard = () => {
   const experiences = [
     {
-      role: "UX/UI Architect",
-      company: "IBM Corporation",
-      year: "2021 - Present",
+      role: "Web Designer",
+      company: "One year academy",
+      year: "2023 - 2025",
     },
     {
-      role: "UI Design Intern",
-      company: "Windows UX",
-      year: "2019 - 2020",
+      role: "SEO expert",
+      company: "Automated Trading bot",
+      year: "2024 - 2025",
     },
     {
-      role: "Visual Design",
-      company: "Microsoft Cooperation",
-      year: "2017 - 2018",
+      role: "MERN stack Developer",
+      company: (
+        <a
+          href="https://www.plastixely.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Plastixely
+        </a>
+      ),
     },
     {
-      role: "UX Strategist",
-      company: "Google Analytics",
-      year: "2014 - 2018",
+      role: "CEO of Nayeam Dev",
+      company: "MERN Stack Developer",
+      year: "2024 - 2025",
     },
   ];
 

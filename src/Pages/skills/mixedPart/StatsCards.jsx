@@ -3,11 +3,11 @@ import React from "react";
 const StatsCards = () => {
   const stats = [
     {
-      number: "95+",
+      number: "15+",
       title: "Projects Done",
     },
     {
-      number: "15+",
+      number: "3+",
       title: "Years On Field",
     },
   ];

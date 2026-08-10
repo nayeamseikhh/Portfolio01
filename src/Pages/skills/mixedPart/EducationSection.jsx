@@ -5,19 +5,19 @@ import myImages from "../../../assets/myImages/nayeam.png";
 const EducationSection = () => {
   const education = [
     {
-      year: "2011 - 2012",
-      title: "Digital Design Masterclass",
-      institute: "Domestika Design Academy",
+      year: "2014 - 2015",
+      title: "Secondary School Certificate",
+      institute: "Nowhata model High School",
     },
     {
-      year: "2012 - 2013",
-      title: "Webpage And Mobile Design",
-      institute: "Skill-Share Design Academy",
+      year: "2015 - 2017",
+      title: "Higher School Certificate",
+      institute: "Rajshahi Government City College",
     },
     {
-      year: "2013 - 2014",
-      title: "Digital Product Design",
-      institute: "Springboard Digital Academy",
+      year: "2024 - present",
+      title: "Diploma In computer Science",
+      institute: "Bangladesh Open University",
     },
   ];
 
