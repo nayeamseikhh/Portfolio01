@@ -113,7 +113,7 @@ const FooterMiddle = () => {
 
               <li>
                 <a
-                  href="#about"
+                  href="/about"
                   className="transition-colors duration-300 hover:text-orange"
                 >
                   About
@@ -122,7 +122,7 @@ const FooterMiddle = () => {
 
               <li>
                 <a
-                  href="#contact"
+                  href="/get_in_touch"
                   className="transition-colors duration-300 hover:text-orange"
                 >
                   Contact
@@ -167,7 +167,7 @@ const FooterMiddle = () => {
             <div className="space-y-5">
               {/* Email */}
               <a
-                href="mailto:your@email.com"
+                href="mailto:nayeamseikh1@email.com"
                 className="group flex min-w-0 items-start gap-3"
               >
                 <MdEmail
@@ -196,13 +196,17 @@ const FooterMiddle = () => {
                           group-hover:text-orange
                         "
                   >
-                    your@email.com
+                    nayeamseikh1@email.com
                   </p>
                 </div>
               </a>
-
               {/* Location */}
-              <div className="flex items-start gap-3">
+              <a
+                href="https://maps.app.goo.gl/56RBAdU5RXEgWxSs6"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-3"
+              >
                 <MdLocationOn className="mt-1 shrink-0 text-xl text-orange" />
 
                 <div>
@@ -212,8 +216,7 @@ const FooterMiddle = () => {
                     Bangladesh
                   </p>
                 </div>
-              </div>
-
+              </a>
               {/* WhatsApp */}
               <a
                 href="https://wa.me/8801750497007"

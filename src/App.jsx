@@ -14,6 +14,7 @@ import Registration from "./GlobalComponents/auth/registration";
 import PrivacyPolicy from "./Pages/privacyPolicy";
 import ProjectPlan from "./Pages/projectPlan";
 import Pricing from "./Pages/pricing";
+import TermsOfUse from "./Pages/Terms of Use";
 
 function App() {
   const router = createBrowserRouter(
@@ -28,6 +29,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/project_plan" element={<ProjectPlan />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/terms_of_use" element={<TermsOfUse />} />
         </Route>
       </Route>,
     ),

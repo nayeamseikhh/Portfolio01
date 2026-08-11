@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, githubProvider, googleProvider } from "../../../firebase.config";
 
 const LoginForm = ({ open, setOpen }) => {

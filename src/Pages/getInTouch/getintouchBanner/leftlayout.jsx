@@ -1,6 +1,7 @@
 import nayeamImg from "../../../../src/assets/myImages/nayeam.png";
 
-const LeftLayout = () => {
+const LeftLayout = ({ contact }) => {
+  console.log(contact);
   return (
     <div
       className="
@@ -40,7 +41,7 @@ const LeftLayout = () => {
       "
     >
       <img
-        src={nayeamImg}
+        src={contact?.ImgNayeam}
         alt="Nayeam"
         className="
           w-full

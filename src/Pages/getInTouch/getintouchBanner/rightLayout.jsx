@@ -4,7 +4,7 @@ import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import { RiTelegram2Fill } from "react-icons/ri";
 import SocialIcon from "../socialIcon";
 
-const RightLayout = () => {
+const RightLayout = ({ contact }) => {
   return (
     <div className="w-full">
       {/* Small Heading */}
@@ -126,7 +126,7 @@ const RightLayout = () => {
                 group-hover:text-orange
               "
             >
-              Rajshahi, Bangladesh
+              {contact?.location || "Rajshahi, Bangladesh"}
             </p>
           </div>
         </a>
@@ -191,7 +191,7 @@ const RightLayout = () => {
                 group-hover:text-orange
               "
             >
-              +880 1750 497007
+              {contact?.phone || "+880 1750 497007"}
             </p>
           </div>
         </a>
@@ -257,7 +257,7 @@ const RightLayout = () => {
                 group-hover:text-orange
               "
             >
-              nayeamseikh1@gmail.com
+              {contact?.email || "nayeamseikh1@gmail.com"}
             </p>
           </div>
         </a>
@@ -324,7 +324,7 @@ const RightLayout = () => {
                 group-hover:text-orange
               "
             >
-              +880 1750 497007
+              {contact?.whatsapp || "+880 1750 497007"}
             </p>
           </div>
         </a>
@@ -391,7 +391,7 @@ const RightLayout = () => {
                 group-hover:text-orange
               "
             >
-              @nayeamseikh1
+              {contact?.telegram || "  @nayeamseikh1"}
             </p>
           </div>
         </a>
@@ -421,7 +421,7 @@ const RightLayout = () => {
           Follow me
         </p>
 
-        <SocialIcon />
+        <SocialIcon contact={contact} />
       </div>
     </div>
   );

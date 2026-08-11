@@ -3,16 +3,16 @@ import RelationalPart from "../relationalPart";
 import LeftLayout from "./leftlayout";
 import RightLayout from "./rightLayout";
 
-const GetintouchBanner = () => {
+const GetintouchBanner = ({ contact }) => {
   return (
     <>
       <div className="dark:text-white my-20 pt-10 ">
         {/* left part */}
         <div className="grid grid-cols-2 justify-between  text-white02">
-          <LeftLayout />
+          <LeftLayout contact={contact} />
 
           {/* right Part  */}
-          <RightLayout />
+          <RightLayout contact={contact} />
         </div>
       </div>
     </>

@@ -5,7 +5,7 @@ import { IoLogoInstagram } from "react-icons/io";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { SiGithub } from "react-icons/si";
 
-const SocialIcon = () => {
+const SocialIcon = ({ contact }) => {
   const socials = [
     {
       id: 1,
@@ -17,13 +17,14 @@ const SocialIcon = () => {
       id: 2,
       icon: <RiFacebookCircleLine />,
       label: "Facebook",
-      url: "https://www.facebook.com/nayeamseikh1/",
+      url:
+        contact?.socials?.facebook || "https://www.facebook.com/nayeamseikh1/",
     },
     {
       id: 3,
       icon: <IoLogoInstagram />,
       label: "Instagram",
-      url: "https://www.instagram.com/nayeamseikh1/",
+      url: "",
     },
     {
       id: 4,
@@ -35,13 +36,15 @@ const SocialIcon = () => {
       id: 5,
       icon: <SiGithub />,
       label: "GitHub",
-      url: "https://github.com/nayeamseikhh",
+      url: contact?.socials?.github || "https://github.com/nayeamseikhh",
     },
     {
       id: 6,
       icon: <BsLinkedin />,
       label: "LinkedIn",
-      url: "https://www.linkedin.com/in/nayeam-seikh/",
+      url:
+        contact?.socials?.linkedin ||
+        "https://www.linkedin.com/in/nayeam-seikh/",
     },
   ];
 

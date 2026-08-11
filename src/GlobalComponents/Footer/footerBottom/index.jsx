@@ -147,7 +147,10 @@ const FooterBottom = () => {
             <p>Privacy Policy</p>
           </Link>
 
-          <a href="#" className="transition-colors hover:text-orange">
+          <a
+            href="/terms_of_use"
+            className="transition-colors hover:text-orange"
+          >
             Terms of Use
           </a>
         </div>
