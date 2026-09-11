@@ -15,6 +15,38 @@ const AiSearch = () => {
   const [answer, setAnswer] = useState("");
   const [isExpanded, setIsExpanded] = useState(false); // এক্সপ্যান্ড স্ক্রিনের স্টেট ম্যানেজমেন্ট
 
+  // const handleSearch = async () => {
+  //   if (!query.trim() || loading) return;
+
+  //   try {
+  //     setLoading(true);
+  //     setAnswer("");
+
+  //     const response = await fetch(`${API_URL}/search`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         query: query.trim(),
+  //       }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Search request failed");
+  //     }
+
+  //     const data = await response.json();
+  //     console.log("Search response:", data);
+  //     setAnswer(data.answer || "No answer received.");
+  //   } catch (error) {
+  //     console.error("Search error:", error);
+  //     setAnswer("Something went wrong. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSearch = async () => {
     if (!query.trim() || loading) return;
 
@@ -32,13 +64,29 @@ const AiSearch = () => {
         }),
       });
 
+      // 1. Explicitly check for rate limits (429 status code)
+      if (response.status === 429) {
+        setAnswer(
+          "⚠️ Nayeam's AI is busy right now due to too many requests. Please wait 5 seconds and try again!",
+        );
+        return;
+      }
+
       if (!response.ok) {
         throw new Error("Search request failed");
       }
 
       const data = await response.json();
       console.log("Search response:", data);
-      setAnswer(data.answer || "No answer received.");
+
+      // 2. Extra safety check if your backend returns 200 OK but includes error info inside the JSON body
+      if (data.error && data.error.includes("429")) {
+        setAnswer(
+          "⚠️ Server limit reached. Please hold on a brief moment before searching again.",
+        );
+      } else {
+        setAnswer(data.answer || "No answer received.");
+      }
     } catch (error) {
       console.error("Search error:", error);
       setAnswer("Something went wrong. Please try again.");
