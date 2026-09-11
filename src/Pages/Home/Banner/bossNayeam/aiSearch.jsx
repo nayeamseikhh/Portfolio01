@@ -49,6 +49,7 @@ const AiSearch = () => {
 
   const handleCloseAnswer = () => {
     setAnswer("");
+    setQuery(""); // 👈 This will clear the search input field text
     setIsExpanded(false); // উত্তর ক্লোজ করলে ফুল-স্ক্রিন মোডও বন্ধ হবে
   };
 
