@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
 import {
   FiSearch,
   FiSend,
@@ -20,7 +21,7 @@ const AiSearch = () => {
       setLoading(true);
       setAnswer("");
 
-      const response = await fetch("http://localhost:8000/search", {
+      const response = await fetch(`${API_URL}/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
