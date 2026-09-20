@@ -451,21 +451,21 @@ const Header = () => {
                 justify-center
                 rounded-xl
                 border
-                border-white/10
-                bg-white/[0.03]
-                text-xl
-                text-white
+                !border-white/10
+                !bg-white/[0.03]
+                !text-xl
+                !text-white
                 transition-all
                 duration-300
-                hover:border-orange
-                hover:text-orange
+                !hover:border-orange
+                !hover:text-orange
                 sm:h-11
                 sm:w-11
                 sm:text-2xl
                 lg:hidden
               "
             >
-              {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
+              {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />} =
             </button>
           </nav>
 
