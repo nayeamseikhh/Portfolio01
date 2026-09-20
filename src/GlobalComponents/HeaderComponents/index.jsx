@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { Link, NavLink } from "react-router";
 
 import logo from "../../assets/logo/logo.png";
 import Container from "../Container";
-import DarkMode from "./DarkMode";
 import AiButton from "./AiButton";
 import Login from "../auth/login";
 
@@ -44,10 +43,6 @@ const navLinks = [
       {
         title: "Sheet Grid",
         path: "/software_development/sheetgrid",
-      },
-      {
-        title: "Crypto Market Table",
-        path: "/software_development/cryptomarkettable",
       },
       {
         title: "Crypto Market Table",
@@ -108,431 +103,616 @@ const navLinks = [
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
+    setMobileDropdownOpen(false);
   };
 
+  const openLogin = () => {
+    closeMobileMenu();
+    setLoginOpen(true);
+  };
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        setMobileDropdownOpen(false);
+        setLoginOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileOpen(false);
+        setMobileDropdownOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
-    <header
-      className="
-        fixed
-        top-0
-        z-50
-        w-full
-        border-b
-        border-white/[0.04]
-        bg-transparent
-        backdrop-blur-xl
-      "
-    >
-      <Container>
-        <nav
-          aria-label="Main navigation"
-          className="
-            relative
-            flex
-            min-h-[76px]
-            items-center
-            justify-between
-
-            rounded-2xl
-            bg-white/[0.03]
-
-            px-2
-            sm:px-3
-            lg:px-4
-            xl:px-5
-          "
-        >
-          {/* =========================
-              Logo
-          ========================== */}
-          <Link
-            to="/"
-            onClick={closeMobileMenu}
-            aria-label="Nayeam Seikh - Home"
+    <>
+      <header
+        className="
+          fixed
+          inset-x-0
+          top-0
+          z-50
+          w-full
+          border-b
+          border-white/[0.06]
+          bg-[#080808]/75
+          backdrop-blur-xl
+        "
+      >
+        <Container>
+          <nav
+            aria-label="Main navigation"
             className="
-              shrink-0
-              -ml-1
-              transition-transform
-              duration-300
-              hover:scale-105
+              relative
+              flex
+              min-h-[64px]
+              w-full
+              items-center
+              justify-between
+              gap-3
+              rounded-2xl
+              bg-white/[0.03]
+              px-2
+              sm:min-h-[70px]
+              sm:px-3
+              lg:min-h-[76px]
+              lg:px-4
+              xl:px-5
             "
           >
-            <img
-              src={logo}
-              alt="Nayeam Seikh"
+            {/* =========================
+                Logo
+            ========================== */}
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              aria-label="Nayeam Seikh - Home"
               className="
-                block
-                h-auto
-                w-[105px]
-                object-contain
-                sm:w-[115px]
-                lg:w-[120px]
+                flex
+                shrink-0
+                items-center
+                transition-transform
+                duration-300
+                hover:scale-105
               "
-            />
-          </Link>
+            >
+              <img
+                src={logo}
+                alt="Nayeam Seikh"
+                className="
+                  block
+                  h-auto
+                  w-[88px]
+                  object-contain
+                  xs:w-[96px]
+                  sm:w-[105px]
+                  md:w-[112px]
+                  lg:w-[120px]
+                "
+              />
+            </Link>
 
-          {/* =========================
-              Desktop Navigation
-          ========================== */}
-          <ul
-            className="
-    hidden
-    items-center
-    gap-7
-    lg:flex
-    xl:gap-9
-  "
-          >
-            {navLinks.map((item) => (
-              <li key={item.title} className="relative">
-                {item.dropdown ? (
-                  /* =========================
-           Dropdown Navigation
-        ========================== */
-                  <div className="group relative ">
+            {/* =========================
+                Desktop Navigation
+            ========================== */}
+            <ul
+              className="
+                hidden
+                items-center
+                gap-4
+                lg:flex
+                xl:gap-7
+                2xl:gap-9
+              "
+            >
+              {navLinks.map((item) => (
+                <li key={item.title} className="relative">
+                  {item.dropdown ? (
+                    <div className="group relative">
+                      {/* Dropdown Trigger */}
+                      <button
+                        type="button"
+                        className="
+                          flex
+                          items-center
+                          gap-1.5
+                          whitespace-nowrap
+                          py-2
+                          font-poppins
+                          text-sm
+                          font-semibold
+                          text-white01
+                          transition-colors
+                          duration-300
+                          hover:text-orange
+                          xl:text-base
+                        "
+                        aria-haspopup="true"
+                      >
+                        {item.title}
+
+                        <FiChevronDown
+                          className="
+                            text-base
+                            transition-transform
+                            duration-300
+                            group-hover:rotate-180
+                          "
+                        />
+                      </button>
+
+                      {/* Desktop Dropdown */}
+                      <div
+                        className="
+                          invisible
+                          absolute
+                          left-1/2
+                          top-full
+                          z-50
+                          mt-2
+                          w-[min(90vw,320px)]
+                          -translate-x-1/2
+                          translate-y-2
+                          overflow-hidden
+                          rounded-2xl
+                          border
+                          border-white/[0.08]
+                          bg-[#111111]/98
+                          p-2
+                          opacity-0
+                          shadow-2xl
+                          backdrop-blur-xl
+                          transition-all
+                          duration-300
+                          group-hover:visible
+                          group-hover:translate-y-0
+                          group-hover:opacity-100
+                        "
+                      >
+                        <div
+                          className="
+                            max-h-[min(70vh,520px)]
+                            overflow-y-auto
+                            overscroll-contain
+                            pr-1
+                            scrollbar-thin
+                          "
+                        >
+                          {item.dropdown.map((subItem) => (
+                            <NavLink
+                              key={subItem.path}
+                              to={subItem.path}
+                              className={({ isActive }) =>
+                                `
+                                block
+                                rounded-xl
+                                px-4
+                                py-3
+                                font-poppins
+                                text-sm
+                                transition-all
+                                duration-200
+                                ${
+                                  isActive
+                                    ? "bg-orange/10 text-orange"
+                                    : "text-white01 hover:bg-white/[0.05] hover:text-orange"
+                                }
+                              `
+                              }
+                            >
+                              {subItem.title}
+                            </NavLink>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
                         `
-              flex
-              items-center
-              gap-1
-              py-2
-              font-poppins
-              text-sm
-              font-semibold
-              transition-colors
-              duration-300
-              xl:text-base
-
-              ${isActive ? "text-orange" : "text-white01 hover:text-orange"}
-              `
+                        group
+                        relative
+                        block
+                        whitespace-nowrap
+                        py-2
+                        font-poppins
+                        text-sm
+                        font-semibold
+                        transition-colors
+                        duration-300
+                        xl:text-base
+                        ${
+                          isActive
+                            ? "text-orange"
+                            : "text-white01 hover:text-orange"
+                        }
+                      `
                       }
                     >
-                      {item.title}
+                      {({ isActive }) => (
+                        <>
+                          {item.title}
 
-                      <FiChevronDown
-                        className="
-                text-base
-                transition-transform
-                duration-300
-                group-hover:rotate-180
-              "
-                      />
+                          <span
+                            className={`
+                              absolute
+                              -bottom-0.5
+                              left-0
+                              h-[2px]
+                              rounded-full
+                              bg-orange
+                              transition-all
+                              duration-300
+                              ${isActive ? "w-full" : "w-0 group-hover:w-full"}
+                            `}
+                          />
+                        </>
+                      )}
                     </NavLink>
-
-                    {/* Dropdown */}
-                    <div
-                      className="
-              invisible
-              absolute
-              left-1/2
-              top-full
-              z-50
-              w-64
-              -translate-x-1/2
-              translate-y-2
-              rounded-2xl
-              border
-              border-white/[0.08]
-              bg-[#151515]
-              p-2
-              opacity-0
-              shadow-2xl
-              transition-all
-              duration-300
-
-              group-hover:visible
-              group-hover:translate-y-0
-              group-hover:opacity-100
-            "
-                    >
-                      {item.dropdown.map((subItem) => (
-                        <NavLink
-                          key={subItem.title}
-                          to={subItem.path}
-                          className={({ isActive }) =>
-                            `
-                  block
-                  rounded-xl
-                  px-4
-                  py-3
-                  font-poppins
-                  text-sm
-                  transition-all
-                  duration-200
-
-                  ${
-                    isActive
-                      ? "bg-orange/10 text-orange"
-                      : "text-white01 hover:bg-white/[0.05] hover:text-orange"
-                  }
-                  `
-                          }
-                        >
-                          {subItem.title}
-                        </NavLink>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  /* =========================
-           Normal Navigation
-        ========================== */
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `
-            group
-            relative
-            block
-            py-2
-            font-poppins
-            text-sm
-            font-semibold
-            transition-colors
-            duration-300
-            xl:text-base
-
-            ${isActive ? "text-orange" : "text-white01 hover:text-orange"}
-            `
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        {item.title}
-
-                        <span
-                          className={`
-                  absolute
-                  -bottom-0.5
-                  left-0
-                  h-[2px]
-                  rounded-full
-                  bg-orange
-                  transition-all
-                  duration-300
-
-                  ${isActive ? "w-full" : "w-0 group-hover:w-full"}
-                `}
-                        />
-                      </>
-                    )}
-                  </NavLink>
-                )}
-              </li>
-            ))}
-          </ul>
-
-          {/* =========================
-              Desktop Actions
-          ========================== */}
-          <div
-            className="
-              hidden
-              items-center
-              gap-2
-              lg:flex
-              xl:gap-3
-            "
-          >
-            {/* AI */}
-            <AiButton onClick={() => setLoginOpen(true)} />
-
-            {/* Hire Me */}
-            <Link to="/get_in_touch">
-              <button>Hire Me</button>
-            </Link>
-
-            {/* Login */}
-
-            <Login />
-
-            {/* <div className="flex items-center gap-4">
-              <Login />
-            </div> */}
-
-            {/* Dark Mode */}
-            {/* <DarkMode /> */}
-          </div>
-
-          {/* =========================
-              Mobile Menu Button
-          ========================== */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-navigation"
-            aria-label={
-              mobileOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            className="
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-
-              rounded-xl
-              border
-              border-gray-800
-
-              text-2xl
-              text-white
-
-              transition-all
-              duration-300
-
-              hover:border-orange
-              hover:text-orange
-
-              lg:hidden
-            "
-          >
-            {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
-          </button>
-        </nav>
-
-        {/* =========================
-            Mobile Navigation
-        ========================== */}
-        <div
-          id="mobile-navigation"
-          className={`
-            overflow-hidden
-            transition-all
-            duration-300
-            lg:hidden
-
-            ${mobileOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}
-          `}
-        >
-          <nav
-            aria-label="Mobile navigation"
-            className="
-              mt-2
-              rounded-2xl
-              border
-              border-gray-800
-              bg-[#151515]/95
-              p-3
-              backdrop-blur-xl
-            "
-          >
-            <ul className="flex flex-col gap-1">
-              {navLinks.map((item) => (
-                <li key={item.title}>
-                  <NavLink
-                    to={item.path}
-                    onClick={closeMobileMenu}
-                    className={({ isActive }) =>
-                      `
-                      block
-                      rounded-xl
-                      px-4
-                      py-3
-
-                      font-poppins
-                      text-sm
-                      font-medium
-
-                      transition-all
-                      duration-300
-
-                      ${
-                        isActive
-                          ? "bg-orange/10 text-orange"
-                          : "text-white01 hover:bg-white/[0.04] hover:text-orange"
-                      }
-                      `
-                    }
-                  >
-                    {item.title}
-                  </NavLink>
+                  )}
                 </li>
               ))}
             </ul>
 
-            {/* Mobile Actions */}
+            {/* =========================
+                Desktop Actions
+            ========================== */}
             <div
               className="
-                mt-4
-                grid
-                gap-3
-                border-t
-                border-gray-800
-                pt-4
+                hidden
+                shrink-0
+                items-center
+                gap-2
+                lg:flex
+                xl:gap-3
               "
             >
-              <AiButton onClick={() => setLoginOpen(true)} />
+              <AiButton onClick={openLogin} />
 
               <Link
                 to="/get_in_touch"
-                onClick={closeMobileMenu}
                 className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  whitespace-nowrap
                   rounded-xl
                   bg-orange
-                  px-5
-                  py-3
-                  text-center
-
+                  px-4
+                  py-2.5
                   font-poppins
                   text-sm
                   font-semibold
                   text-white
-
                   transition-all
                   duration-300
-
                   hover:bg-orange/90
+                  xl:px-5
                 "
               >
                 Hire Me
               </Link>
 
-              <button
-                type="button"
-                onClick={() => {
-                  closeMobileMenu();
-                  setLoginOpen(true);
-                }}
+              <Login />
+            </div>
+
+            {/* =========================
+                Mobile Menu Button
+            ========================== */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
+              aria-label={
+                mobileOpen ? "Close navigation menu" : "Open navigation menu"
+              }
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-white/10
+                bg-white/[0.03]
+                text-xl
+                text-white
+                transition-all
+                duration-300
+                hover:border-orange
+                hover:text-orange
+                sm:h-11
+                sm:w-11
+                sm:text-2xl
+                lg:hidden
+              "
+            >
+              {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
+            </button>
+          </nav>
+
+          {/* =========================
+              Mobile Navigation
+          ========================== */}
+          <div
+            id="mobile-navigation"
+            className={`
+              overflow-hidden
+              transition-all
+              duration-300
+              lg:hidden
+              ${
+                mobileOpen
+                  ? "pointer-events-auto max-h-[calc(100vh-76px)] opacity-100"
+                  : "pointer-events-none max-h-0 opacity-0"
+              }
+            `}
+          >
+            <nav
+              aria-label="Mobile navigation"
+              className="
+                mt-2
+                overflow-hidden
+                rounded-2xl
+                border
+                border-white/[0.08]
+                bg-[#111111]/98
+                shadow-2xl
+                backdrop-blur-xl
+              "
+            >
+              <div
                 className="
-                  rounded-xl
-                  border
-                  border-orange
-                  px-5
-                  py-3
-
-                  font-poppins
-                  text-sm
-                  font-semibold
-                  text-orange
-
-                  transition-all
-                  duration-300
-
-                  hover:bg-orange
-                  hover:text-white
+                  max-h-[calc(100vh-90px)]
+                  overflow-y-auto
+                  overscroll-contain
+                  p-3
+                  sm:p-4
                 "
               >
-                Log In
-              </button>
+                <ul className="flex flex-col gap-1">
+                  {navLinks.map((item) => (
+                    <li key={item.title}>
+                      {item.dropdown ? (
+                        <div>
+                          {/* Mobile Dropdown Trigger */}
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setMobileDropdownOpen((prev) => !prev)
+                            }
+                            className="
+                              flex
+                              w-full
+                              items-center
+                              justify-between
+                              rounded-xl
+                              px-4
+                              py-3
+                              text-left
+                              font-poppins
+                              text-sm
+                              font-medium
+                              text-white01
+                              transition-all
+                              duration-300
+                              hover:bg-white/[0.04]
+                              hover:text-orange
+                              sm:py-3.5
+                              sm:text-base
+                            "
+                            aria-expanded={mobileDropdownOpen}
+                          >
+                            <span>{item.title}</span>
 
-              {/* <div className="flex justify-center pt-1">
-                <DarkMode />
-              </div> */}
-            </div>
-          </nav>
-        </div>
-      </Container>
+                            <FiChevronDown
+                              className={`
+                                shrink-0
+                                text-lg
+                                transition-transform
+                                duration-300
+                                ${
+                                  mobileDropdownOpen
+                                    ? "rotate-180 text-orange"
+                                    : ""
+                                }
+                              `}
+                            />
+                          </button>
+
+                          {/* Mobile Dropdown Items */}
+                          <div
+                            className={`
+                              overflow-hidden
+                              transition-all
+                              duration-300
+                              ${
+                                mobileDropdownOpen
+                                  ? "max-h-[600px] opacity-100"
+                                  : "max-h-0 opacity-0"
+                              }
+                            `}
+                          >
+                            <div className="mt-1 space-y-1 rounded-xl bg-white/[0.02] p-1">
+                              {item.dropdown.map((subItem) => (
+                                <NavLink
+                                  key={subItem.path}
+                                  to={subItem.path}
+                                  onClick={closeMobileMenu}
+                                  className={({ isActive }) =>
+                                    `
+                                      block
+                                      rounded-lg
+                                      px-4
+                                      py-2.5
+                                      font-poppins
+                                      text-sm
+                                      transition-all
+                                      duration-200
+                                      ${
+                                        isActive
+                                          ? "bg-orange/10 text-orange"
+                                          : "text-gray-300 hover:bg-white/[0.04] hover:text-orange"
+                                      }
+                                    `
+                                  }
+                                >
+                                  {subItem.title}
+                                </NavLink>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <NavLink
+                          to={item.path}
+                          onClick={closeMobileMenu}
+                          className={({ isActive }) =>
+                            `
+                            block
+                            rounded-xl
+                            px-4
+                            py-3
+                            font-poppins
+                            text-sm
+                            font-medium
+                            transition-all
+                            duration-300
+                            sm:py-3.5
+                            sm:text-base
+                            ${
+                              isActive
+                                ? "bg-orange/10 text-orange"
+                                : "text-white01 hover:bg-white/[0.04] hover:text-orange"
+                            }
+                          `
+                          }
+                        >
+                          {item.title}
+                        </NavLink>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* =========================
+                    Mobile Actions
+                ========================== */}
+                <div
+                  className="
+                    mt-4
+                    grid
+                    gap-2.5
+                    border-t
+                    border-white/[0.08]
+                    pt-4
+                    sm:gap-3
+                  "
+                >
+                  <AiButton onClick={openLogin} />
+
+                  <Link
+                    to="/get_in_touch"
+                    onClick={closeMobileMenu}
+                    className="
+                      flex
+                      min-h-[46px]
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-orange
+                      px-5
+                      py-3
+                      text-center
+                      font-poppins
+                      text-sm
+                      font-semibold
+                      text-white
+                      transition-all
+                      duration-300
+                      hover:bg-orange/90
+                      sm:min-h-[50px]
+                      sm:text-base
+                    "
+                  >
+                    Hire Me
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={openLogin}
+                    className="
+                      flex
+                      min-h-[46px]
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-orange
+                      px-5
+                      py-3
+                      font-poppins
+                      text-sm
+                      font-semibold
+                      text-orange
+                      transition-all
+                      duration-300
+                      hover:bg-orange
+                      hover:text-white
+                      sm:min-h-[50px]
+                      sm:text-base
+                    "
+                  >
+                    Log In
+                  </button>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </Container>
+      </header>
 
       {/* Login Modal */}
       {loginOpen && <Login onClick={() => setLoginOpen(false)} />}
-    </header>
+    </>
   );
 };
 
