@@ -502,134 +502,209 @@ const Header = () => {
           </nav>
 
           {/* =========================
-              Mobile Navigation
-          ========================== */}
+    Mobile Navigation
+========================= */}
           <div
             id="mobile-navigation"
             className={`
-              overflow-hidden
-              transition-all
-              duration-300
-              lg:hidden
-              ${
-                mobileOpen
-                  ? "pointer-events-auto max-h-[calc(100vh-76px)] opacity-100"
-                  : "pointer-events-none max-h-0 opacity-0"
-              }
-            `}
+    lg:hidden
+
+    overflow-hidden
+
+    transition-all
+    duration-300
+
+    ${
+      mobileOpen
+        ? "pointer-events-auto max-h-[calc(100dvh-76px)] opacity-100"
+        : "pointer-events-none max-h-0 opacity-0"
+    }
+  `}
           >
             <nav
               aria-label="Mobile navigation"
               className="
-                mt-2
-                overflow-hidden
-                rounded-2xl
-                border
-                border-white/[0.08]
-                bg-[#111111]/98
-                shadow-2xl
-                backdrop-blur-xl
-              "
+      mt-2
+
+      overflow-hidden
+
+      rounded-2xl
+
+      border
+      border-white/[0.08]
+
+      bg-[#111111]/98
+
+      shadow-2xl
+
+      backdrop-blur-xl
+    "
             >
+              {/* =====================================================
+        IMPORTANT
+
+        This is the ONLY mobile scrolling area.
+
+        The entire menu can now scroll from:
+        Home
+        ↓
+        Software Development
+        ↓
+        ALL tools
+        ↓
+        About
+        ↓
+        Contact
+        ↓
+        Ask AI
+        ↓
+        Hire Me
+        ↓
+        Log In
+    ====================================================== */}
               <div
                 className="
-                  max-h-[calc(100vh-90px)]
-                  overflow-y-auto
-                  overscroll-contain
-                  p-3
-                  sm:p-4
-                "
+        max-h-[calc(100dvh-90px)]
+
+        overflow-y-auto
+        overflow-x-hidden
+
+        overscroll-contain
+
+        [scrollbar-width:thin]
+
+        p-3
+
+        sm:p-4
+      "
               >
                 <ul className="flex flex-col gap-1">
                   {navLinks.map((item) => (
                     <li key={item.title}>
                       {item.dropdown ? (
                         <div>
-                          {/* Mobile Dropdown Trigger */}
+                          {/* =================================================
+                    SOFTWARE DEVELOPMENT BUTTON
+                ================================================== */}
                           <button
                             type="button"
                             onClick={() =>
                               setMobileDropdownOpen((prev) => !prev)
                             }
                             className="
-                              flex
-                              w-full
-                              items-center
-                              justify-between
-                              rounded-xl
-                              px-4
-                              py-3
-                              text-left
-                              font-poppins
-                              text-sm
-                              font-medium
-                              text-white01
-                              transition-all
-                              duration-300
-                              hover:bg-white/[0.04]
-                              hover:text-orange
-                              sm:py-3.5
-                              sm:text-base
-                            "
+                    flex
+                    w-full
+                    items-center
+                    justify-between
+
+                    rounded-xl
+
+                    px-4
+                    py-3
+
+                    text-left
+
+                    font-poppins
+                    text-sm
+                    font-medium
+
+                    text-white01
+
+                    transition-all
+                    duration-300
+
+                    hover:bg-white/[0.04]
+                    hover:text-orange
+
+                    sm:py-3.5
+                    sm:text-base
+                  "
                             aria-expanded={mobileDropdownOpen}
                           >
                             <span>{item.title}</span>
 
                             <FiChevronDown
                               className={`
-                                shrink-0
-                                text-lg
-                                transition-transform
-                                duration-300
-                                ${
-                                  mobileDropdownOpen
-                                    ? "rotate-180 text-orange"
-                                    : ""
-                                }
-                              `}
+                      shrink-0
+                      text-lg
+
+                      transition-transform
+                      duration-300
+
+                      ${mobileDropdownOpen ? "rotate-180 text-orange" : ""}
+                    `}
                             />
                           </button>
 
-                          {/* Mobile Dropdown Items */}
+                          {/* =================================================
+                    SOFTWARE DEVELOPMENT DROPDOWN
+
+                    NO FIXED 600px HEIGHT
+
+                    Grid animation allows the content to expand
+                    to its complete natural height.
+                ================================================== */}
                           <div
                             className={`
-                              overflow-hidden
-                              transition-all
-                              duration-300
-                              ${
-                                mobileDropdownOpen
-                                  ? "max-h-[600px] opacity-100"
-                                  : "max-h-0 opacity-0"
-                              }
-                            `}
+                    grid
+
+                    transition-[grid-template-rows,opacity]
+                    duration-300
+                    ease-in-out
+
+                    ${
+                      mobileDropdownOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }
+                  `}
                           >
-                            <div className="mt-1 space-y-1 rounded-xl bg-white/[0.02] p-1">
-                              {item.dropdown.map((subItem) => (
-                                <NavLink
-                                  key={subItem.path}
-                                  to={subItem.path}
-                                  onClick={closeMobileMenu}
-                                  className={({ isActive }) =>
-                                    `
-                                      block
-                                      rounded-lg
-                                      px-4
-                                      py-2.5
-                                      font-poppins
-                                      text-sm
-                                      transition-all
-                                      duration-200
-                                      ${
-                                        isActive
-                                          ? "bg-orange/10 text-orange"
-                                          : "text-gray-300 hover:bg-white/[0.04] hover:text-orange"
-                                      }
-                                    `
-                                  }
-                                >
-                                  {subItem.title}
-                                </NavLink>
-                              ))}
+                            <div className="min-h-0 overflow-hidden">
+                              <div
+                                className="
+                        mt-1
+
+                        space-y-1
+
+                        rounded-xl
+
+                        bg-white/[0.02]
+
+                        p-1
+                      "
+                              >
+                                {item.dropdown.map((subItem) => (
+                                  <NavLink
+                                    key={subItem.path}
+                                    to={subItem.path}
+                                    onClick={closeMobileMenu}
+                                    className={({ isActive }) =>
+                                      `
+                            block
+
+                            rounded-lg
+
+                            px-4
+                            py-2.5
+
+                            font-poppins
+                            text-sm
+
+                            transition-all
+                            duration-200
+
+                            ${
+                              isActive
+                                ? "bg-orange/10 text-orange"
+                                : "text-gray-300 hover:bg-white/[0.04] hover:text-orange"
+                            }
+                            `
+                                    }
+                                  >
+                                    {subItem.title}
+                                  </NavLink>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -639,23 +714,29 @@ const Header = () => {
                           onClick={closeMobileMenu}
                           className={({ isActive }) =>
                             `
-                            block
-                            rounded-xl
-                            px-4
-                            py-3
-                            font-poppins
-                            text-sm
-                            font-medium
-                            transition-all
-                            duration-300
-                            sm:py-3.5
-                            sm:text-base
-                            ${
-                              isActive
-                                ? "bg-orange/10 text-orange"
-                                : "text-white01 hover:bg-white/[0.04] hover:text-orange"
-                            }
-                          `
+                  block
+
+                  rounded-xl
+
+                  px-4
+                  py-3
+
+                  font-poppins
+                  text-sm
+                  font-medium
+
+                  transition-all
+                  duration-300
+
+                  sm:py-3.5
+                  sm:text-base
+
+                  ${
+                    isActive
+                      ? "bg-orange/10 text-orange"
+                      : "text-white01 hover:bg-white/[0.04] hover:text-orange"
+                  }
+                  `
                           }
                         >
                           {item.title}
@@ -665,73 +746,99 @@ const Header = () => {
                   ))}
                 </ul>
 
-                {/* =========================
-                    Mobile Actions
-                ========================== */}
+                {/* =====================================================
+          MOBILE ACTIONS
+
+          These are now AFTER ALL software development items.
+      ====================================================== */}
                 <div
                   className="
-                    mt-4
-                    grid
-                    gap-2.5
-                    border-t
-                    border-white/[0.08]
-                    pt-4
-                    sm:gap-3
-                  "
-                >
-                  <AiButton onClick={openLogin} />
+          mt-4
 
+          grid
+          gap-2.5
+
+          border-t
+          border-white/[0.08]
+
+          pt-4
+
+          sm:gap-3
+        "
+                >
+                  {/* AI */}
+                  <AiButton />
+
+                  {/* Hire Me */}
                   <Link
                     to="/get_in_touch"
                     onClick={closeMobileMenu}
                     className="
-                      flex
-                      min-h-[46px]
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-orange
-                      px-5
-                      py-3
-                      text-center
-                      font-poppins
-                      text-sm
-                      font-semibold
-                      text-white
-                      transition-all
-                      duration-300
-                      hover:bg-orange/90
-                      sm:min-h-[50px]
-                      sm:text-base
-                    "
+            flex
+            min-h-[46px]
+            items-center
+            justify-center
+
+            rounded-xl
+
+            bg-orange
+
+            px-5
+            py-3
+
+            text-center
+
+            font-poppins
+            text-sm
+            font-semibold
+
+            text-white
+
+            transition-all
+            duration-300
+
+            hover:bg-orange/90
+
+            sm:min-h-[50px]
+            sm:text-base
+          "
                   >
                     Hire Me
                   </Link>
 
+                  {/* Login */}
                   <button
                     type="button"
                     onClick={openLogin}
                     className="
-                      flex
-                      min-h-[46px]
-                      items-center
-                      justify-center
-                      rounded-xl
-                      border
-                      border-orange
-                      px-5
-                      py-3
-                      font-poppins
-                      text-sm
-                      font-semibold
-                      text-orange
-                      transition-all
-                      duration-300
-                      hover:bg-orange
-                      hover:text-white
-                      sm:min-h-[50px]
-                      sm:text-base
-                    "
+            flex
+            min-h-[46px]
+            items-center
+            justify-center
+
+            rounded-xl
+
+            border
+            border-orange
+
+            px-5
+            py-3
+
+            font-poppins
+            text-sm
+            font-semibold
+
+            text-orange
+
+            transition-all
+            duration-300
+
+            hover:bg-orange
+            hover:text-white
+
+            sm:min-h-[50px]
+            sm:text-base
+          "
                   >
                     Log In
                   </button>
