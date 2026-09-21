@@ -20,28 +20,6 @@ export default function AITextSummarizer() {
     setSummary("");
 
     try {
-      /*
-       * Replace this section with your backend API.
-       *
-       * Example:
-       *
-       * const response = await fetch("/api/summarize", {
-       *   method: "POST",
-       *   headers: {
-       *     "Content-Type": "application/json",
-       *   },
-       *   body: JSON.stringify({
-       *     text,
-       *     length,
-       *     language,
-       *   }),
-       * });
-       *
-       * const data = await response.json();
-       * setSummary(data.summary);
-       */
-
-      // Demo response
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setSummary(
