@@ -88,6 +88,22 @@ const navLinks = [
         title: "Background Remover",
         path: "/software_development/backgroundremover",
       },
+      {
+        title: "Weather Dashboard",
+        path: "/software_development/weatherdashboard",
+      },
+      {
+        title: "Tri Calendar",
+        path: "/software_development/tricalendar",
+      },
+      {
+        title: "Image Converter",
+        path: "/software_development/imageconverter",
+      },
+      {
+        title: "Pdf Merge Split",
+        path: "/software_development/pdfmergesplit",
+      },
     ],
   },
   {
@@ -465,7 +481,7 @@ const Header = () => {
                 lg:hidden
               "
             >
-              {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />} =
+              {mobileOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
             </button>
           </nav>
 

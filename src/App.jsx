@@ -31,6 +31,10 @@ import CaseConverter from "./Pages/softwareDevelopment/CaseConverter";
 import PercentageCalculator from "./Pages/softwareDevelopment/PercentageCalculator";
 import GradientGenerator from "./Pages/softwareDevelopment/GradientGenerator";
 import BackgroundRemover from "./Pages/softwareDevelopment/BackgroundRemover";
+import WeatherDashboard from "./Pages/softwareDevelopment/WeatherDashboard";
+import TriCalendar from "./Pages/softwareDevelopment/TriCalendar";
+import ImageConverter from "./Pages/softwareDevelopment/ImageConverter";
+import PdfMergeSplit from "./Pages/softwareDevelopment/PdfMergeSplit";
 
 function App() {
   const router = createBrowserRouter(
@@ -103,6 +107,22 @@ function App() {
         <Route
           path="/software_development/backgroundremover"
           element={<BackgroundRemover />}
+        />
+        <Route
+          path="/software_development/weatherdashboard"
+          element={<WeatherDashboard />}
+        />
+        <Route
+          path="/software_development/tricalendar"
+          element={<TriCalendar />}
+        />
+        <Route
+          path="/software_development/imageconverter"
+          element={<ImageConverter />}
+        />
+        <Route
+          path="/software_development/pdfmergesplit"
+          element={<PdfMergeSplit />}
         />
       </Route>,
     ),
