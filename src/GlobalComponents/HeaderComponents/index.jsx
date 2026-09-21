@@ -104,6 +104,22 @@ const navLinks = [
         title: "Pdf Merge Split",
         path: "/software_development/pdfmergesplit",
       },
+      {
+        title: "Image Compressor",
+        path: "/software_development/imagecompressor",
+      },
+      {
+        title: "World Clock",
+        path: "/software_development/worldclock",
+      },
+      {
+        title: "Random Picker",
+        path: "/software_development/randompicker",
+      },
+      {
+        title: "Timer/StopWatch Tools",
+        path: "/software_development/timertools",
+      },
     ],
   },
   {

@@ -35,6 +35,10 @@ import WeatherDashboard from "./Pages/softwareDevelopment/WeatherDashboard";
 import TriCalendar from "./Pages/softwareDevelopment/TriCalendar";
 import ImageConverter from "./Pages/softwareDevelopment/ImageConverter";
 import PdfMergeSplit from "./Pages/softwareDevelopment/PdfMergeSplit";
+import ImageCompressor from "./Pages/softwareDevelopment/ImageCompressor";
+import WorldClock from "./Pages/softwareDevelopment/WorldClock";
+import RandomPicker from "./Pages/softwareDevelopment/RandomPicker";
+import TimerTools from "./Pages/softwareDevelopment/TimerTools";
 
 function App() {
   const router = createBrowserRouter(
@@ -123,6 +127,22 @@ function App() {
         <Route
           path="/software_development/pdfmergesplit"
           element={<PdfMergeSplit />}
+        />
+        <Route
+          path="/software_development/imagecompressor"
+          element={<ImageCompressor />}
+        />
+        <Route
+          path="/software_development/worldclock"
+          element={<WorldClock />}
+        />
+        <Route
+          path="/software_development/randompicker"
+          element={<RandomPicker />}
+        />
+        <Route
+          path="/software_development/timertools"
+          element={<TimerTools />}
         />
       </Route>,
     ),
