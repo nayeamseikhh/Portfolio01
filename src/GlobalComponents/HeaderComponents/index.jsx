@@ -173,6 +173,26 @@ const navLinks = [
             title: "Connect Four",
             path: "/bestinnovation/game/connectfour",
           },
+          {
+            title: "2048",
+            path: "/bestinnovation/game/2048",
+          },
+          {
+            title: "Memory Game",
+            path: "/bestinnovation/game/memorygame",
+          },
+          {
+            title: "Minesweeper",
+            path: "/bestinnovation/game/minesweeper",
+          },
+          {
+            title: "Rock Paper Scissors",
+            path: "/bestinnovation/game/rockpaperscissors",
+          },
+          {
+            title: "Snake Game",
+            path: "/bestinnovation/game/snakegame",
+          },
         ],
       },
     ],

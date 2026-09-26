@@ -49,6 +49,11 @@ import UnitConverter from "./Pages/softwareDevelopment/UnitConverter";
 import PasswordGenerator from "./Pages/softwareDevelopment/PasswordGenerator";
 import TravelDestination from "./Pages/bestInnovation/TravelDestination";
 import ConnectFour from "./Pages/bestInnovation/ConnectFour";
+import Game2048 from "./Pages/bestInnovation/Game2048";
+import MemoryGame from "./Pages/bestInnovation/MemoryGame";
+import Minesweeper from "./Pages/bestInnovation/Minesweeper";
+import RockPaperScissors from "./Pages/bestInnovation/RockPaperScissors";
+import SnakeGame from "./Pages/bestInnovation/SnakeGame";
 
 function App() {
   const router = createBrowserRouter(
@@ -184,16 +189,33 @@ function App() {
           path="/software_development/unitconverter"
           element={<UnitConverter />}
         />
-
+        {/* =============================================================== */}
         {/* //Best Innovation Project */}
         <Route
           path="/bestinnovation/dashboard/traveldestination"
           element={<TravelDestination />}
         />
+        {/* =============================================================================== */}
+        {/* Games */}
         <Route
           path="/bestinnovation/game/connectfour"
           element={<ConnectFour />}
         />
+        <Route path="/bestinnovation/game/2048" element={<Game2048 />} />
+        <Route
+          path="/bestinnovation/game/memorygame"
+          element={<MemoryGame />}
+        />
+        <Route
+          path="/bestinnovation/game/minesweeper"
+          element={<Minesweeper />}
+        />
+        <Route
+          path="/bestinnovation/game/rockpaperscissors"
+          element={<RockPaperScissors />}
+        />
+        <Route path="/bestinnovation/game/snakegame" element={<SnakeGame />} />
+        {/* ========================================================== */}
       </Route>,
     ),
   );

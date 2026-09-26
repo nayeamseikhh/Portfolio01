@@ -55,7 +55,7 @@ export default function RockPaperScissors() {
   const emojiFor = (key) => CHOICES.find((c) => c.key === key)?.emoji;
 
   return (
-    <div className="w-full max-w-md mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full my-30 max-w-md mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Rock Paper Scissors
       </h2>
@@ -64,8 +64,13 @@ export default function RockPaperScissors() {
       </p>
 
       <div className="flex justify-center gap-4 text-sm text-white02 mb-5">
-        <span>You: <span className="text-orange font-semibold">{score.player}</span></span>
-        <span>Computer: <span className="text-orange font-semibold">{score.computer}</span></span>
+        <span>
+          You: <span className="text-orange font-semibold">{score.player}</span>
+        </span>
+        <span>
+          Computer:{" "}
+          <span className="text-orange font-semibold">{score.computer}</span>
+        </span>
       </div>
 
       <div className="flex items-center justify-center gap-6 mb-5 h-24">

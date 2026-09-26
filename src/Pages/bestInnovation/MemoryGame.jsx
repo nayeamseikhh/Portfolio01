@@ -45,7 +45,7 @@ export default function MemoryGame() {
       const [a, b] = flipped;
       if (deck[a].emoji === deck[b].emoji) {
         setDeck((d) =>
-          d.map((c, i) => (i === a || i === b ? { ...c, matched: true } : c))
+          d.map((c, i) => (i === a || i === b ? { ...c, matched: true } : c)),
         );
         setFlipped([]);
       } else {
@@ -74,11 +74,11 @@ export default function MemoryGame() {
 
   const gridCols = useMemo(
     () => (deck.length <= 12 ? "grid-cols-4" : "grid-cols-4 sm:grid-cols-4"),
-    [deck.length]
+    [deck.length],
   );
 
   return (
-    <div className="w-full max-w-lg mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full max-w-lg mx-auto bg-black02 my-30 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Memory Match
       </h2>
@@ -106,9 +106,21 @@ export default function MemoryGame() {
       </div>
 
       <div className="flex justify-center gap-4 text-sm text-white02 mb-4">
-        <span>Moves: <span className="text-white01">{moves}</span></span>
-        <span>Time: <span className="text-white01">{mm}:{ss}</span></span>
-        <span>Pairs: <span className="text-white01">{matchedCount / 2}/{deck.length / 2}</span></span>
+        <span>
+          Moves: <span className="text-white01">{moves}</span>
+        </span>
+        <span>
+          Time:{" "}
+          <span className="text-white01">
+            {mm}:{ss}
+          </span>
+        </span>
+        <span>
+          Pairs:{" "}
+          <span className="text-white01">
+            {matchedCount / 2}/{deck.length / 2}
+          </span>
+        </span>
       </div>
 
       {won && (

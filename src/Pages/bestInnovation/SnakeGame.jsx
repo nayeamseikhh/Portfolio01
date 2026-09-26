@@ -38,7 +38,13 @@ export default function SnakeGame() {
     ctx.fillStyle = "#e0822d";
     const f = foodRef.current;
     ctx.beginPath();
-    ctx.arc(f.x * CELL + CELL / 2, f.y * CELL + CELL / 2, CELL / 2.5, 0, Math.PI * 2);
+    ctx.arc(
+      f.x * CELL + CELL / 2,
+      f.y * CELL + CELL / 2,
+      CELL / 2.5,
+      0,
+      Math.PI * 2,
+    );
     ctx.fill();
 
     snakeRef.current.forEach((seg, i) => {
@@ -50,10 +56,16 @@ export default function SnakeGame() {
   const tick = () => {
     dirRef.current = nextDirRef.current;
     const head = snakeRef.current[0];
-    const newHead = { x: head.x + dirRef.current.x, y: head.y + dirRef.current.y };
+    const newHead = {
+      x: head.x + dirRef.current.x,
+      y: head.y + dirRef.current.y,
+    };
 
-    const hitsWall = newHead.x < 0 || newHead.x >= GRID || newHead.y < 0 || newHead.y >= GRID;
-    const hitsSelf = snakeRef.current.some((s) => s.x === newHead.x && s.y === newHead.y);
+    const hitsWall =
+      newHead.x < 0 || newHead.x >= GRID || newHead.y < 0 || newHead.y >= GRID;
+    const hitsSelf = snakeRef.current.some(
+      (s) => s.x === newHead.x && s.y === newHead.y,
+    );
 
     if (hitsWall || hitsSelf) {
       setGameOver(true);
@@ -129,7 +141,7 @@ export default function SnakeGame() {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full max-w-sm mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 my-30 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Snake
       </h2>
@@ -150,7 +162,9 @@ export default function SnakeGame() {
 
       {gameOver && <p className="text-red-400 font-medium mb-3">Game over!</p>}
       {!running && !gameOver && score === 0 && (
-        <p className="text-white02 text-sm mb-3">Press an arrow key or a control below to start</p>
+        <p className="text-white02 text-sm mb-3">
+          Press an arrow key or a control below to start
+        </p>
       )}
 
       <div className="flex justify-center mb-4">
@@ -164,11 +178,31 @@ export default function SnakeGame() {
 
       <div className="grid grid-cols-3 gap-1.5 max-w-[150px] mx-auto mb-4">
         <div />
-        <button onClick={() => setDirection(0, -1)} className="btn-secondary py-1.5">▲</button>
+        <button
+          onClick={() => setDirection(0, -1)}
+          className="btn-secondary py-1.5"
+        >
+          ▲
+        </button>
         <div />
-        <button onClick={() => setDirection(-1, 0)} className="btn-secondary py-1.5">◀</button>
-        <button onClick={() => setDirection(0, 1)} className="btn-secondary py-1.5">▼</button>
-        <button onClick={() => setDirection(1, 0)} className="btn-secondary py-1.5">▶</button>
+        <button
+          onClick={() => setDirection(-1, 0)}
+          className="btn-secondary py-1.5"
+        >
+          ◀
+        </button>
+        <button
+          onClick={() => setDirection(0, 1)}
+          className="btn-secondary py-1.5"
+        >
+          ▼
+        </button>
+        <button
+          onClick={() => setDirection(1, 0)}
+          className="btn-secondary py-1.5"
+        >
+          ▶
+        </button>
       </div>
 
       <button onClick={restart} className="btn-primary px-6">

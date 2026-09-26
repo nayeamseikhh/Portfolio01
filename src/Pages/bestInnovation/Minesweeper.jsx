@@ -15,7 +15,7 @@ function buildBoard(rows, cols, mines, safeR, safeC) {
       revealed: false,
       flagged: false,
       count: 0,
-    }))
+    })),
   );
 
   let placed = 0;
@@ -33,7 +33,8 @@ function buildBoard(rows, cols, mines, safeR, safeC) {
     for (let dr = -1; dr <= 1; dr++) {
       for (let dc = -1; dc <= 1; dc++) {
         if (dr === 0 && dc === 0) continue;
-        const nr = r + dr, nc = c + dc;
+        const nr = r + dr,
+          nc = c + dc;
         if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) out.push([nr, nc]);
       }
     }
@@ -43,7 +44,9 @@ function buildBoard(rows, cols, mines, safeR, safeC) {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       if (cells[r][c].mine) continue;
-      cells[r][c].count = neighbors(r, c).filter(([nr, nc]) => cells[nr][nc].mine).length;
+      cells[r][c].count = neighbors(r, c).filter(
+        ([nr, nc]) => cells[nr][nc].mine,
+      ).length;
     }
   }
 
@@ -51,8 +54,15 @@ function buildBoard(rows, cols, mines, safeR, safeC) {
 }
 
 const NUM_COLORS = [
-  "", "text-blue-400", "text-green-400", "text-red-400",
-  "text-purple-400", "text-yellow-500", "text-teal-400", "text-white01", "text-white02",
+  "",
+  "text-blue-400",
+  "text-green-400",
+  "text-red-400",
+  "text-purple-400",
+  "text-yellow-500",
+  "text-teal-400",
+  "text-white01",
+  "text-white02",
 ];
 
 export default function Minesweeper() {
@@ -79,8 +89,13 @@ export default function Minesweeper() {
     const { rows, cols } = LEVELS[lvl];
     const blank = Array.from({ length: rows }, (_, r) =>
       Array.from({ length: cols }, (_, c) => ({
-        r, c, mine: false, revealed: false, flagged: false, count: 0,
-      }))
+        r,
+        c,
+        mine: false,
+        revealed: false,
+        flagged: false,
+        count: 0,
+      })),
     );
     setBoard(blank);
     neighborsRef.current = null;
@@ -88,9 +103,7 @@ export default function Minesweeper() {
     setSeconds(0);
   };
 
-  const flaggedCount = board
-    ? board.flat().filter((c) => c.flagged).length
-    : 0;
+  const flaggedCount = board ? board.flat().filter((c) => c.flagged).length : 0;
 
   const reveal = (r, c) => {
     if (!board || status === "won" || status === "lost") return;
@@ -110,7 +123,11 @@ export default function Minesweeper() {
     const next = current.map((row) => row.map((cell) => ({ ...cell })));
 
     if (next[r][c].mine) {
-      next.forEach((row) => row.forEach((cell) => { if (cell.mine) cell.revealed = true; }));
+      next.forEach((row) =>
+        row.forEach((cell) => {
+          if (cell.mine) cell.revealed = true;
+        }),
+      );
       setBoard(next);
       setStatus("lost");
       return;
@@ -126,19 +143,23 @@ export default function Minesweeper() {
       next[cr][cc].revealed = true;
       if (next[cr][cc].count === 0) {
         neighborsFn(cr, cc).forEach(([nr, nc]) => {
-          if (!next[nr][nc].revealed && !next[nr][nc].mine) stack.push([nr, nc]);
+          if (!next[nr][nc].revealed && !next[nr][nc].mine)
+            stack.push([nr, nc]);
         });
       }
     }
 
-    const won = next.every((row) => row.every((cell) => cell.mine || cell.revealed));
+    const won = next.every((row) =>
+      row.every((cell) => cell.mine || cell.revealed),
+    );
     setBoard(next);
     if (won) setStatus("won");
   };
 
   const toggleFlag = (e, r, c) => {
     e.preventDefault();
-    if (!board || status === "won" || status === "lost" || status === "ready") return;
+    if (!board || status === "won" || status === "lost" || status === "ready")
+      return;
     setBoard((prev) => {
       const next = prev.map((row) => row.map((cell) => ({ ...cell })));
       if (!next[r][c].revealed) next[r][c].flagged = !next[r][c].flagged;
@@ -152,7 +173,7 @@ export default function Minesweeper() {
   const ss = String(seconds % 60).padStart(2, "0");
 
   return (
-    <div className="w-full max-w-xl mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full max-w-xl mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 my-30 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Minesweeper
       </h2>
@@ -178,11 +199,19 @@ export default function Minesweeper() {
 
       <div className="flex justify-center gap-4 text-sm text-white02 mb-3">
         <span>💣 {mines - flaggedCount}</span>
-        <span>⏱ {mm}:{ss}</span>
+        <span>
+          ⏱ {mm}:{ss}
+        </span>
       </div>
 
-      {status === "lost" && <p className="text-red-400 font-medium mb-3">💥 Game over!</p>}
-      {status === "won" && <p className="text-orange font-medium mb-3">🎉 You cleared the field!</p>}
+      {status === "lost" && (
+        <p className="text-red-400 font-medium mb-3">💥 Game over!</p>
+      )}
+      {status === "won" && (
+        <p className="text-orange font-medium mb-3">
+          🎉 You cleared the field!
+        </p>
+      )}
 
       <div className="overflow-x-auto mb-5">
         <div
@@ -206,11 +235,11 @@ export default function Minesweeper() {
                 ? cell.mine
                   ? "💣"
                   : cell.count > 0
-                  ? cell.count
-                  : ""
+                    ? cell.count
+                    : ""
                 : cell.flagged
-                ? "🚩"
-                : ""}
+                  ? "🚩"
+                  : ""}
             </button>
           ))}
         </div>
