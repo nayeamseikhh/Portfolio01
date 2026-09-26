@@ -39,6 +39,15 @@ import ImageCompressor from "./Pages/softwareDevelopment/ImageCompressor";
 import WorldClock from "./Pages/softwareDevelopment/WorldClock";
 import RandomPicker from "./Pages/softwareDevelopment/RandomPicker";
 import TimerTools from "./Pages/softwareDevelopment/TimerTools";
+import AgeCalculator from "./Pages/softwareDevelopment/AgeCalculator";
+import BanglaSongkhaToKotha from "./Pages/softwareDevelopment/BanglaSongkhaToKotha";
+import ColorConverter from "./Pages/softwareDevelopment/ColorConverter";
+import MarkdownPreviewer from "./Pages/softwareDevelopment/MarkdownPreviewer";
+import PomodoroTimer from "./Pages/softwareDevelopment/PomodoroTimer";
+import RegexTester from "./Pages/softwareDevelopment/RegexTester";
+import UnitConverter from "./Pages/softwareDevelopment/UnitConverter";
+import PasswordGenerator from "./Pages/softwareDevelopment/PasswordGenerator";
+import TravelDestination from "./Pages/bestInnovation/TravelDestination";
 
 function App() {
   const router = createBrowserRouter(
@@ -143,6 +152,42 @@ function App() {
         <Route
           path="/software_development/timertools"
           element={<TimerTools />}
+        />
+        <Route
+          path="/software_development/agecalculator"
+          element={<AgeCalculator />}
+        />
+        <Route
+          path="/software_development/banglasongkhatokotha"
+          element={<BanglaSongkhaToKotha />}
+        />
+        <Route
+          path="/software_development/colorconverter"
+          element={<ColorConverter />}
+        />
+        <Route
+          path="/software_development/markdownpreviewer"
+          element={<MarkdownPreviewer />}
+        />
+        <Route
+          path="/software_development/passwordgenerator"
+          element={<PasswordGenerator />}
+        />
+        <Route
+          path="/software_development/pomodorotimer"
+          element={<PomodoroTimer />}
+        />
+        <Route
+          path="/software_development/regextester"
+          element={<RegexTester />}
+        />
+        <Route
+          path="/software_development/unitconverter"
+          element={<UnitConverter />}
+        />
+        <Route
+          path="/bestinnovation/traveldestination"
+          element={<TravelDestination />}
         />
       </Route>,
     ),

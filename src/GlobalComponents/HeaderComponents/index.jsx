@@ -26,7 +26,7 @@ const navLinks = [
     path: "/pricing",
   },
   {
-    title: "Software Development",
+    title: "Software",
     dropdown: [
       {
         title: "Vat Tax Calculator",
@@ -120,11 +120,52 @@ const navLinks = [
         title: "Timer/StopWatch Tools",
         path: "/software_development/timertools",
       },
+      {
+        title: "Age Calculator",
+        path: "/software_development/agecalculator",
+      },
+      {
+        title: "Bangla Songkha to Kotha Converter",
+        path: "/software_development/banglasongkhatokotha",
+      },
+      {
+        title: "Color Converter",
+        path: "/software_development/colorconverter",
+      },
+      {
+        title: "Markdown Previewer",
+        path: "/software_development/markdownpreviewer",
+      },
+      {
+        title: "Password Generator",
+        path: "/software_development/passwordgenerator",
+      },
+      {
+        title: "Pomodoro Timer",
+        path: "/software_development/pomodorotimer",
+      },
+      {
+        title: "Regex Tester",
+        path: "/software_development/regextester",
+      },
+      {
+        title: "Unit Converter",
+        path: "/software_development/unitconverter",
+      },
     ],
   },
+  // {
+  //   title: "About",
+  //   path: "/about",
+  // },
   {
-    title: "About",
-    path: "/about",
+    title: "Best Innovation",
+    dropdown: [
+      {
+        title: "Travel Destination",
+        path: "/bestinnovation/traveldestination",
+      },
+    ],
   },
   {
     title: "Contact",
