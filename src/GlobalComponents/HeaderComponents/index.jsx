@@ -165,6 +165,15 @@ const navLinks = [
         title: "Travel Destination",
         path: "/bestinnovation/traveldestination",
       },
+      {
+        title: "Game",
+        dropdown: [
+          {
+            title: "Connect Four",
+            path: "/bestinnovation/game/connectfour",
+          },
+        ],
+      },
     ],
   },
   {

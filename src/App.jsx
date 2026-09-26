@@ -48,6 +48,7 @@ import RegexTester from "./Pages/softwareDevelopment/RegexTester";
 import UnitConverter from "./Pages/softwareDevelopment/UnitConverter";
 import PasswordGenerator from "./Pages/softwareDevelopment/PasswordGenerator";
 import TravelDestination from "./Pages/bestInnovation/TravelDestination";
+import ConnectFour from "./Pages/bestInnovation/ConnectFour";
 
 function App() {
   const router = createBrowserRouter(
@@ -62,12 +63,10 @@ function App() {
         <Route path="/project_plan" element={<ProjectPlan />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/terms_of_use" element={<TermsOfUse />} />
-
         <Route
           path="/software_development/vattaxcalculator"
           element={<VatTaxCalculator />}
         />
-
         <Route
           path="/software_development/colorpaletteextractor"
           element={<ColorPaletteExtractor />}
@@ -185,10 +184,13 @@ function App() {
           path="/software_development/unitconverter"
           element={<UnitConverter />}
         />
+
+        {/* //Best Innovation Project */}
         <Route
           path="/bestinnovation/traveldestination"
           element={<TravelDestination />}
         />
+        <Route path="/bestinnovation/connectfour" element={<ConnectFour />} />
       </Route>,
     ),
   );
