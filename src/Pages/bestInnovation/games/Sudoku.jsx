@@ -75,12 +75,15 @@ function generatePuzzle(difficulty) {
 
   const holes = DIFFICULTY_HOLES[difficulty];
   const positions = [];
-  for (let r = 0; r < SIZE; r++) for (let c = 0; c < SIZE; c++) positions.push([r, c]);
+  for (let r = 0; r < SIZE; r++)
+    for (let c = 0; c < SIZE; c++) positions.push([r, c]);
   for (let i = positions.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [positions[i], positions[j]] = [positions[j], positions[i]];
   }
-  positions.slice(0, holes).forEach(([r, c]) => { puzzle[r][c] = 0; });
+  positions.slice(0, holes).forEach(([r, c]) => {
+    puzzle[r][c] = 0;
+  });
 
   return { puzzle, solution };
 }
@@ -114,9 +117,11 @@ export default function Sudoku() {
 
   const checkSolution = () => {
     const correct = grid.every((row, r) =>
-      row.every((val, c) => val === puzzle.solution[r][c])
+      row.every((val, c) => val === puzzle.solution[r][c]),
     );
-    setMessage(correct ? "✅ Correct! Well solved." : "❌ Not quite right yet.");
+    setMessage(
+      correct ? "✅ Correct! Well solved." : "❌ Not quite right yet.",
+    );
   };
 
   const revealSolution = () => {
@@ -140,7 +145,7 @@ export default function Sudoku() {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full max-w-lg mx-auto my-30 bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Sudoku
       </h2>
@@ -167,7 +172,9 @@ export default function Sudoku() {
         ))}
       </div>
 
-      {message && <p className="text-orange text-sm font-medium mb-3">{message}</p>}
+      {message && (
+        <p className="text-orange text-sm font-medium mb-3">{message}</p>
+      )}
 
       <div className="inline-block border-2 border-orange/50 mb-5 mx-auto">
         {grid.map((row, r) => (

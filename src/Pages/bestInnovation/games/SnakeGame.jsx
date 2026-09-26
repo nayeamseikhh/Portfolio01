@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const GRID = 20;
 const CELL = 16; // px, canvas = GRID * CELL
-const SPEED_MS = 120;
+const SPEED_MS = 250;
 
 function randomFood(snake) {
   let pos;

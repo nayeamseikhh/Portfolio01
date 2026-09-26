@@ -164,6 +164,10 @@ const navLinks = [
             title: "Travel Destination",
             path: "/bestinnovation/dashboard/traveldestination",
           },
+          {
+            title: "Beautiful Nature",
+            path: "/bestinnovation/dashboard/beautifullnature",
+          },
         ],
       },
       {
@@ -192,6 +196,18 @@ const navLinks = [
           {
             title: "Snake Game",
             path: "/bestinnovation/game/snakegame",
+          },
+          {
+            title: "Sudoku",
+            path: "/bestinnovation/game/sudoku",
+          },
+          {
+            title: "Tic Tac Toe",
+            path: "/bestinnovation/game/tictactoe",
+          },
+          {
+            title: "Tower of Hanoi",
+            path: "/bestinnovation/game/towerofhanoi",
           },
         ],
       },

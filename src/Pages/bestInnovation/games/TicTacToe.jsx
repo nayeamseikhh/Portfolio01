@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 
 const LINES = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
 function calculateWinner(board) {
@@ -69,7 +74,10 @@ export default function TicTacToe() {
 
   useEffect(() => {
     if (result) {
-      setScores((s) => ({ ...s, [result.winner]: (s[result.winner] || 0) + 1 }));
+      setScores((s) => ({
+        ...s,
+        [result.winner]: (s[result.winner] || 0) + 1,
+      }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result?.winner]);
@@ -102,7 +110,7 @@ export default function TicTacToe() {
     : `${turn}'s turn${mode === "computer" && turn === "O" ? " (thinking...)" : ""}`;
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full my-30 max-w-sm mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Tic Tac Toe
       </h2>
@@ -134,9 +142,15 @@ export default function TicTacToe() {
       </div>
 
       <div className="flex justify-center gap-4 text-sm text-white02 mb-4">
-        <span>X: <span className="text-white01">{scores.X}</span></span>
-        <span>O: <span className="text-white01">{scores.O}</span></span>
-        <span>Draws: <span className="text-white01">{scores.draw}</span></span>
+        <span>
+          X: <span className="text-white01">{scores.X}</span>
+        </span>
+        <span>
+          O: <span className="text-white01">{scores.O}</span>
+        </span>
+        <span>
+          Draws: <span className="text-white01">{scores.draw}</span>
+        </span>
       </div>
 
       <p className="text-orange font-medium mb-4">{statusText}</p>

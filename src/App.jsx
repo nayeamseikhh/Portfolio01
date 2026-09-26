@@ -47,13 +47,17 @@ import PomodoroTimer from "./Pages/softwareDevelopment/PomodoroTimer";
 import RegexTester from "./Pages/softwareDevelopment/RegexTester";
 import UnitConverter from "./Pages/softwareDevelopment/UnitConverter";
 import PasswordGenerator from "./Pages/softwareDevelopment/PasswordGenerator";
-import TravelDestination from "./Pages/bestInnovation/TravelDestination";
-import ConnectFour from "./Pages/bestInnovation/ConnectFour";
-import Game2048 from "./Pages/bestInnovation/Game2048";
-import MemoryGame from "./Pages/bestInnovation/MemoryGame";
-import Minesweeper from "./Pages/bestInnovation/Minesweeper";
-import RockPaperScissors from "./Pages/bestInnovation/RockPaperScissors";
-import SnakeGame from "./Pages/bestInnovation/SnakeGame";
+import TravelDestination from "./Pages/bestInnovation/dashboard/TravelDestination";
+import ConnectFour from "./Pages/bestInnovation/games/ConnectFour";
+import Game2048 from "./Pages/bestInnovation/games/Game2048";
+import MemoryGame from "./Pages/bestInnovation/games/MemoryGame";
+import Minesweeper from "./Pages/bestInnovation/games/Minesweeper";
+import RockPaperScissors from "./Pages/bestInnovation/games/RockPaperScissors";
+import SnakeGame from "./Pages/bestInnovation/games/SnakeGame";
+import Sudoku from "./Pages/bestInnovation/games/Sudoku";
+import TicTacToe from "./Pages/bestInnovation/games/TicTacToe";
+import TowerOfHanoi from "./Pages/bestInnovation/games/TowerOfHanoi";
+import BeautifullNature from "./Pages/bestInnovation/dashboard/BeautifulNature";
 
 function App() {
   const router = createBrowserRouter(
@@ -195,6 +199,10 @@ function App() {
           path="/bestinnovation/dashboard/traveldestination"
           element={<TravelDestination />}
         />
+        <Route
+          path="/bestinnovation/dashboard/beautifullnature"
+          element={<BeautifullNature />}
+        />
         {/* =============================================================================== */}
         {/* Games */}
         <Route
@@ -215,6 +223,12 @@ function App() {
           element={<RockPaperScissors />}
         />
         <Route path="/bestinnovation/game/snakegame" element={<SnakeGame />} />
+        <Route path="/bestinnovation/game/sudoku" element={<Sudoku />} />
+        <Route path="/bestinnovation/game/tictactoe" element={<TicTacToe />} />
+        <Route
+          path="/bestinnovation/game/towerofhanoi"
+          element={<TowerOfHanoi />}
+        />
         {/* ========================================================== */}
       </Route>,
     ),

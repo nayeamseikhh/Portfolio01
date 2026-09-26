@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
 const DISK_COLORS = [
-  "bg-orange", "bg-white01", "bg-white02", "bg-orange/70",
-  "bg-white01/70", "bg-orange/50", "bg-white02/70", "bg-orange/30",
+  "bg-orange",
+  "bg-white01",
+  "bg-white02",
+  "bg-orange/70",
+  "bg-white01/70",
+  "bg-orange/50",
+  "bg-white02/70",
+  "bg-orange/30",
 ];
 
 function buildInitial(count) {
@@ -100,7 +106,7 @@ export default function TowerOfHanoi() {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
+    <div className="w-full max-w-lg mx-auto my-30 bg-black02 border border-white02/10 rounded-xl p-4 sm:p-6 font-poppins text-center">
       <h2 className="text-xl sm:text-2xl font-semibold text-white01 mb-1">
         Tower of Hanoi
       </h2>
@@ -125,8 +131,12 @@ export default function TowerOfHanoi() {
       </div>
 
       <div className="flex justify-center gap-4 text-sm text-white02 mb-4">
-        <span>Moves: <span className="text-white01">{moves}</span></span>
-        <span>Minimum: <span className="text-white01">{minMoves}</span></span>
+        <span>
+          Moves: <span className="text-white01">{moves}</span>
+        </span>
+        <span>
+          Minimum: <span className="text-white01">{minMoves}</span>
+        </span>
       </div>
 
       {won && (
@@ -141,7 +151,9 @@ export default function TowerOfHanoi() {
             key={peg}
             onClick={() => handlePegClick(peg)}
             className={`relative h-full bg-black01 rounded-lg border flex flex-col-reverse items-center justify-start pb-2 transition-colors ${
-              selected === peg ? "border-orange" : "border-white02/20 hover:border-orange/50"
+              selected === peg
+                ? "border-orange"
+                : "border-white02/20 hover:border-orange/50"
             }`}
           >
             <div className="absolute bottom-2 w-1.5 h-[85%] bg-white02/20 rounded-full -z-0" />
@@ -152,7 +164,9 @@ export default function TowerOfHanoi() {
                 style={{ width: `${30 + disk * (100 / diskCount)}%` }}
               />
             ))}
-            <span className="absolute -bottom-6 text-white02 text-xs">{peg}</span>
+            <span className="absolute -bottom-6 text-white02 text-xs">
+              {peg}
+            </span>
           </button>
         ))}
       </div>
@@ -161,7 +175,11 @@ export default function TowerOfHanoi() {
         <button onClick={() => restart()} className="btn-secondary px-5">
           Reset
         </button>
-        <button onClick={autoSolve} disabled={solving} className="btn-primary px-5 disabled:opacity-50">
+        <button
+          onClick={autoSolve}
+          disabled={solving}
+          className="btn-primary px-5 disabled:opacity-50"
+        >
           {solving ? "Solving..." : "Auto Solve"}
         </button>
       </div>
