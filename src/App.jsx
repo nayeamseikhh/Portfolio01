@@ -187,10 +187,13 @@ function App() {
 
         {/* //Best Innovation Project */}
         <Route
-          path="/bestinnovation/traveldestination"
+          path="/bestinnovation/dashboard/traveldestination"
           element={<TravelDestination />}
         />
-        <Route path="/bestinnovation/connectfour" element={<ConnectFour />} />
+        <Route
+          path="/bestinnovation/game/connectfour"
+          element={<ConnectFour />}
+        />
       </Route>,
     ),
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { Link, NavLink } from "react-router";
 
@@ -154,16 +154,17 @@ const navLinks = [
       },
     ],
   },
-  // {
-  //   title: "About",
-  //   path: "/about",
-  // },
   {
     title: "Best Innovation",
     dropdown: [
       {
-        title: "Travel Destination",
-        path: "/bestinnovation/traveldestination",
+        title: "Dashboard",
+        dropdown: [
+          {
+            title: "Travel Destination",
+            path: "/bestinnovation/dashboard/traveldestination",
+          },
+        ],
       },
       {
         title: "Game",
@@ -184,12 +185,20 @@ const navLinks = [
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+
   const [loginOpen, setLoginOpen] = useState(false);
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+
+  // Desktop/mobile top-level mobile dropdown
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
+
+  // Mobile nested dropdown
+  const [mobileNestedDropdownOpen, setMobileNestedDropdownOpen] =
+    useState(null);
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
-    setMobileDropdownOpen(false);
+    setMobileDropdownOpen(null);
+    setMobileNestedDropdownOpen(null);
   };
 
   const openLogin = () => {
@@ -197,11 +206,23 @@ const Header = () => {
     setLoginOpen(true);
   };
 
+  const toggleMobileDropdown = (title) => {
+    setMobileDropdownOpen((prev) => (prev === title ? null : title));
+
+    // Close nested dropdown when changing parent dropdown
+    setMobileNestedDropdownOpen(null);
+  };
+
+  const toggleMobileNestedDropdown = (title) => {
+    setMobileNestedDropdownOpen((prev) => (prev === title ? null : title));
+  };
+
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
         setMobileOpen(false);
-        setMobileDropdownOpen(false);
+        setMobileDropdownOpen(null);
+        setMobileNestedDropdownOpen(null);
         setLoginOpen(false);
       }
     };
@@ -217,7 +238,8 @@ const Header = () => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setMobileOpen(false);
-        setMobileDropdownOpen(false);
+        setMobileDropdownOpen(null);
+        setMobileNestedDropdownOpen(null);
       }
     };
 
@@ -357,7 +379,13 @@ const Header = () => {
                         />
                       </button>
 
-                      {/* Desktop Dropdown */}
+                      {/* =================================================
+                          DESKTOP DROPDOWN
+                          
+                          IMPORTANT:
+                          overflow-visible is required because
+                          Best Innovation -> Game opens outside.
+                      ================================================== */}
                       <div
                         className="
                           invisible
@@ -369,7 +397,7 @@ const Header = () => {
                           w-[min(90vw,320px)]
                           -translate-x-1/2
                           translate-y-2
-                          overflow-hidden
+                          overflow-visible
                           rounded-2xl
                           border
                           border-white/[0.08]
@@ -385,40 +413,165 @@ const Header = () => {
                           group-hover:opacity-100
                         "
                       >
+                        {/* =================================================
+                            SOFTWARE
+
+                            Only Software needs scrolling because it
+                            contains many items.
+
+                            Best Innovation does NOT get a scrollbar.
+                        ================================================== */}
                         <div
-                          className="
-                            max-h-[min(70vh,520px)]
-                            overflow-y-auto
-                            overscroll-contain
-                            pr-1
-                            scrollbar-thin
-                          "
-                        >
-                          {item.dropdown.map((subItem) => (
-                            <NavLink
-                              key={subItem.path}
-                              to={subItem.path}
-                              className={({ isActive }) =>
-                                `
-                                block
-                                rounded-xl
-                                px-4
-                                py-3
-                                font-poppins
-                                text-sm
-                                transition-all
-                                duration-200
-                                ${
-                                  isActive
-                                    ? "bg-orange/10 text-orange"
-                                    : "text-white01 hover:bg-white/[0.05] hover:text-orange"
-                                }
+                          className={
+                            item.title === "Software"
+                              ? `
+                                max-h-[min(70vh,520px)]
+                                overflow-y-auto
+                                overscroll-contain
+                                pr-1
+                                scrollbar-thin
                               `
-                              }
-                            >
-                              {subItem.title}
-                            </NavLink>
-                          ))}
+                              : ""
+                          }
+                        >
+                          {item.dropdown.map((subItem) => {
+                            {
+                              /* =================================================
+                                NESTED DROPDOWN
+                            ================================================== */
+                            }
+                            if (subItem.dropdown) {
+                              return (
+                                <div
+                                  key={subItem.title}
+                                  className="group/nested relative"
+                                >
+                                  {/* Nested trigger */}
+                                  <button
+                                    type="button"
+                                    className="
+                                      flex
+                                      w-full
+                                      items-center
+                                      justify-between
+                                      rounded-xl
+                                      px-4
+                                      py-3
+                                      text-left
+                                      font-poppins
+                                      text-sm
+                                      text-white01
+                                      transition-all
+                                      duration-200
+                                      hover:bg-white/[0.05]
+                                      hover:text-orange
+                                    "
+                                    aria-haspopup="true"
+                                  >
+                                    <span>{subItem.title}</span>
+
+                                    <FiChevronRight
+                                      className="
+                                        shrink-0
+                                        text-base
+                                        transition-transform
+                                        duration-200
+                                        group-hover/nested:translate-x-0.5
+                                      "
+                                    />
+                                  </button>
+
+                                  {/* =================================================
+                                      NESTED DROPDOWN
+
+                                      No margin between parent and child.
+                                      This prevents hover from disappearing.
+
+                                      No overflow wrapper around it.
+                                  ================================================== */}
+                                  <div
+                                    className="
+                                      invisible
+                                      absolute
+                                      left-full
+                                      top-0
+                                      z-[100]
+                                      w-[220px]
+                                      rounded-2xl
+                                      border
+                                      border-white/[0.08]
+                                      bg-[#111111]/98
+                                      p-2
+                                      opacity-0
+                                      shadow-2xl
+                                      backdrop-blur-xl
+                                      transition-all
+                                      duration-200
+                                      group-hover/nested:visible
+                                      group-hover/nested:opacity-100
+                                    "
+                                  >
+                                    {subItem.dropdown.map((nestedItem) => (
+                                      <NavLink
+                                        key={nestedItem.path}
+                                        to={nestedItem.path}
+                                        className={({ isActive }) =>
+                                          `
+                                            block
+                                            rounded-xl
+                                            px-4
+                                            py-3
+                                            font-poppins
+                                            text-sm
+                                            transition-all
+                                            duration-200
+                                            ${
+                                              isActive
+                                                ? "bg-orange/10 text-orange"
+                                                : "text-white01 hover:bg-white/[0.05] hover:text-orange"
+                                            }
+                                          `
+                                        }
+                                      >
+                                        {nestedItem.title}
+                                      </NavLink>
+                                    ))}
+                                  </div>
+                                </div>
+                              );
+                            }
+
+                            {
+                              /* =================================================
+                                NORMAL DROPDOWN ITEM
+                            ================================================== */
+                            }
+                            return (
+                              <NavLink
+                                key={subItem.path}
+                                to={subItem.path}
+                                className={({ isActive }) =>
+                                  `
+                                    block
+                                    rounded-xl
+                                    px-4
+                                    py-3
+                                    font-poppins
+                                    text-sm
+                                    transition-all
+                                    duration-200
+                                    ${
+                                      isActive
+                                        ? "bg-orange/10 text-orange"
+                                        : "text-white01 hover:bg-white/[0.05] hover:text-orange"
+                                    }
+                                  `
+                                }
+                              >
+                                {subItem.title}
+                              </NavLink>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
@@ -427,23 +580,23 @@ const Header = () => {
                       to={item.path}
                       className={({ isActive }) =>
                         `
-                        group
-                        relative
-                        block
-                        whitespace-nowrap
-                        py-2
-                        font-poppins
-                        text-sm
-                        font-semibold
-                        transition-colors
-                        duration-300
-                        xl:text-base
-                        ${
-                          isActive
-                            ? "text-orange"
-                            : "text-white01 hover:text-orange"
-                        }
-                      `
+                          group
+                          relative
+                          block
+                          whitespace-nowrap
+                          py-2
+                          font-poppins
+                          text-sm
+                          font-semibold
+                          transition-colors
+                          duration-300
+                          xl:text-base
+                          ${
+                            isActive
+                              ? "text-orange"
+                              : "text-white01 hover:text-orange"
+                          }
+                        `
                       }
                     >
                       {({ isActive }) => (
@@ -552,81 +705,48 @@ const Header = () => {
           </nav>
 
           {/* =========================
-    Mobile Navigation
-========================= */}
+              Mobile Navigation
+          ========================== */}
           <div
             id="mobile-navigation"
             className={`
-    lg:hidden
-
-    overflow-hidden
-
-    transition-all
-    duration-300
-
-    ${
-      mobileOpen
-        ? "pointer-events-auto max-h-[calc(100dvh-76px)] opacity-100"
-        : "pointer-events-none max-h-0 opacity-0"
-    }
-  `}
+              lg:hidden
+              overflow-hidden
+              transition-all
+              duration-300
+              ${
+                mobileOpen
+                  ? "pointer-events-auto max-h-[calc(100dvh-76px)] opacity-100"
+                  : "pointer-events-none max-h-0 opacity-0"
+              }
+            `}
           >
             <nav
               aria-label="Mobile navigation"
               className="
-      mt-2
-
-      overflow-hidden
-
-      rounded-2xl
-
-      border
-      border-white/[0.08]
-
-      bg-[#111111]/98
-
-      shadow-2xl
-
-      backdrop-blur-xl
-    "
+                mt-2
+                overflow-hidden
+                rounded-2xl
+                border
+                border-white/[0.08]
+                bg-[#111111]/98
+                shadow-2xl
+                backdrop-blur-xl
+              "
             >
               {/* =====================================================
-        IMPORTANT
-
-        This is the ONLY mobile scrolling area.
-
-        The entire menu can now scroll from:
-        Home
-        ↓
-        Software Development
-        ↓
-        ALL tools
-        ↓
-        About
-        ↓
-        Contact
-        ↓
-        Ask AI
-        ↓
-        Hire Me
-        ↓
-        Log In
-    ====================================================== */}
+                  MOBILE SCROLL AREA
+              ====================================================== */}
               <div
                 className="
-        max-h-[calc(100dvh-90px)]
-
-        overflow-y-auto
-        overflow-x-hidden
-
-        overscroll-contain
-
-        [scrollbar-width:thin]
-
-        p-3
-
-        sm:p-4
-      "
+                  max-h-[calc(100dvh-90px)]
+                  overflow-y-auto
+                  overflow-x-hidden
+                  overscroll-contain
+                  [scrollbar-width:thin]
+                  p-3
+                  sm:p-4
+                "
               >
                 <ul className="flex flex-col gap-1">
                   {navLinks.map((item) => (
@@ -634,126 +754,217 @@ const Header = () => {
                       {item.dropdown ? (
                         <div>
                           {/* =================================================
-                    SOFTWARE DEVELOPMENT BUTTON
-                ================================================== */}
+                              TOP LEVEL MOBILE DROPDOWN
+                          ================================================== */}
                           <button
                             type="button"
-                            onClick={() =>
-                              setMobileDropdownOpen((prev) => !prev)
-                            }
+                            onClick={() => toggleMobileDropdown(item.title)}
                             className="
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-
-                    rounded-xl
-
-                    px-4
-                    py-3
-
-                    text-left
-
-                    font-poppins
-                    text-sm
-                    font-medium
-
-                    text-white01
-
-                    transition-all
-                    duration-300
-
-                    hover:bg-white/[0.04]
-                    hover:text-orange
-
-                    sm:py-3.5
-                    sm:text-base
-                  "
-                            aria-expanded={mobileDropdownOpen}
+                              flex
+                              w-full
+                              items-center
+                              justify-between
+                              rounded-xl
+                              px-4
+                              py-3
+                              text-left
+                              font-poppins
+                              text-sm
+                              font-medium
+                              text-white01
+                              transition-all
+                              duration-300
+                              hover:bg-white/[0.04]
+                              hover:text-orange
+                              sm:py-3.5
+                              sm:text-base
+                            "
+                            aria-expanded={mobileDropdownOpen === item.title}
                           >
                             <span>{item.title}</span>
 
                             <FiChevronDown
                               className={`
-                      shrink-0
-                      text-lg
-
-                      transition-transform
-                      duration-300
-
-                      ${mobileDropdownOpen ? "rotate-180 text-orange" : ""}
-                    `}
+                                shrink-0
+                                text-lg
+                                transition-transform
+                                duration-300
+                                ${
+                                  mobileDropdownOpen === item.title
+                                    ? "rotate-180 text-orange"
+                                    : ""
+                                }
+                              `}
                             />
                           </button>
 
                           {/* =================================================
-                    SOFTWARE DEVELOPMENT DROPDOWN
-
-                    NO FIXED 600px HEIGHT
-
-                    Grid animation allows the content to expand
-                    to its complete natural height.
-                ================================================== */}
+                              TOP LEVEL CONTENT
+                          ================================================== */}
                           <div
                             className={`
-                    grid
-
-                    transition-[grid-template-rows,opacity]
-                    duration-300
-                    ease-in-out
-
-                    ${
-                      mobileDropdownOpen
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }
-                  `}
+                              grid
+                              transition-[grid-template-rows,opacity]
+                              duration-300
+                              ease-in-out
+                              ${
+                                mobileDropdownOpen === item.title
+                                  ? "grid-rows-[1fr] opacity-100"
+                                  : "grid-rows-[0fr] opacity-0"
+                              }
+                            `}
                           >
                             <div className="min-h-0 overflow-hidden">
                               <div
                                 className="
-                        mt-1
-
-                        space-y-1
-
-                        rounded-xl
-
-                        bg-white/[0.02]
-
-                        p-1
-                      "
+                                  mt-1
+                                  space-y-1
+                                  rounded-xl
+                                  bg-white/[0.02]
+                                  p-1
+                                "
                               >
-                                {item.dropdown.map((subItem) => (
-                                  <NavLink
-                                    key={subItem.path}
-                                    to={subItem.path}
-                                    onClick={closeMobileMenu}
-                                    className={({ isActive }) =>
-                                      `
-                            block
+                                {item.dropdown.map((subItem) => {
+                                  {
+                                    /* =================================================
+                                      MOBILE NESTED DROPDOWN
+                                  ================================================== */
+                                  }
+                                  if (subItem.dropdown) {
+                                    return (
+                                      <div key={subItem.title}>
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            toggleMobileNestedDropdown(
+                                              subItem.title,
+                                            )
+                                          }
+                                          className="
+                                            flex
+                                            w-full
+                                            items-center
+                                            justify-between
+                                            rounded-lg
+                                            px-4
+                                            py-2.5
+                                            text-left
+                                            font-poppins
+                                            text-sm
+                                            text-gray-300
+                                            transition-all
+                                            duration-200
+                                            hover:bg-white/[0.04]
+                                            hover:text-orange
+                                          "
+                                          aria-expanded={
+                                            mobileNestedDropdownOpen ===
+                                            subItem.title
+                                          }
+                                        >
+                                          <span>{subItem.title}</span>
 
-                            rounded-lg
+                                          <FiChevronRight
+                                            className={`
+                                              text-base
+                                              transition-transform
+                                              duration-200
+                                              ${
+                                                mobileNestedDropdownOpen ===
+                                                subItem.title
+                                                  ? "rotate-90 text-orange"
+                                                  : ""
+                                              }
+                                            `}
+                                          />
+                                        </button>
 
-                            px-4
-                            py-2.5
+                                        {/* =================================================
+                                            MOBILE NESTED CONTENT
+                                        ================================================== */}
+                                        <div
+                                          className={`
+                                            grid
+                                            transition-[grid-template-rows,opacity]
+                                            duration-300
+                                            ease-in-out
+                                            ${
+                                              mobileNestedDropdownOpen ===
+                                              subItem.title
+                                                ? "grid-rows-[1fr] opacity-100"
+                                                : "grid-rows-[0fr] opacity-0"
+                                            }
+                                          `}
+                                        >
+                                          <div className="min-h-0 overflow-hidden">
+                                            <div className="ml-3 mt-1 space-y-1 border-l border-white/[0.08] pl-2">
+                                              {subItem.dropdown.map(
+                                                (nestedItem) => (
+                                                  <NavLink
+                                                    key={nestedItem.path}
+                                                    to={nestedItem.path}
+                                                    onClick={closeMobileMenu}
+                                                    className={({ isActive }) =>
+                                                      `
+                                                        block
+                                                        rounded-lg
+                                                        px-4
+                                                        py-2.5
+                                                        font-poppins
+                                                        text-sm
+                                                        transition-all
+                                                        duration-200
+                                                        ${
+                                                          isActive
+                                                            ? "bg-orange/10 text-orange"
+                                                            : "text-gray-300 hover:bg-white/[0.04] hover:text-orange"
+                                                        }
+                                                      `
+                                                    }
+                                                  >
+                                                    {nestedItem.title}
+                                                  </NavLink>
+                                                ),
+                                              )}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    );
+                                  }
 
-                            font-poppins
-                            text-sm
-
-                            transition-all
-                            duration-200
-
-                            ${
-                              isActive
-                                ? "bg-orange/10 text-orange"
-                                : "text-gray-300 hover:bg-white/[0.04] hover:text-orange"
-                            }
-                            `
-                                    }
-                                  >
-                                    {subItem.title}
-                                  </NavLink>
-                                ))}
+                                  {
+                                    /* =================================================
+                                      NORMAL MOBILE DROPDOWN ITEM
+                                  ================================================== */
+                                  }
+                                  return (
+                                    <NavLink
+                                      key={subItem.path}
+                                      to={subItem.path}
+                                      onClick={closeMobileMenu}
+                                      className={({ isActive }) =>
+                                        `
+                                          block
+                                          rounded-lg
+                                          px-4
+                                          py-2.5
+                                          font-poppins
+                                          text-sm
+                                          transition-all
+                                          duration-200
+                                          ${
+                                            isActive
+                                              ? "bg-orange/10 text-orange"
+                                              : "text-gray-300 hover:bg-white/[0.04] hover:text-orange"
+                                          }
+                                        `
+                                      }
+                                    >
+                                      {subItem.title}
+                                    </NavLink>
+                                  );
+                                })}
                               </div>
                             </div>
                           </div>
@@ -764,29 +975,23 @@ const Header = () => {
                           onClick={closeMobileMenu}
                           className={({ isActive }) =>
                             `
-                  block
-
-                  rounded-xl
-
-                  px-4
-                  py-3
-
-                  font-poppins
-                  text-sm
-                  font-medium
-
-                  transition-all
-                  duration-300
-
-                  sm:py-3.5
-                  sm:text-base
-
-                  ${
-                    isActive
-                      ? "bg-orange/10 text-orange"
-                      : "text-white01 hover:bg-white/[0.04] hover:text-orange"
-                  }
-                  `
+                              block
+                              rounded-xl
+                              px-4
+                              py-3
+                              font-poppins
+                              text-sm
+                              font-medium
+                              transition-all
+                              duration-300
+                              sm:py-3.5
+                              sm:text-base
+                              ${
+                                isActive
+                                  ? "bg-orange/10 text-orange"
+                                  : "text-white01 hover:bg-white/[0.04] hover:text-orange"
+                              }
+                            `
                           }
                         >
                           {item.title}
@@ -797,98 +1002,72 @@ const Header = () => {
                 </ul>
 
                 {/* =====================================================
-          MOBILE ACTIONS
-
-          These are now AFTER ALL software development items.
-      ====================================================== */}
+                    MOBILE ACTIONS
+                ====================================================== */}
                 <div
                   className="
-          mt-4
-
-          grid
-          gap-2.5
-
-          border-t
-          border-white/[0.08]
-
-          pt-4
-
-          sm:gap-3
-        "
+                    mt-4
+                    grid
+                    gap-2.5
+                    border-t
+                    border-white/[0.08]
+                    pt-4
+                    sm:gap-3
+                  "
                 >
-                  {/* AI */}
                   <AiButton />
 
-                  {/* Hire Me */}
                   <Link
                     to="/get_in_touch"
                     onClick={closeMobileMenu}
                     className="
-            flex
-            min-h-[46px]
-            items-center
-            justify-center
-
-            rounded-xl
-
-            bg-orange
-
-            px-5
-            py-3
-
-            text-center
-
-            font-poppins
-            text-sm
-            font-semibold
-
-            text-white
-
-            transition-all
-            duration-300
-
-            hover:bg-orange/90
-
-            sm:min-h-[50px]
-            sm:text-base
-          "
+                      flex
+                      min-h-[46px]
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-orange
+                      px-5
+                      py-3
+                      text-center
+                      font-poppins
+                      text-sm
+                      font-semibold
+                      text-white
+                      transition-all
+                      duration-300
+                      hover:bg-orange/90
+                      sm:min-h-[50px]
+                      sm:text-base
+                    "
                   >
                     Hire Me
                   </Link>
 
-                  {/* Login */}
                   <button
                     type="button"
                     onClick={openLogin}
                     className="
-            flex
-            min-h-[46px]
-            items-center
-            justify-center
-
-            rounded-xl
-
-            border
-            border-orange
-
-            px-5
-            py-3
-
-            font-poppins
-            text-sm
-            font-semibold
-
-            text-orange
-
-            transition-all
-            duration-300
-
-            hover:bg-orange
-            hover:text-white
-
-            sm:min-h-[50px]
-            sm:text-base
-          "
+                      flex
+                      min-h-[46px]
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-orange
+                      px-5
+                      py-3
+                      font-poppins
+                      text-sm
+                      font-semibold
+                      text-orange
+                      transition-all
+                      duration-300
+                      hover:bg-orange
+                      hover:text-white
+                      sm:min-h-[50px]
+                      sm:text-base
+                    "
                   >
                     Log In
                   </button>
