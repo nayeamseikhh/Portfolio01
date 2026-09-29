@@ -1,26 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { FiX } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiBriefcase,
+  FiCode,
+  FiFileText,
+  FiLayers,
+  FiX,
+} from "react-icons/fi";
+import { useNavigate } from "react-router";
+
 import AiSearch from "./aiSearch";
 
 const AiDrawer = ({ open, setOpen }) => {
   const [quickQuery, setQuickQuery] = useState("");
 
+  const navigate = useNavigate();
+
   // =========================================================
   // QUICK AI ACTION
   // =========================================================
+  // KEEPING YOUR ORIGINAL WORKING AI LOGIC UNCHANGED
   const handleQuickAction = (query) => {
     setQuickQuery("");
 
-    // Small delay allows the same button to be clicked again
-    // with the same query.
     requestAnimationFrame(() => {
       setQuickQuery(query);
     });
   };
 
   // =========================================================
-  // CLEAR QUICK QUERY AFTER AiSearch RECEIVES IT
+  // PAGE NAVIGATION
+  // =========================================================
+  // ONLY USED BY THE 4 DESIGN CARDS
+  const handlePageNavigation = (path) => {
+    setOpen(false);
+    navigate(path);
+  };
+
+  // =========================================================
+  // CLEAR QUICK QUERY
   // =========================================================
   const handleQuickQueryHandled = () => {
     setQuickQuery("");
@@ -61,6 +80,67 @@ const AiDrawer = ({ open, setOpen }) => {
   }, [open, setOpen]);
 
   // =========================================================
+  // QUICK SUGGESTIONS
+  // =========================================================
+  const suggestions = [
+    {
+      id: "website",
+      icon: FiCode,
+      title: "Build a website",
+      description: "Explore web development services",
+
+      // PAGE LINK
+      path: "/get_in_touch",
+
+      // KEEP AI QUERY
+      query:
+        "Tell me how Nayeam can help build a modern, responsive, professional website. Explain his web development services, technologies, design capabilities, and what kind of websites he can create.",
+    },
+
+    {
+      id: "projects",
+      icon: FiBriefcase,
+      title: "Explore projects",
+      description: "See projects and technologies",
+
+      // PAGE LINK
+      path: "/project_plan",
+
+      // KEEP AI QUERY
+      query:
+        "Tell me about Nayeam's projects. Describe his major projects, what each project does, the technologies used, his role, and the problems each project solves.",
+    },
+
+    {
+      id: "skills",
+      icon: FiLayers,
+      title: "Technical skills",
+      description: "Explore development capabilities",
+
+      // PAGE LINK
+      path: "/skills",
+
+      // KEEP AI QUERY
+      query:
+        "Explain Nayeam's technical skills and development capabilities. Tell me what technologies he works with, how he approaches scalable web applications, performance, responsive design, frontend, backend, APIs, and modern development.",
+    },
+
+    {
+      id: "resume",
+      icon: FiFileText,
+      title: "View my profile",
+      description: "Explore experience and background",
+
+      // PAGE LINK
+      path: "/about",
+
+      // KEEP AI QUERY
+      query:
+        "Give me a professional overview of Nayeam's resume. Summarize his experience, education, technical skills, development background, projects, achievements, and professional profile based on the portfolio information available to you.",
+    },
+  ];
+
+  // =========================================================
   // PORTAL
   // =========================================================
   if (typeof document === "undefined") {
@@ -86,8 +166,8 @@ const AiDrawer = ({ open, setOpen }) => {
 
           ${
             open
-              ? "visible pointer-events-auto opacity-100"
-              : "invisible pointer-events-none opacity-0"
+              ? "pointer-events-auto visible opacity-100"
+              : "pointer-events-none invisible opacity-0"
           }
         `}
       />
@@ -160,25 +240,39 @@ const AiDrawer = ({ open, setOpen }) => {
             md:py-5
           "
         >
-          <div className="min-w-0 flex-1">
-            <div className="flex min-w-0 items-center gap-2.5">
+          <div className="flex min-w-0 items-center gap-3">
+            {/* AI ICON */}
+            <div
+              className="
+                relative
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                overflow-hidden
+                rounded-xl
+                border
+                border-orange/20
+                bg-orange/10
+                text-orange
+              "
+            >
               <span
                 className="
-                  flex
-                  h-9
-                  w-9
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-xl
+                  absolute
+                  inset-0
                   bg-orange/10
-                  text-lg
+                  blur-xl
                 "
-              >
-                🤖
-              </span>
+              />
 
-              <div className="min-w-0">
+              <span className="relative text-lg">✦</span>
+            </div>
+
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
                 <h2
                   className="
                     truncate
@@ -188,29 +282,48 @@ const AiDrawer = ({ open, setOpen }) => {
                     leading-tight
                     text-white01
                     sm:text-lg
-                    md:text-xl
                   "
                 >
                   Ask AI
                 </h2>
 
-                <p
+                <span
                   className="
-                    truncate
+                    rounded-full
+                    border
+                    border-orange/20
+                    bg-orange/10
+                    px-2
+                    py-0.5
                     font-poppins
-                    text-[10px]
-                    leading-tight
-                    text-white02/50
-                    sm:text-xs
+                    text-[8px]
+                    font-semibold
+                    uppercase
+                    tracking-wider
+                    text-orange
                   "
                 >
-                  AI Portfolio Assistant
-                </p>
+                  Beta
+                </span>
               </div>
+
+              <p
+                className="
+                  mt-0.5
+                  truncate
+                  font-poppins
+                  text-[10px]
+                  leading-tight
+                  text-white02/50
+                  sm:text-xs
+                "
+              >
+                Nayeam's AI portfolio assistant
+              </p>
             </div>
           </div>
 
-          {/* Close */}
+          {/* CLOSE */}
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -239,7 +352,7 @@ const AiDrawer = ({ open, setOpen }) => {
               sm:w-10
             "
           >
-            <FiX size={20} />
+            <FiX size={19} />
           </button>
         </header>
 
@@ -253,22 +366,27 @@ const AiDrawer = ({ open, setOpen }) => {
             overflow-y-auto
             overflow-x-hidden
             overscroll-contain
+
             [scrollbar-width:thin]
+            [scrollbar-color:rgba(224,130,45,0.35)_transparent]
+
+            [&::-webkit-scrollbar]:w-1.5
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            [&::-webkit-scrollbar-thumb]:bg-orange/30
           "
         >
           <div
             className="
               min-w-0
-              space-y-5
               px-4
-              py-5
+              py-6
 
-              sm:space-y-6
               sm:px-5
-              sm:py-6
+              sm:py-7
 
               md:px-6
-              md:py-7
+              md:py-8
 
               lg:px-7
             "
@@ -276,143 +394,99 @@ const AiDrawer = ({ open, setOpen }) => {
             {/* =================================================
                 HERO
             ================================================== */}
-            <div>
-              <span
+            <section>
+              {/* SMALL LABEL */}
+              <div
                 className="
-                  mb-3
-                  inline-flex
-                  rounded-full
-                  border
-                  border-orange/20
-                  bg-orange/10
-                  px-3
-                  py-1
-                  font-poppins
-                  text-[10px]
-                  font-semibold
-                  uppercase
-                  tracking-[0.15em]
-                  text-orange
-                  sm:text-xs
+                  mb-4
+                  flex
+                  items-center
+                  gap-2
                 "
               >
-                AI Assistant
-              </span>
+                <span
+                  className="
+                    h-1.5
+                    w-1.5
+                    animate-pulse
+                    rounded-full
+                    bg-orange
+                  "
+                />
 
+                <span
+                  className="
+                    font-poppins
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.18em]
+                    text-orange
+                    sm:text-xs
+                  "
+                >
+                  AI Assistant
+                </span>
+              </div>
+
+              {/* TITLE */}
               <h3
                 className="
-                  max-w-[460px]
+                  max-w-[440px]
                   font-poppins
-                  text-2xl
+                  text-[28px]
                   font-bold
-                  leading-[1.15]
+                  leading-[1.12]
+                  tracking-tight
                   text-white
+
                   sm:text-3xl
                   md:text-[34px]
                   lg:text-4xl
                 "
               >
-                What are you looking to create?
+                What can I help you
+                <span className="text-orange"> explore?</span>
               </h3>
 
+              {/* DESCRIPTION */}
               <p
                 className="
-                  mt-3
-                  max-w-[450px]
+                  mt-4
+                  max-w-[430px]
                   font-poppins
                   text-sm
                   leading-6
-                  text-white02/60
+                  text-white02/55
+
                   sm:text-[15px]
-                  md:text-base
                 "
               >
-                I'm your AI assistant. Ask anything about my portfolio,
-                projects, skills, experience, or development tools.
+                Ask me anything about Nayeam's projects, skills, experience,
+                services, or development work.
               </p>
-            </div>
+            </section>
 
             {/* =================================================
-                BUILD MY WEBSITE
+                DIVIDER
             ================================================== */}
-            <button
-              type="button"
-              onClick={() =>
-                handleQuickAction(
-                  "Tell me how Nayeam can help build a modern, responsive, professional website. Explain his web development services, technologies, design capabilities, and what kind of websites he can create.",
-                )
-              }
+            <div
               className="
-                group
+                my-7
+                h-px
                 w-full
-                rounded-2xl
-                border
-                border-violet-400/20
-                bg-orange
-                p-4
-                text-left
-                text-white
-                shadow-[0_12px_35px_rgba(139,92,246,0.15)]
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:bg-orange/0
-                hover:shadow-[0_18px_45px_rgba(139,92,246,0.22)]
-                active:scale-[0.99]
-                sm:p-5
+                bg-gradient-to-r
+                from-orange/20
+                via-white/[0.08]
+                to-transparent
               "
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h4
-                    className="
-                      font-poppins
-                      text-sm
-                      font-semibold
-                      sm:text-base
-                    "
-                  >
-                    🚀 Build my website
-                  </h4>
-
-                  <p
-                    className="
-                      mt-1
-                      font-poppins
-                      text-xs
-                      text-violet-100/80
-                      sm:text-sm
-                    "
-                  >
-                    Ask AI how Nayeam can build it
-                  </p>
-                </div>
-
-                <span
-                  className="
-                    shrink-0
-                    rounded-full
-                    bg-white/10
-                    px-2.5
-                    py-1
-                    font-poppins
-                    text-[9px]
-                    font-semibold
-                    uppercase
-                    tracking-wider
-                    text-white/80
-                  "
-                >
-                  AI
-                </span>
-              </div>
-            </button>
+            />
 
             {/* =================================================
-                QUICK ACCESS
+                SUGGESTIONS HEADER
             ================================================== */}
-            <div>
-              <div className="mb-3 flex items-center justify-between">
+            <div className="mb-3.5 flex items-center justify-between">
+              <div>
                 <h4
                   className="
                     font-poppins
@@ -420,236 +494,238 @@ const AiDrawer = ({ open, setOpen }) => {
                     font-semibold
                     uppercase
                     tracking-[0.14em]
-                    text-white02/50
+                    text-white
                   "
                 >
-                  Quick Access
+                  Try asking
                 </h4>
 
-                <span
+                <p
                   className="
+                    mt-1
                     font-poppins
                     text-[10px]
-                    text-white02/30
+                    text-white02/35
                   "
                 >
-                  Explore
-                </span>
+                  Quick suggestions
+                </p>
               </div>
 
-              <div
+              <span
                 className="
-                  grid
-                  grid-cols-1
-                  gap-2.5
-                  xs:grid-cols-3
-                  sm:gap-3
+                  rounded-full
+                  border
+                  border-white/[0.07]
+                  bg-white/[0.025]
+                  px-2.5
+                  py-1
+                  font-poppins
+                  text-[9px]
+                  text-white02/35
                 "
               >
-                {/* =================================================
-                    PROJECTS
-                ================================================== */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleQuickAction(
-                      "Tell me about Nayeam's projects. Describe his major projects, what each project does, the technologies used, his role, and the problems each project solves.",
-                    )
-                  }
-                  className="
-                    group
-                    flex
-                    items-center
-                    gap-3
-                    rounded-xl
-                    border
-                    border-white/[0.08]
-                    bg-white/[0.025]
-                    p-3
-                    text-left
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:border-orange/30
-                    hover:bg-orange/[0.06]
+                4 suggestions
+              </span>
+            </div>
 
-                    xs:block
-                    xs:p-4
-                    xs:text-center
-                  "
-                >
-                  <span
+            {/* =================================================
+                SUGGESTION CARDS
+            ================================================== */}
+            <div
+              className="
+                grid
+                grid-cols-1
+                gap-2.5
+
+                xs:grid-cols-2
+                sm:gap-3
+              "
+            >
+              {suggestions.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    // =================================================
+                    // ONLY THIS ACTION IS CHANGED
+                    // 4 CARDS NOW GO TO THEIR OWN PAGE
+                    // =================================================
+                    onClick={() => handlePageNavigation(item.path)}
                     className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-white/[0.05]
-                      text-lg
+                      group
+                      relative
+                      min-w-0
+                      overflow-hidden
+                      rounded-2xl
+                      border
+                      border-white/[0.08]
+                      bg-white/[0.025]
+                      p-4
+                      text-left
+
                       transition-all
                       duration-300
-                      group-hover:bg-orange/10
-                      xs:mx-auto
+
+                      hover:-translate-y-0.5
+                      hover:border-orange/25
+                      hover:bg-orange/[0.045]
+
+                      active:scale-[0.98]
+
+                      sm:p-4
                     "
                   >
-                    💼
-                  </span>
+                    {/* HOVER GLOW */}
+                    <span
+                      className="
+                        pointer-events-none
+                        absolute
+                        -right-8
+                        -top-8
+                        h-20
+                        w-20
+                        rounded-full
+                        bg-orange/0
+                        blur-2xl
+                        transition-all
+                        duration-500
+                        group-hover:bg-orange/10
+                      "
+                    />
 
+                    <div className="relative">
+                      {/* ICON + ARROW */}
+                      <div className="mb-4 flex items-center justify-between">
+                        <span
+                          className="
+                            flex
+                            h-9
+                            w-9
+                            items-center
+                            justify-center
+                            rounded-xl
+                            border
+                            border-white/[0.07]
+                            bg-white/[0.04]
+                            text-white02
+                            transition-all
+                            duration-300
+                            group-hover:border-orange/20
+                            group-hover:bg-orange/10
+                            group-hover:text-orange
+                          "
+                        >
+                          <Icon size={17} />
+                        </span>
+
+                        <FiArrowUpRight
+                          className="
+                            text-white02/20
+                            transition-all
+                            duration-300
+                            group-hover:-translate-y-0.5
+                            group-hover:translate-x-0.5
+                            group-hover:text-orange
+                          "
+                          size={16}
+                        />
+                      </div>
+
+                      {/* TITLE */}
+                      <h5
+                        className="
+                          font-poppins
+                          text-sm
+                          font-semibold
+                          text-white
+                          transition-colors
+                          group-hover:text-orange
+                        "
+                      >
+                        {item.title}
+                      </h5>
+
+                      {/* DESCRIPTION */}
+                      <p
+                        className="
+                          mt-1.5
+                          font-poppins
+                          text-[11px]
+                          leading-5
+                          text-white02/40
+                          transition-colors
+                          group-hover:text-white02/60
+                        "
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* =================================================
+                FREE SPACE / INFO
+            ================================================== */}
+            <div
+              className="
+                mt-6
+                rounded-2xl
+                border
+                border-white/[0.06]
+                bg-white/[0.015]
+                p-4
+              "
+            >
+              <div className="flex items-start gap-3">
+                <div
+                  className="
+                    flex
+                    h-8
+                    w-8
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-lg
+                    bg-orange/10
+                    text-orange
+                  "
+                >
+                  ✦
+                </div>
+
+                <div className="min-w-0">
                   <p
                     className="
                       font-poppins
-                      text-sm
+                      text-xs
                       font-medium
-                      text-white02
-                      transition-colors
-                      group-hover:text-white
-                      xs:mt-3
+                      text-white02/70
                     "
                   >
-                    Projects
+                    Or ask me anything
                   </p>
-                </button>
-
-                {/* =================================================
-                    SCALE
-                ================================================== */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleQuickAction(
-                      "Explain Nayeam's technical skills and development capabilities. Tell me what technologies he works with, how he approaches scalable web applications, performance, responsive design, frontend, backend, APIs, and modern development.",
-                    )
-                  }
-                  className="
-                    group
-                    flex
-                    items-center
-                    gap-3
-                    rounded-xl
-                    border
-                    border-white/[0.08]
-                    bg-white/[0.025]
-                    p-3
-                    text-left
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:border-orange/30
-                    hover:bg-orange/[0.06]
-
-                    xs:block
-                    xs:p-4
-                    xs:text-center
-                  "
-                >
-                  <span
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-white/[0.05]
-                      text-lg
-                      transition-all
-                      duration-300
-                      group-hover:bg-orange/10
-                      xs:mx-auto
-                    "
-                  >
-                    📈
-                  </span>
 
                   <p
                     className="
+                      mt-1
                       font-poppins
-                      text-sm
-                      font-medium
-                      text-white02
-                      transition-colors
-                      group-hover:text-white
-                      xs:mt-3
+                      text-[10px]
+                      leading-5
+                      text-white02/30
                     "
                   >
-                    Scale
+                    Type your own question below and I'll search for an answer.
                   </p>
-                </button>
-
-                {/* =================================================
-                    RESUME
-                ================================================== */}
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleQuickAction(
-                      "Give me a professional overview of Nayeam's resume. Summarize his experience, education, technical skills, development background, projects, achievements, and professional profile based on the portfolio information available to you.",
-                    )
-                  }
-                  className="
-                    group
-                    flex
-                    items-center
-                    gap-3
-                    rounded-xl
-                    border
-                    border-white/[0.08]
-                    bg-white/[0.025]
-                    p-3
-                    text-left
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:border-orange/30
-                    hover:bg-orange/[0.06]
-
-                    xs:block
-                    xs:p-4
-                    xs:text-center
-                  "
-                >
-                  <span
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-white/[0.05]
-                      text-lg
-                      transition-all
-                      duration-300
-                      group-hover:bg-orange/10
-                      xs:mx-auto
-                    "
-                  >
-                    📄
-                  </span>
-
-                  <p
-                    className="
-                      font-poppins
-                      text-sm
-                      font-medium
-                      text-white02
-                      transition-colors
-                      group-hover:text-white
-                      xs:mt-3
-                    "
-                  >
-                    Resume
-                  </p>
-                </button>
+                </div>
               </div>
             </div>
 
-            <div className="h-4" />
+            <div className="h-3" />
           </div>
         </main>
 
@@ -662,11 +738,15 @@ const AiDrawer = ({ open, setOpen }) => {
             z-50
             min-w-0
             shrink-0
+
             border-t
             border-white/[0.08]
+
             bg-black02
+
             px-3
             py-3
+
             shadow-[0_-15px_35px_rgba(0,0,0,0.35)]
 
             sm:px-4
@@ -678,6 +758,10 @@ const AiDrawer = ({ open, setOpen }) => {
             pb-[calc(0.75rem+env(safe-area-inset-bottom))]
           "
         >
+          {/* =================================================
+              THIS IS YOUR ORIGINAL WORKING AI SEARCH
+              COMPLETELY UNCHANGED
+          ================================================== */}
           <AiSearch
             quickQuery={quickQuery}
             onQuickQueryHandled={handleQuickQueryHandled}
