@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -6,7 +5,20 @@ import {
   FaReact,
   FaNodeJs,
   FaDatabase,
+  FaServer,
+  FaGitAlt,
+  FaGithub,
+  FaLock,
+  FaNpm,
 } from "react-icons/fa";
+
+import {
+  SiTailwindcss,
+  SiExpress,
+  SiMongoose,
+  SiFirebase,
+  SiVite,
+} from "react-icons/si";
 
 const skills = [
   {
@@ -16,6 +28,7 @@ const skills = [
     description:
       "Semantic and accessible HTML structures built for clean, scalable interfaces.",
   },
+
   {
     name: "CSS",
     icon: FaCss3Alt,
@@ -23,6 +36,7 @@ const skills = [
     description:
       "Responsive layouts, animations, and modern styling with clean CSS architecture.",
   },
+
   {
     name: "JavaScript",
     icon: FaJsSquare,
@@ -30,6 +44,7 @@ const skills = [
     description:
       "Modern JavaScript development focused on reusable logic and interactive experiences.",
   },
+
   {
     name: "React",
     icon: FaReact,
@@ -37,19 +52,101 @@ const skills = [
     description:
       "Component-driven interfaces built with reusable and maintainable React architecture.",
   },
+
+  {
+    name: "Tailwind CSS",
+    icon: SiTailwindcss,
+    percent: 90,
+    description:
+      "Responsive and modern user interfaces developed with utility-first Tailwind CSS.",
+  },
+
   {
     name: "Node.js",
     icon: FaNodeJs,
     percent: 85,
     description:
-      "Scalable backend services and REST APIs using Node.js and Express.",
+      "Scalable backend services and REST APIs built with Node.js and Express.",
   },
+
+  {
+    name: "Express.js",
+    icon: SiExpress,
+    percent: 85,
+    description:
+      "Fast and structured backend development with RESTful APIs, middleware, and routing.",
+  },
+
   {
     name: "MongoDB",
     icon: FaDatabase,
     percent: 85,
     description:
-      "Flexible database solutions with MongoDB, Mongoose, and efficient data modeling.",
+      "Flexible database solutions using MongoDB, Mongoose, and efficient data modeling.",
+  },
+
+  {
+    name: "Mongoose",
+    icon: SiMongoose,
+    percent: 80,
+    description:
+      "Structured MongoDB data modeling with schemas, validation, relationships, and queries.",
+  },
+
+  {
+    name: "REST API",
+    icon: FaServer,
+    percent: 85,
+    description:
+      "Well-structured REST APIs designed for reliable communication between frontend and backend systems.",
+  },
+
+  {
+    name: "Git",
+    icon: FaGitAlt,
+    percent: 85,
+    description:
+      "Version control workflows using Git for organized, collaborative, and maintainable development.",
+  },
+
+  {
+    name: "GitHub",
+    icon: FaGithub,
+    percent: 85,
+    description:
+      "Repository management, collaboration, branching, pull requests, and project version control.",
+  },
+
+  {
+    name: "Firebase",
+    icon: SiFirebase,
+    percent: 80,
+    description:
+      "Authentication and cloud services integrated into modern web applications.",
+  },
+
+  {
+    name: "JWT Authentication",
+    icon: FaLock,
+    percent: 80,
+    description:
+      "Secure authentication flows using JWT, protected routes, and role-based access control.",
+  },
+
+  {
+    name: "Vite",
+    icon: SiVite,
+    percent: 90,
+    description:
+      "Fast and modern frontend development using Vite-powered React applications.",
+  },
+
+  {
+    name: "NPM",
+    icon: FaNpm,
+    percent: 85,
+    description:
+      "Efficient package management and dependency workflows for JavaScript applications.",
   },
 ];
 

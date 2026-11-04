@@ -50,7 +50,7 @@ const travelImages = [
 ];
 
 /* ========================================================================
-   50 DESTINATIONS
+   DESTINATIONS
 ======================================================================== */
 
 const destinationInfo = [
@@ -457,7 +457,7 @@ const destinationInfo = [
 ];
 
 /* ========================================================================
-   BUILD DESTINATIONS SAFELY
+   BUILD DESTINATIONS
 ======================================================================== */
 
 const destinations = destinationInfo
@@ -477,11 +477,8 @@ const destinations = destinationInfo
 
     return {
       id: index + 1,
-
       country: destination.country,
-
       city: destination.city,
-
       title: destination.title,
 
       description:
@@ -530,9 +527,9 @@ const ImageOrPlaceholder = ({
       <div
         className={`
           bg-gradient-to-br
-          from-slate-950
-          via-slate-800
-          to-orange-500
+          from-[#0d0d0d]
+          via-[#212121]
+          to-[#e0822d]
           ${placeholderClass}
           ${className}
         `}
@@ -581,7 +578,7 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
         border
         border-white/15
         bg-white/10
-        shadow-[0_20px_50px_rgba(0,0,0,0.35)]
+        shadow-[0_20px_50px_rgba(0,0,0,0.45)]
         backdrop-blur-sm
         transition-transform
         duration-500
@@ -594,19 +591,14 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
               min-w-0
               flex-1
               rounded-[12px]
-
               xs:h-[100px]
-
               sm:h-[115px]
             `
             : `
               h-[180px]
               rounded-[16px]
-
               lg:h-[215px]
-
               xl:h-[245px]
-
               2xl:h-[270px]
             `
         }
@@ -629,8 +621,6 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
         placeholderClass="h-full w-full"
       />
 
-      {/* Overlay */}
-
       <div
         className="
           pointer-events-none
@@ -642,8 +632,6 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
           to-black/5
         "
       />
-
-      {/* Number */}
 
       <div
         className={`
@@ -680,8 +668,6 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
         0{cardNumber}
       </div>
 
-      {/* External icon */}
-
       {!mobile && (
         <div
           className="
@@ -695,8 +681,8 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
             items-center
             justify-center
             rounded-full
-            bg-white
-            text-black
+            bg-[#212121]
+            text-white
             opacity-0
             transition-all
             duration-300
@@ -707,8 +693,6 @@ const DestinationCard = ({ card, destination, mobile = false }) => {
           <FiExternalLink size={13} />
         </div>
       )}
-
-      {/* Title */}
 
       <div
         className={`
@@ -761,16 +745,17 @@ const NavigationButton = ({ direction, onClick }) => {
         justify-center
         rounded-full
         border
-        border-black/5
-        bg-white
-        text-black
-        shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+        border-white/10
+        bg-[#212121]
+        text-white
+        shadow-[0_10px_30px_rgba(0,0,0,0.45)]
         transition-all
         duration-300
 
         sm:h-11
         sm:w-11
 
+        hover:border-orange-500
         hover:bg-orange-500
         hover:text-white
         active:scale-90
@@ -786,15 +771,11 @@ const NavigationButton = ({ direction, onClick }) => {
 ======================================================================== */
 
 export default function TravelDestination() {
-  /* ---------------------------------------------------------------------
-     SAFETY CHECK
-  --------------------------------------------------------------------- */
-
   if (!destinations.length) {
     return (
-      <section className="w-full bg-white px-4 py-10">
+      <section className="w-full bg-[#161513] px-4 py-10">
         <div className="mx-auto max-w-[1700px]">
-          <div className="flex h-[500px] items-center justify-center rounded-3xl bg-slate-950 text-white">
+          <div className="flex h-[500px] items-center justify-center rounded-3xl bg-[#0d0d0d] text-white">
             No destinations available.
           </div>
         </div>
@@ -804,16 +785,12 @@ export default function TravelDestination() {
 
   /* ---------------------------------------------------------------------
      INFINITE SLIDES
-
-     01 → 02 → 03 → ... → 50 → 01
   --------------------------------------------------------------------- */
 
   const slides = useMemo(() => [...destinations, destinations[0]], []);
 
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const [transitionEnabled, setTransitionEnabled] = useState(true);
-
   const [isPaused, setIsPaused] = useState(false);
 
   const isResetting = useRef(false);
@@ -854,7 +831,6 @@ export default function TravelDestination() {
 
     if (currentSlide === 0) {
       setTransitionEnabled(false);
-
       setCurrentSlide(destinations.length - 1);
 
       requestAnimationFrame(() => {
@@ -892,20 +868,16 @@ export default function TravelDestination() {
   const handleTransitionEnd = (event) => {
     if (event.propertyName !== "transform") return;
 
-    if (currentSlide !== destinations.length) {
-      return;
-    }
+    if (currentSlide !== destinations.length) return;
 
     isResetting.current = true;
 
     setTransitionEnabled(false);
-
     setCurrentSlide(0);
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         isResetting.current = false;
-
         setTransitionEnabled(true);
       });
     });
@@ -916,14 +888,11 @@ export default function TravelDestination() {
   --------------------------------------------------------------------- */
 
   const goToSlide = (index) => {
-    if (index < 0 || index >= destinations.length) {
-      return;
-    }
+    if (index < 0 || index >= destinations.length) return;
 
     isResetting.current = false;
 
     setTransitionEnabled(true);
-
     setCurrentSlide(index);
   };
 
@@ -959,7 +928,6 @@ export default function TravelDestination() {
     }
 
     const diffX = touch.clientX - touchStartX.current;
-
     const diffY = touch.clientY - touchStartY.current;
 
     const swipeThreshold = 50;
@@ -1015,7 +983,7 @@ export default function TravelDestination() {
       className="
         w-full
         overflow-hidden
-        bg-white
+        bg-[#161513]
         py-8
 
         sm:px-4
@@ -1041,7 +1009,7 @@ export default function TravelDestination() {
       >
         {/* =============================================================
             SLIDER
-        ============================================================= */}
+        ========================================================== */}
 
         <div
           className="
@@ -1050,7 +1018,7 @@ export default function TravelDestination() {
             w-full
             overflow-hidden
             bg-black
-            shadow-[0_25px_70px_rgba(0,0,0,0.25)]
+            shadow-[0_25px_70px_rgba(0,0,0,0.55)]
 
             xs:h-[640px]
 
@@ -1101,16 +1069,16 @@ export default function TravelDestination() {
                 <article
                   key={`${destination.id}-${slideIndex}`}
                   className="
-                      relative
-                      h-full
-                      min-w-full
-                      shrink-0
-                      overflow-hidden
-                    "
+                    relative
+                    h-full
+                    min-w-full
+                    shrink-0
+                    overflow-hidden
+                  "
                 >
                   {/* =================================================
-                        HERO IMAGE
-                    ================================================== */}
+                      HERO IMAGE
+                  ================================================== */}
 
                   <div className="absolute inset-0">
                     <ImageOrPlaceholder
@@ -1118,140 +1086,140 @@ export default function TravelDestination() {
                       alt={destination.title}
                       priority={slideIndex === currentSlide}
                       className="
-                          h-full
-                          w-full
-                          object-cover
-                          object-center
-                        "
+                        h-full
+                        w-full
+                        object-cover
+                        object-center
+                      "
                       placeholderClass="
-                          h-full
-                          w-full
-                        "
+                        h-full
+                        w-full
+                      "
                     />
                   </div>
 
                   {/* =================================================
-                        OVERLAYS
-                    ================================================== */}
+                      OVERLAYS
+                  ================================================== */}
 
                   <div
                     className="
-                        absolute
-                        inset-0
-                        bg-black/20
-                      "
+                      absolute
+                      inset-0
+                      bg-black/20
+                    "
                   />
 
                   <div
                     className="
-                        absolute
-                        inset-0
-                        bg-gradient-to-r
-                        from-black/85
-                        via-black/50
-                        to-black/10
-                        sm:from-black/80
-                      "
+                      absolute
+                      inset-0
+                      bg-gradient-to-r
+                      from-black/85
+                      via-black/50
+                      to-black/10
+                      sm:from-black/80
+                    "
                   />
 
                   <div
                     className="
-                        absolute
-                        inset-0
-                        bg-gradient-to-t
-                        from-black/80
-                        via-black/10
-                        to-black/10
-                      "
+                      absolute
+                      inset-0
+                      bg-gradient-to-t
+                      from-black/80
+                      via-black/10
+                      to-black/10
+                    "
                   />
 
                   <div
                     className="
-                        pointer-events-none
-                        absolute
-                        inset-0
-                        bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.16),transparent_30%)]
-                      "
+                      pointer-events-none
+                      absolute
+                      inset-0
+                      bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.16),transparent_30%)]
+                    "
                   />
 
                   {/* =================================================
-                        CONTENT
-                    ================================================== */}
+                      CONTENT
+                  ================================================== */}
 
                   <div
                     className="
-                        relative
-                        z-10
-                        flex
-                        h-full
-                        items-start
+                      relative
+                      z-10
+                      flex
+                      h-full
+                      items-start
 
-                        px-5
-                        pt-[105px]
-                        pb-[190px]
+                      px-5
+                      pt-[105px]
+                      pb-[190px]
 
-                        xs:px-6
+                      xs:px-6
 
-                        sm:px-8
-                        sm:pt-[125px]
-                        sm:pb-[205px]
+                      sm:px-8
+                      sm:pt-[125px]
+                      sm:pb-[205px]
 
-                        md:px-12
-                        md:pt-[145px]
-                        md:pb-[200px]
+                      md:px-12
+                      md:pt-[145px]
+                      md:pb-[200px]
 
-                        lg:px-16
-                        lg:pt-[150px]
-                        lg:pb-[185px]
+                      lg:px-16
+                      lg:pt-[150px]
+                      lg:pb-[185px]
 
-                        xl:px-20
+                      xl:px-20
 
-                        2xl:px-24
-                      "
+                      2xl:px-24
+                    "
                   >
                     <div
                       className="
-                          w-full
-                          max-w-[600px]
-                          text-white
-                        "
+                        w-full
+                        max-w-[600px]
+                        text-white
+                      "
                     >
                       {/* Small label */}
 
                       <div
                         className="
-                            mb-3
-                            flex
-                            items-center
-                            gap-2
+                          mb-3
+                          flex
+                          items-center
+                          gap-2
 
-                            sm:mb-4
-                            sm:gap-3
-                          "
+                          sm:mb-4
+                          sm:gap-3
+                        "
                       >
                         <span
                           className="
-                              h-px
-                              w-6
-                              bg-white/70
+                            h-px
+                            w-6
+                            bg-white/70
 
-                              sm:w-8
-                            "
+                            sm:w-8
+                          "
                         />
 
                         <span
                           className="
-                              text-[8px]
-                              font-medium
-                              uppercase
-                              tracking-[0.25em]
-                              text-white/75
+                            text-[8px]
+                            font-medium
+                            uppercase
+                            tracking-[0.25em]
+                            text-white/75
 
-                              xs:text-[9px]
+                            xs:text-[9px]
 
-                              sm:text-xs
-                              sm:tracking-[0.35em]
-                            "
+                            sm:text-xs
+                            sm:tracking-[0.35em]
+                          "
                         >
                           Explore destination
                         </span>
@@ -1261,17 +1229,17 @@ export default function TravelDestination() {
 
                       <p
                         className="
-                            mb-2
-                            text-[9px]
-                            font-semibold
-                            uppercase
-                            tracking-[0.28em]
-                            text-white/60
+                          mb-2
+                          text-[9px]
+                          font-semibold
+                          uppercase
+                          tracking-[0.28em]
+                          text-white/60
 
-                            sm:mb-3
-                            sm:text-xs
-                            sm:tracking-[0.35em]
-                          "
+                          sm:mb-3
+                          sm:text-xs
+                          sm:tracking-[0.35em]
+                        "
                       >
                         {destination.country}
                       </p>
@@ -1280,18 +1248,18 @@ export default function TravelDestination() {
 
                       <h2
                         className="
-                            max-w-[580px]
-                            text-[clamp(38px,11vw,58px)]
-                            font-bold
-                            leading-[0.94]
-                            tracking-[-0.045em]
+                          max-w-[580px]
+                          text-[clamp(38px,11vw,58px)]
+                          font-bold
+                          leading-[0.94]
+                          tracking-[-0.045em]
 
-                            sm:text-[clamp(48px,7vw,68px)]
+                          sm:text-[clamp(48px,7vw,68px)]
 
-                            lg:text-[clamp(58px,6vw,76px)]
+                          lg:text-[clamp(58px,6vw,76px)]
 
-                            xl:text-[82px]
-                          "
+                          xl:text-[82px]
+                        "
                       >
                         {destination.title}
                       </h2>
@@ -1300,14 +1268,14 @@ export default function TravelDestination() {
 
                       <p
                         className="
-                            mt-3
-                            text-xs
-                            font-medium
-                            text-white/70
+                          mt-3
+                          text-xs
+                          font-medium
+                          text-white/70
 
-                            sm:mt-4
-                            sm:text-sm
-                          "
+                          sm:mt-4
+                          sm:text-sm
+                        "
                       >
                         {destination.city}
                       </p>
@@ -1316,19 +1284,19 @@ export default function TravelDestination() {
 
                       <p
                         className="
-                            mt-4
-                            max-w-[480px]
-                            text-xs
-                            leading-6
-                            text-white/80
+                          mt-4
+                          max-w-[480px]
+                          text-xs
+                          leading-6
+                          text-white/80
 
-                            sm:mt-5
-                            sm:text-sm
-                            sm:leading-7
+                          sm:mt-5
+                          sm:text-sm
+                          sm:leading-7
 
-                            lg:text-[16px]
-                            lg:leading-8
-                          "
+                          lg:text-[16px]
+                          lg:leading-8
+                        "
                       >
                         {destination.description}
                       </p>
@@ -1339,73 +1307,73 @@ export default function TravelDestination() {
                         type="button"
                         onClick={() => goToSlide(indicatorIndex)}
                         className="
-                            group
-                            mt-6
-                            inline-flex
-                            items-center
-                            gap-2
-                            rounded-full
-                            bg-white
-                            px-5
-                            py-3
-                            text-xs
-                            font-medium
-                            text-black
-                            shadow-xl
-                            transition-all
-                            duration-300
+                          group
+                          mt-6
+                          inline-flex
+                          items-center
+                          gap-2
+                          rounded-full
+                          bg-white
+                          px-5
+                          py-3
+                          text-xs
+                          font-medium
+                          text-black
+                          shadow-xl
+                          transition-all
+                          duration-300
 
-                            sm:mt-7
-                            sm:gap-3
-                            sm:px-6
-                            sm:py-3.5
-                            sm:text-sm
+                          sm:mt-7
+                          sm:gap-3
+                          sm:px-6
+                          sm:py-3.5
+                          sm:text-sm
 
-                            hover:-translate-y-1
-                            hover:bg-orange-500
-                            hover:text-white
-                            active:scale-95
-                          "
+                          hover:-translate-y-1
+                          hover:bg-orange-500
+                          hover:text-white
+                          active:scale-95
+                        "
                       >
                         <span>Explore</span>
 
                         <FiExternalLink
                           size={15}
                           className="
-                              transition-transform
-                              duration-300
-                              group-hover:translate-x-1
-                            "
+                            transition-transform
+                            duration-300
+                            group-hover:translate-x-1
+                          "
                         />
                       </button>
                     </div>
                   </div>
 
                   {/* =================================================
-                        DESKTOP CARDS
-                    ================================================== */}
+                      DESKTOP CARDS
+                  ================================================== */}
 
                   <div
                     className="
-                        absolute
-                        bottom-[92px]
-                        left-1/2
-                        z-20
-                        hidden
-                        w-[58%]
-                        max-w-[850px]
-                        -translate-x-0
-                        grid-cols-3
-                        gap-3
+                      absolute
+                      bottom-[92px]
+                      left-1/2
+                      z-20
+                      hidden
+                      w-[58%]
+                      max-w-[850px]
+                      -translate-x-0
+                      grid-cols-3
+                      gap-3
 
-                        md:grid
+                      md:grid
 
-                        lg:bottom-[95px]
-                        lg:gap-4
+                      lg:bottom-[95px]
+                      lg:gap-4
 
-                        xl:bottom-[100px]
-                        xl:gap-5
-                      "
+                      xl:bottom-[100px]
+                      xl:gap-5
+                    "
                   >
                     {destination.cards?.map((card) => (
                       <DestinationCard
@@ -1417,31 +1385,31 @@ export default function TravelDestination() {
                   </div>
 
                   {/* =================================================
-                        MOBILE CARDS
-                    ================================================== */}
+                      MOBILE CARDS
+                  ================================================== */}
 
                   <div
                     className="
-                        absolute
-                        bottom-[92px]
-                        left-4
-                        right-4
-                        z-20
-                        flex
-                        gap-2
+                      absolute
+                      bottom-[92px]
+                      left-4
+                      right-4
+                      z-20
+                      flex
+                      gap-2
 
-                        xs:bottom-[96px]
-                        xs:left-5
-                        xs:right-5
-                        xs:gap-2.5
+                      xs:bottom-[96px]
+                      xs:left-5
+                      xs:right-5
+                      xs:gap-2.5
 
-                        sm:bottom-[100px]
-                        sm:left-8
-                        sm:right-8
-                        sm:gap-3
+                      sm:bottom-[100px]
+                      sm:left-8
+                      sm:right-8
+                      sm:gap-3
 
-                        md:hidden
-                      "
+                      md:hidden
+                    "
                   >
                     {destination.cards?.map((card) => (
                       <DestinationCard

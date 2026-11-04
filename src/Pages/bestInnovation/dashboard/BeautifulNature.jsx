@@ -128,7 +128,7 @@ export default function BeautifulNature() {
   }, [nextSlide, previousSlide]);
 
   return (
-    <section className="w-full bg-white px-3 !py-30 xs:px-4 xs:py-8 sm:px-5 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+    <section className="w-full bg-dark px-3 !py-30 xs:px-4 xs:py-8 sm:px-5 md:px-6 lg:px-8 xl:px-10 2xl:px-12 ">
       <div className="mx-auto w-full max-w-[1800px]">
         {/* =====================================================
             SLIDER
