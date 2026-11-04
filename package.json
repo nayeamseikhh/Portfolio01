@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "@tailwindcss/vite": "^4.1.14",
     "animejs": "^3.2.2",
+    "antd": "^6.7.0",
     "aos": "^2.3.4",
     "clsx": "^2.1.1",
     "firebase": "^12.16.0",

@@ -43,6 +43,13 @@ const FooterMiddle = () => {
               high-performance web applications.
             </p>
 
+            <a
+              href="https://www.nayeamdev.com/"
+              className="mt-3 inline-block font-poppins text-sm text-orange transition-colors hover:text-white"
+            >
+              www.nayeamdev.com
+            </a>
+
             {/* Available */}
             <div className="mt-5 flex items-center gap-2 sm:mt-6">
               <span className="relative flex h-3 w-3 shrink-0">

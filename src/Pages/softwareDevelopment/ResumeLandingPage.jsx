@@ -227,6 +227,18 @@ const ResumeLandingPage = () => {
                   <Phone size={16} />
                   +880 1750-497007
                 </a>
+
+                <span className="hidden text-gray-700 sm:block">•</span>
+
+                <a
+                  href="https://www.nayeamdev.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 transition hover:text-[#F59E0B]"
+                >
+                  nayeamdev.com
+                  <ArrowUpRight size={14} />
+                </a>
               </div>
 
               {/* Buttons */}

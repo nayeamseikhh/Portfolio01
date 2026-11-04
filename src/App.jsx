@@ -58,10 +58,12 @@ import Sudoku from "./Pages/bestInnovation/games/Sudoku";
 import TicTacToe from "./Pages/bestInnovation/games/TicTacToe";
 import TowerOfHanoi from "./Pages/bestInnovation/games/TowerOfHanoi";
 import BeautifullNature from "./Pages/bestInnovation/dashboard/BeautifulNature";
+import App2 from "../src/GurerHaat/src/App.jsx";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
+      <>
       <Route element={<RootLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -230,7 +232,9 @@ function App() {
           element={<TowerOfHanoi />}
         />
         {/* ========================================================== */}
-      </Route>,
+      </Route>
+      <Route path="/Gurer_Haat" element={<App2 />} />
+      </>,
     ),
   );
   return (

@@ -26,7 +26,16 @@ const ExperienceCard = () => {
     },
     {
       role: "CEO of Nayeam Dev",
-      company: "MERN Stack Developer",
+      company: (
+        <a
+          href="https://www.nayeamdev.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-colors hover:text-orange"
+        >
+          Nayeam Dev
+        </a>
+      ),
       year: "2024 - 2025",
     },
   ];
