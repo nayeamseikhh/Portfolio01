@@ -64,176 +64,189 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-      <Route element={<RootLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/get_in_touch" element={<GetInTouch />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/project_plan" element={<ProjectPlan />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/terms_of_use" element={<TermsOfUse />} />
-        <Route
-          path="/software_development/vattaxcalculator"
-          element={<VatTaxCalculator />}
-        />
-        <Route
-          path="/software_development/colorpaletteextractor"
-          element={<ColorPaletteExtractor />}
-        />
-        <Route
-          path="/software_development/resumelandingpage"
-          element={<ResumeLandingPage />}
-        />
-        <Route path="/software_development/sheetgrid" element={<SheetGrid />} />
-        <Route
-          path="/software_development/cryptomarkettable"
-          element={<CryptoMarketTable />}
-        />
-        <Route
-          path="/software_development/aitextsummarizer"
-          element={<AITextSummarizer />}
-        />
-        <Route
-          path="/software_development/jsonformatter"
-          element={<JsonFormatter />}
-        />
-        <Route
-          path="/software_development/qrcodegenerator"
-          element={<QRCodeGenerator />}
-        />
-        <Route
-          path="/software_development/qrcodescanner"
-          element={<QRCodeScanner />}
-        />
-        <Route
-          path="/software_development/wordcounter"
-          element={<WordCounter />}
-        />
-        <Route
-          path="/software_development/textdiffchecker"
-          element={<TextDiffChecker />}
-        />
-        <Route
-          path="/software_development/caseconverter"
-          element={<CaseConverter />}
-        />
-        <Route
-          path="/software_development/percentagecalculator"
-          element={<PercentageCalculator />}
-        />
-        <Route
-          path="/software_development/gradientgenerator"
-          element={<GradientGenerator />}
-        />
-        <Route
-          path="/software_development/backgroundremover"
-          element={<BackgroundRemover />}
-        />
-        <Route
-          path="/software_development/weatherdashboard"
-          element={<WeatherDashboard />}
-        />
-        <Route
-          path="/software_development/tricalendar"
-          element={<TriCalendar />}
-        />
-        <Route
-          path="/software_development/imageconverter"
-          element={<ImageConverter />}
-        />
-        <Route
-          path="/software_development/pdfmergesplit"
-          element={<PdfMergeSplit />}
-        />
-        <Route
-          path="/software_development/imagecompressor"
-          element={<ImageCompressor />}
-        />
-        <Route
-          path="/software_development/worldclock"
-          element={<WorldClock />}
-        />
-        <Route
-          path="/software_development/randompicker"
-          element={<RandomPicker />}
-        />
-        <Route
-          path="/software_development/timertools"
-          element={<TimerTools />}
-        />
-        <Route
-          path="/software_development/agecalculator"
-          element={<AgeCalculator />}
-        />
-        <Route
-          path="/software_development/banglasongkhatokotha"
-          element={<BanglaSongkhaToKotha />}
-        />
-        <Route
-          path="/software_development/colorconverter"
-          element={<ColorConverter />}
-        />
-        <Route
-          path="/software_development/markdownpreviewer"
-          element={<MarkdownPreviewer />}
-        />
-        <Route
-          path="/software_development/passwordgenerator"
-          element={<PasswordGenerator />}
-        />
-        <Route
-          path="/software_development/pomodorotimer"
-          element={<PomodoroTimer />}
-        />
-        <Route
-          path="/software_development/regextester"
-          element={<RegexTester />}
-        />
-        <Route
-          path="/software_development/unitconverter"
-          element={<UnitConverter />}
-        />
-        {/* =============================================================== */}
-        {/* //Best Innovation Project */}
-        <Route
-          path="/bestinnovation/dashboard/traveldestination"
-          element={<TravelDestination />}
-        />
-        <Route
-          path="/bestinnovation/dashboard/beautifullnature"
-          element={<BeautifullNature />}
-        />
-        {/* =============================================================================== */}
-        {/* Games */}
-        <Route
-          path="/bestinnovation/game/connectfour"
-          element={<ConnectFour />}
-        />
-        <Route path="/bestinnovation/game/2048" element={<Game2048 />} />
-        <Route
-          path="/bestinnovation/game/memorygame"
-          element={<MemoryGame />}
-        />
-        <Route
-          path="/bestinnovation/game/minesweeper"
-          element={<Minesweeper />}
-        />
-        <Route
-          path="/bestinnovation/game/rockpaperscissors"
-          element={<RockPaperScissors />}
-        />
-        <Route path="/bestinnovation/game/snakegame" element={<SnakeGame />} />
-        <Route path="/bestinnovation/game/sudoku" element={<Sudoku />} />
-        <Route path="/bestinnovation/game/tictactoe" element={<TicTacToe />} />
-        <Route
-          path="/bestinnovation/game/towerofhanoi"
-          element={<TowerOfHanoi />}
-        />
-        {/* ========================================================== */}
-      </Route>
-      <Route path="/Gurer_Haat" element={<App2 />} />
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/get_in_touch" element={<GetInTouch />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/project_plan" element={<ProjectPlan />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/terms_of_use" element={<TermsOfUse />} />
+          <Route
+            path="/software_development/vattaxcalculator"
+            element={<VatTaxCalculator />}
+          />
+          <Route
+            path="/software_development/colorpaletteextractor"
+            element={<ColorPaletteExtractor />}
+          />
+          <Route
+            path="/software_development/resumelandingpage"
+            element={<ResumeLandingPage />}
+          />
+          <Route
+            path="/software_development/sheetgrid"
+            element={<SheetGrid />}
+          />
+          <Route
+            path="/software_development/cryptomarkettable"
+            element={<CryptoMarketTable />}
+          />
+          <Route
+            path="/software_development/aitextsummarizer"
+            element={<AITextSummarizer />}
+          />
+          <Route
+            path="/software_development/jsonformatter"
+            element={<JsonFormatter />}
+          />
+          <Route
+            path="/software_development/qrcodegenerator"
+            element={<QRCodeGenerator />}
+          />
+          <Route
+            path="/software_development/qrcodescanner"
+            element={<QRCodeScanner />}
+          />
+          <Route
+            path="/software_development/wordcounter"
+            element={<WordCounter />}
+          />
+          <Route
+            path="/software_development/textdiffchecker"
+            element={<TextDiffChecker />}
+          />
+          <Route
+            path="/software_development/caseconverter"
+            element={<CaseConverter />}
+          />
+          <Route
+            path="/software_development/percentagecalculator"
+            element={<PercentageCalculator />}
+          />
+          <Route
+            path="/software_development/gradientgenerator"
+            element={<GradientGenerator />}
+          />
+          <Route
+            path="/software_development/backgroundremover"
+            element={<BackgroundRemover />}
+          />
+          <Route
+            path="/software_development/weatherdashboard"
+            element={<WeatherDashboard />}
+          />
+          <Route
+            path="/software_development/tricalendar"
+            element={<TriCalendar />}
+          />
+          <Route
+            path="/software_development/imageconverter"
+            element={<ImageConverter />}
+          />
+          <Route
+            path="/software_development/pdfmergesplit"
+            element={<PdfMergeSplit />}
+          />
+          <Route
+            path="/software_development/imagecompressor"
+            element={<ImageCompressor />}
+          />
+          <Route
+            path="/software_development/worldclock"
+            element={<WorldClock />}
+          />
+          <Route
+            path="/software_development/randompicker"
+            element={<RandomPicker />}
+          />
+          <Route
+            path="/software_development/timertools"
+            element={<TimerTools />}
+          />
+          <Route
+            path="/software_development/agecalculator"
+            element={<AgeCalculator />}
+          />
+          <Route
+            path="/software_development/banglasongkhatokotha"
+            element={<BanglaSongkhaToKotha />}
+          />
+          <Route
+            path="/software_development/colorconverter"
+            element={<ColorConverter />}
+          />
+          <Route
+            path="/software_development/markdownpreviewer"
+            element={<MarkdownPreviewer />}
+          />
+          <Route
+            path="/software_development/passwordgenerator"
+            element={<PasswordGenerator />}
+          />
+          <Route
+            path="/software_development/pomodorotimer"
+            element={<PomodoroTimer />}
+          />
+          <Route
+            path="/software_development/regextester"
+            element={<RegexTester />}
+          />
+          <Route
+            path="/software_development/unitconverter"
+            element={<UnitConverter />}
+          />
+          {/* =============================================================== */}
+          {/* //Best Innovation Project */}
+          <Route
+            path="/bestinnovation/dashboard/traveldestination"
+            element={<TravelDestination />}
+          />
+          <Route
+            path="/bestinnovation/dashboard/beautifullnature"
+            element={<BeautifullNature />}
+          />
+          <Route
+            path="/bestinnovation/dashboard/Gurer_Haat"
+            element={<App />}
+          />
+          {/* =============================================================================== */}
+          {/* Games */}
+          <Route
+            path="/bestinnovation/game/connectfour"
+            element={<ConnectFour />}
+          />
+          <Route path="/bestinnovation/game/2048" element={<Game2048 />} />
+          <Route
+            path="/bestinnovation/game/memorygame"
+            element={<MemoryGame />}
+          />
+          <Route
+            path="/bestinnovation/game/minesweeper"
+            element={<Minesweeper />}
+          />
+          <Route
+            path="/bestinnovation/game/rockpaperscissors"
+            element={<RockPaperScissors />}
+          />
+          <Route
+            path="/bestinnovation/game/snakegame"
+            element={<SnakeGame />}
+          />
+          <Route path="/bestinnovation/game/sudoku" element={<Sudoku />} />
+          <Route
+            path="/bestinnovation/game/tictactoe"
+            element={<TicTacToe />}
+          />
+          <Route
+            path="/bestinnovation/game/towerofhanoi"
+            element={<TowerOfHanoi />}
+          />
+          {/* ========================================================== */}
+        </Route>
+        <Route path="/Gurer_Haat" element={<App2 />} />
       </>,
     ),
   );

@@ -158,6 +158,10 @@ const navLinks = [
             title: "Beautiful Nature",
             path: "/bestinnovation/dashboard/beautifullnature",
           },
+          {
+            title: "Gurer_Haat",
+            path: "/Gurer_Haat",
+          },
         ],
       },
       {
